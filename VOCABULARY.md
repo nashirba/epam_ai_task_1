@@ -1,0 +1,21 @@
+# GenAI Vocabulary
+
+- Model: A set of algorithms trained to perform specific tasks using data.
+- Dataset: Collection of data used for training or testing a model.
+- Prompt: Instruction or input for generative models to produce output.
+- Bias: Unintended skew in results, often due to data issues.
+- Fine-tuning: Adjusting an existing AI model with additional training for a specific purpose.
+- Inference: Process of using a model to generate predictions.
+- Hallucination: When AI generates content that appears real but is actually false or misleading.
+- Overfitting: When a model works well on training data but poorly elsewhere.
+- Context: Surrounding information needed to generate correct results.
+- Latent Space: Abstract representation where generative models learn relations.
+- Token: Smallest unit in data (word, sound, etc.) processed by models.
+- API: Application Programming Interface for accessing AI functionalities.
+- Pipeline: Complete workflow from data input to output.
+- Augmentation: Technique of expanding data using synthetic or transformed samples.
+- Deployment: Putting models into production for end users.
+- Reinforcement Learning: Training technique using rewards for better actions.
+- Scaling: Increasing resources or size for greater performance.
+- Reliability: Measure of consistent and correct behavior.
+- Summarization: Reducing content length while keeping key info.
