@@ -48,9 +48,8 @@ def create_schema(client: weaviate.WeaviateClient, collection_name: str) -> weav
             Property(name="title", data_type=DataType.TEXT),
             Property(name="content", data_type=DataType.TEXT),
         ],
-        vector_config=Configure.Vectors.self_provided(
-            vector_index_config=Configure.VectorIndex.hnsw(distance_metric=VectorDistances.COSINE)
-        ),
+        vectorizer_config=Configure.Vectorizer.none(),
+        vector_index_config=Configure.VectorIndex.hnsw(distance_metric=VectorDistances.COSINE),
     )
 
     logger.info(f"Collection {collection_name} created successfully")
