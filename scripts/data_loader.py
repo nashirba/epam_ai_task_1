@@ -58,7 +58,7 @@ def load_data(collection: weaviate.collections.Collection, documents_data: list[
     with collection.batch.dynamic() as batch:
         for doc in documents_data:
             properties = {
-                "id": doc["id"],
+                "doc_id": doc["id"],
                 "category": doc["category"],
                 "title": doc["title"],
                 "content": doc["content"],

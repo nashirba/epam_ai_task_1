@@ -9,7 +9,7 @@ from transformers import pipeline
 
 from settings import configs
 
-logger = logging.getLogger("diet_rag_app")
+logger = logging.getLogger(__name__)
 
 
 class LocalHuggingFaceChatModel(Runnable):

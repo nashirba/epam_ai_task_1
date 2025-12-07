@@ -20,6 +20,9 @@ RUN uv sync --frozen --no-dev
 
 WORKDIR /app
 
+# Create cache directory for HuggingFace models
+RUN mkdir -p /app/.cache/huggingface
+
 # Ensure the virtual environment is in PATH
 ENV PATH="/tmp/.venv/bin:$PATH"
 ENV PYTHONPATH="/app"
