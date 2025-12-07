@@ -14,7 +14,6 @@ import streamlit as st
 import weaviate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
 from weaviate.classes.query import MetadataQuery
 
 from settings import configs
@@ -27,9 +26,7 @@ configure_logging()
 logger = logging.getLogger("diet_rag_app")
 
 
-def generate_embedding(
-    chat_model: AzureChatOpenAI, embedding_model: AzureOpenAIEmbeddings, user_query: str
-) -> list[float]:
+def generate_embedding(chat_model, embedding_model, user_query: str) -> list[float]:
     """Generate embedding vector for query text."""
     logger.info(f"Generating embedding for query: {user_query[:50]}...")
 
@@ -82,7 +79,7 @@ def format_context(documents: list[dict]) -> str:
     return "\n\n".join(context_parts)
 
 
-def generate_response(chat_model: AzureChatOpenAI, user_query: str, context: str) -> str:
+def generate_response(chat_model, user_query: str, context: str) -> str:
     """Generate LLM response using RAG context."""
     logger.info("Generating LLM response with RAG context")
 
@@ -229,6 +226,12 @@ def main():
         - What foods are high in vitamin D?
         - Is the keto diet safe for everyone?
         - What should a balanced meal look like?
+        """)
+
+        st.divider()
+        st.header("❌ Example NOT in RAG questions")
+        st.markdown("""
+        - What is weather like in Almaty?
         """)
 
         st.divider()

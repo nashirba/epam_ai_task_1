@@ -93,11 +93,6 @@ def main():
         logger.info("Skipping data loader due to SKIP_DATA_LOADER environment variable")
         return
 
-    if not configs.AZURE_OPENAI_API_KEY:
-        logger.error("AZURE_OPENAI_API_KEY environment variable is not set!")
-        sys.exit(1)
-    logger.info("OpenAI API key found")
-
     if not configs.DATA_FILE.exists():
         logger.error(f"Data file not found: {configs.DATA_FILE}")
         sys.exit(1)

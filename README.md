@@ -36,8 +36,9 @@ A Retrieval-Augmented Generation (RAG) application for diet and nutrition inform
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/nashirba/epam_ai_task_1.git
    cd task_1
+   git branch RAG_assignment_1
    ```
 
 2. **Create environment file**
