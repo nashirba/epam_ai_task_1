@@ -143,14 +143,10 @@ def main():
             logger.error("AZURE_OPENAI_API_KEY not set")
             return
 
-        st.session_state.chat_model = init_ai_model(
-            configs.AZURE_OPENAI_CHAT_DEPLOYMENT, configs.AZURE_OPENAI_API_VERSION
-        )
+        st.session_state.chat_model = init_ai_model()
         logger.info("OpenAI client stored in session state")
 
-        st.session_state.embedding_model = init_embedding(
-            configs.AZURE_OPENAI_EMBEDDING_DEPLOYMENT, configs.AZURE_OPENAI_API_VERSION
-        )
+        st.session_state.embedding_model = init_embedding()
         logger.info("Embedding model stored in session state")
 
     # Initialize chat history

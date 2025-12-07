@@ -4,9 +4,13 @@ version = "1.0.0"
 description = "Simple RAG project"
 requires-python = ">=3.13"
 dependencies = [
+    "accelerate>=1.12.0",
+    "huggingface-hub>=0.36.0",
     "langchain>=1.1.2",
+    "langchain-community>=0.4.1",
     "langchain-openai>=1.1.0",
     "python-dotenv>=1.2.1",
+    "sentence-transformers>=5.1.2",
     "streamlit>=1.52.1",
     "weaviate-client>=4.18.3",
 ]
