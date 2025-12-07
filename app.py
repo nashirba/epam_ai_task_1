@@ -137,15 +137,11 @@ def main():
                 logger.error(f"Weaviate connection failed: {e}")
                 return
 
-    if "openai_client" not in st.session_state:
-        if not configs.AZURE_OPENAI_API_KEY:
-            st.error("OpenAI API key not configured!")
-            logger.error("AZURE_OPENAI_API_KEY not set")
-            return
-
+    if "chat_model" not in st.session_state:
         st.session_state.chat_model = init_ai_model()
-        logger.info("OpenAI client stored in session state")
+        logger.info("Chat model stored in session state")
 
+    if "embedding_model" not in st.session_state:
         st.session_state.embedding_model = init_embedding()
         logger.info("Embedding model stored in session state")
 
