@@ -55,18 +55,6 @@ A Retrieval-Augmented Generation (RAG) application for diet and nutrition inform
    
    Open your browser and navigate to: http://localhost:8000
 
-## 🔧 Configuration
-
-| Environment Variable | Description                      | Default |
-|---------------------|----------------------------------|---------|
-| `AZURE_OPENAI_API_KEY` | OpenAI API key (required)        | - |
-| `AZURE_OPENAI_ENDPOINT` | OpenAI Endpoint (required)       | - |
-| `AZURE_OPENAI_API_VERSION` | OpenAI API version (required)    | - |
-| `AZURE_OPENAI_EMBEDDING_DEPLOYMENT` | YOUR_EMBEDDING_DEPLOYMENT_NAME (required)| - |
-| `AZURE_OPENAI_CHAT_DEPLOYMENT` | YOUR_CHAT_DEPLOYMENT_NAME (required)        | - |
-| `WEAVIATE_URL` | Weaviate database URL            | `http://weaviate:8080` |
-| `LOG_LEVEL` | Logging level                    | `INFO` |
-
 
 ## 📊 Dataset
 
@@ -83,10 +71,10 @@ The knowledge base includes 20 curated documents covering:
 ## 🔍 How RAG Works
 
 1. **User Query**: User asks a diet/nutrition question
-2. **Embedding**: Query is converted to a 1536-dimensional vector using OpenAI's text-embedding-ada-002
+2. **Embedding**: Query is converted to a 768-dimensional vector using local embedding model
 3. **Vector Search**: Weaviate finds the most similar documents using cosine similarity
-4. **Context Building**: Top 3 relevant documents are formatted as context
-5. **LLM Generation**: GPT-4o-mini generates a response using the query + context
+4. **Context Building**: Top 5 relevant documents are formatted as context
+5. **LLM Generation**: HuggingFace LLM model generates a response using the query + context
 6. **Response Display**: Answer is shown with source documents
 
 ## 📝 Viewing Logs
@@ -129,35 +117,25 @@ pip install uv
    uv sync
    ```
 
-3. **Start Weaviate**
+3. **Fill .env file using .env.example**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your OpenAI API key
+   ```
+
+4. **Start Weaviate**
    ```bash
    docker-compose up weaviate
    ```
 
-4. **Load data**
+5. **Load data**
    ```bash
-   export AZURE_OPENAI_API_KEY=your-key
-   export WEAVIATE_URL=http://localhost:8080
    python data_loader.py
    ```
 
-5**Run Streamlit**
+6**Run Streamlit**
    ```bash
    streamlit run app.py
    ```
-
-## ⚠️ Limitations
-
-- Knowledge base is static and requires manual updates
-- Responses depend on the quality and coverage of the dataset
-- Not a substitute for professional medical or nutritional advice
-- Rate limited by OpenAI API quotas
-- Embedding model has token limits (8191 tokens per chunk)
-
-## 📄 License
-
-This project is for educational purposes.
-
----
 
 **Note**: Always consult healthcare professionals for personalized dietary advice.

@@ -45,8 +45,8 @@ The dataset consists of curated diet and nutrition information organized into ca
 
 ### Technology Stack
 - **Vector Database**: Weaviate (open-source, Docker-based)
-- **Embedding Model**: OpenAI text-embedding-ada-002 (1536 dimensions)
-- **LLM**: OpenAI GPT-4o-mini (via API)
+- **Embedding Model**: Since i dont have access to epam vpn, i used local embedding option with huggingface embeddings model 
+- **LLM**: Since i dont have access to epam vpn, i used local embedding option with huggingface LLM model 
 - **UI Framework**: Python Streamlit
 - **Container Orchestration**: Docker Compose
 - **Programming Language**: Python 3.11
@@ -66,6 +66,6 @@ The dataset consists of curated diet and nutrition information organized into ca
 ## Limitations
 - Responses depend on the quality and coverage of the knowledge base
 - Not a substitute for professional medical or nutritional advice
-- Rate limited by OpenAI API quotas
-- Embedding model has token limits per chunk (8191 tokens for ada-002)
+- EPAM VPN no access, cant use AZURE OPEN AI LLM and embeddings models
+- Embedding model has token limits per chunk 
 - Knowledge base is static and requires manual updates
