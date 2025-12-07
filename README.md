@@ -53,32 +53,20 @@ A Retrieval-Augmented Generation (RAG) application for diet and nutrition inform
 
 4. **Access the application**
    
-   Open your browser and navigate to: http://localhost:8501
-
-## 📁 Project Structure
-
-```
-task_1/
-├── app.py                 # Streamlit application
-├── data_loader.py         # Script to load data into Weaviate
-├── docker-compose.yml     # Docker Compose configuration
-├── Dockerfile             # Application container build
-├── requirements.txt       # Python dependencies
-├── PROJECT.md             # Detailed project documentation
-├── README.md              # This file
-├── .env.example           # Environment variables template
-├── .gitignore             # Git ignore rules
-└── data/
-    └── diet_knowledge.json  # Diet & nutrition knowledge base
-```
+   Open your browser and navigate to: http://localhost:8000
 
 ## 🔧 Configuration
 
-| Environment Variable | Description | Default |
-|---------------------|-------------|---------|
-| `OPENAI_API_KEY` | OpenAI API key (required) | - |
-| `WEAVIATE_URL` | Weaviate database URL | `http://weaviate:8080` |
-| `LOG_LEVEL` | Logging level | `INFO` |
+| Environment Variable | Description                      | Default |
+|---------------------|----------------------------------|---------|
+| `AZURE_OPENAI_API_KEY` | OpenAI API key (required)        | - |
+| `AZURE_OPENAI_ENDPOINT` | OpenAI Endpoint (required)       | - |
+| `AZURE_OPENAI_API_VERSION` | OpenAI API version (required)    | - |
+| `AZURE_OPENAI_EMBEDDING_DEPLOYMENT` | YOUR_EMBEDDING_DEPLOYMENT_NAME (required)| - |
+| `AZURE_OPENAI_CHAT_DEPLOYMENT` | YOUR_CHAT_DEPLOYMENT_NAME (required)        | - |
+| `WEAVIATE_URL` | Weaviate database URL            | `http://weaviate:8080` |
+| `LOG_LEVEL` | Logging level                    | `INFO` |
+
 
 ## 📊 Dataset
 
@@ -120,24 +108,40 @@ docker-compose logs -f weaviate
 
 ### Local Development (without Docker)
 
-1. **Install dependencies**
+1. **Install uv**
+
+Using official installation:
+```bash
+# На macOS и Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+or using pip:
+```bash
+pip install uv
+```
+
+2. **Install dependencies**
    ```bash
-   pip install -r requirements.txt
+   uv venv
+   source .venv/bin/activate  # На Linux/macOS
+   # или .venv\Scripts\activate на Windows
+   uv sync
    ```
 
-2. **Start Weaviate**
+3. **Start Weaviate**
    ```bash
    docker-compose up weaviate
    ```
 
-3. **Load data**
+4. **Load data**
    ```bash
-   export OPENAI_API_KEY=your-key
+   export AZURE_OPENAI_API_KEY=your-key
    export WEAVIATE_URL=http://localhost:8080
    python data_loader.py
    ```
 
-4. **Run Streamlit**
+5**Run Streamlit**
    ```bash
    streamlit run app.py
    ```

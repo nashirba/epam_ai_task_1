@@ -1,0 +1,11 @@
+repos:
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.21.2
+    hooks:
+    -   id: pyupgrade
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: aad66557af3b56ba6d4d69cd1b6cba87cef50cbb  # frozen: v0.14.3
+  hooks:
+    - id: ruff-check
+      args: [ --fix ]
+    - id: ruff-format
