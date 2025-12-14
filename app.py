@@ -9,11 +9,13 @@ All operations are logged for container visibility.
 """
 
 import logging
+import time
 
 import streamlit as st
 import weaviate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
+from sentence_transformers import CrossEncoder, SentenceTransformer
 from weaviate.classes.query import MetadataQuery
 
 from settings import configs
@@ -26,49 +28,79 @@ configure_logging()
 logger = logging.getLogger("diet_rag_app")
 
 
-def generate_embedding(chat_model, embedding_model, user_query: str) -> list[float]:
-    """Generate embedding vector for query text."""
-    logger.info(f"Generating embedding for query: {user_query[:50]}...")
+class EnhancedRetriever:
+    """Enhanced retriever with hybrid search and reranking."""
 
-    expansion_prompt = ChatPromptTemplate.from_template(
-        "You are an expert in information retrieval. "
-        "Please rephrase the following user query to be more descriptive and detailed, "
-        "making it suitable for a vector database search. "
-        "Return only the rephrased query, without any additional text, headers, or explanations. "
-        "\n\nOriginal Query: '{query}'\n\nRephrased Query:"
-    )
-    query_expansion_chain = expansion_prompt | chat_model | StrOutputParser()
+    def __init__(
+        self,
+        collection: weaviate.collections.Collection,
+        embedding_model: SentenceTransformer,
+        reranker: CrossEncoder,
+        rrf_k: int = 60,
+    ):
+        self.collection = collection
+        self.embedding_model = embedding_model
+        self.reranker = reranker
+        self.rrf_k = rrf_k
 
-    expanded_query = query_expansion_chain.invoke({"query": user_query})
-    query_embedding = embedding_model.embed_query(expanded_query)
+    def search(self, query: str, top_k: int = 5, candidate_pool: int = 15) -> list[dict]:
+        start = time.perf_counter()
 
-    logger.info(f"Generated embedding with {len(query_embedding)} dimensions")
-    return query_embedding
+        # query_embedding = self.embedding_model.encode(query).tolist()
+        query_embedding = self.embedding_model.embed_query(query)
+        vector_results = self.collection.query.near_vector(
+            near_vector=query_embedding, limit=candidate_pool, return_metadata=MetadataQuery(distance=True)
+        )
 
+        bm25_results = self.collection.query.bm25(
+            query=query,
+            limit=candidate_pool,
+            return_metadata=MetadataQuery(score=True),
+            query_properties=["title", "content", "category"],
+        )
 
-def search_similar_documents(
-    collection: weaviate.collections.Collection, query_embedding: list[float], top_k: int = configs.TOP_K_RESULTS
-) -> list[dict]:
-    """Search for similar documents in Weaviate."""
-    logger.info(f"Searching for top {top_k} similar documents")
+        doc_scores = {}
+        doc_data = {}
 
-    results = collection.query.near_vector(
-        near_vector=query_embedding, limit=top_k, return_metadata=MetadataQuery(distance=True)
-    )
+        for rank, obj in enumerate(vector_results.objects, 1):
+            doc_id = obj.properties["doc_id"]
+            doc_scores[doc_id] = doc_scores.get(doc_id, 0) + 1 / (self.rrf_k + rank)
+            doc_data[doc_id] = {
+                "doc_id": doc_id,
+                "title": obj.properties["title"],
+                "category": obj.properties["category"],
+                "content": obj.properties["content"],
+                "vector_distance": obj.metadata.distance if obj.metadata else None,
+            }
 
-    documents = []
-    for obj in results.objects:
-        doc = {
-            "title": obj.properties["title"],
-            "category": obj.properties["category"],
-            "content": obj.properties["content"],
-            "distance": obj.metadata.distance if obj.metadata else None,
-        }
-        documents.append(doc)
-        logger.info(f"  - Found: {doc['title']} (distance: {doc['distance']:.4f})")
+        for rank, obj in enumerate(bm25_results.objects, 1):
+            doc_id = obj.properties["doc_id"]
+            doc_scores[doc_id] = doc_scores.get(doc_id, 0) + 1 / (self.rrf_k + rank)
+            if doc_id not in doc_data:
+                doc_data[doc_id] = {
+                    "doc_id": doc_id,
+                    "title": obj.properties["title"],
+                    "category": obj.properties["category"],
+                    "content": obj.properties["content"],
+                    "bm25_score": obj.metadata.score if obj.metadata else None,
+                }
 
-    logger.info(f"Retrieved {len(documents)} relevant documents")
-    return documents
+        sorted_docs = sorted(doc_scores.items(), key=lambda x: x[1], reverse=True)
+        candidates = [doc_data[doc_id] for doc_id, _ in sorted_docs[:candidate_pool]]
+
+        if candidates:
+            pairs = [(query, doc["content"]) for doc in candidates]
+            rerank_scores = self.reranker.predict(pairs)
+
+            for doc, score in zip(candidates, rerank_scores, strict=True):
+                doc["rerank_score"] = float(score)
+
+            candidates.sort(key=lambda x: x.get("rerank_score", 0), reverse=True)
+
+        latency = (time.perf_counter() - start) * 1000
+        logger.info(f"Enhanced search completed in {latency:.1f}ms")
+
+        return candidates[:top_k]
 
 
 def format_context(documents: list[dict]) -> str:
@@ -119,6 +151,14 @@ def main():
     - **Special Diets** (weight loss, diabetic, heart-healthy)
     - **Food Facts** and nutritional information
     """)
+    st.divider()
+
+    st.markdown("""
+        **Enhanced version** with:
+        - Hybrid Search (Vector + BM25)
+        - Cross-Encoder Reranking
+        - Improved retrieval accuracy
+        """)
 
     st.divider()
 
@@ -142,6 +182,19 @@ def main():
         st.session_state.embedding_model = init_embedding()
         logger.info("Embedding model stored in session state")
 
+    if "reranker" not in st.session_state:
+        with st.spinner("Loading reranker model..."):
+            st.session_state.reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+            logger.info("Reranker model stored in session state")
+
+    if "enhanced_retriever" not in st.session_state:
+        st.session_state.enhanced_retriever = EnhancedRetriever(
+            collection=st.session_state.collection,
+            embedding_model=st.session_state.embedding_model,
+            reranker=st.session_state.reranker,
+        )
+        logger.info("Enhanced retriever initialized")
+
     # Initialize chat history
     if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -154,6 +207,8 @@ def main():
                 with st.expander("📚 View Sources"):
                     for source in message["sources"]:
                         st.markdown(f"**{source['title']}** ({source['category']})")
+                        if "rerank_score" in source:
+                            st.caption(f"Relevance Score: {source['rerank_score']:.3f}")
                         st.caption(source["content"][:200] + "...")
 
     # User input
@@ -169,22 +224,16 @@ def main():
         with st.chat_message("assistant"):
             with st.spinner("Searching knowledge base..."):
                 try:
-                    # Step 1: Generate embedding for query
-                    query_embedding = generate_embedding(
-                        st.session_state.chat_model, st.session_state.embedding_model, user_query
-                    )
+                    # Enhanced retrieval
+                    documents = st.session_state.enhanced_retriever.search(user_query, top_k=5)
 
-                    # Step 2: Search for relevant documents
-                    documents = search_similar_documents(st.session_state.collection, query_embedding)
-
-                    # Step 3: Format context
+                    # Format context
                     context = format_context(documents)
                     logger.info(f"Context prepared ({len(context)} characters)")
 
-                    # Step 4: Generate LLM response
+                    # Generate response
                     response = generate_response(st.session_state.chat_model, user_query, context)
 
-                    # Display response
                     st.markdown(response)
 
                     # Display sources
@@ -192,7 +241,8 @@ def main():
                         with st.expander("📚 View Sources"):
                             for doc in documents:
                                 st.markdown(f"**{doc['title']}** ({doc['category']})")
-                                st.caption(f"Relevance: {1 - doc['distance']:.2%}")
+                                if "rerank_score" in doc:
+                                    st.caption(f"Relevance Score: {doc['rerank_score']:.3f}")
                                 st.caption(doc["content"][:200] + "...")
 
                     # Save to history

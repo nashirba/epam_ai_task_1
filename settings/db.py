@@ -2,7 +2,7 @@ import logging
 import time
 
 import weaviate
-from weaviate.classes.config import Configure, DataType, Property
+from weaviate.classes.config import Configure, DataType, Property, Tokenization
 from weaviate.collections.classes.config import VectorDistances
 
 logger = logging.getLogger(__name__)
@@ -43,13 +43,34 @@ def create_schema(client: weaviate.WeaviateClient, collection_name: str) -> weav
     rag_collection = client.collections.create(
         name=collection_name,
         properties=[
-            Property(name="doc_id", data_type=DataType.TEXT),
-            Property(name="category", data_type=DataType.TEXT),
-            Property(name="title", data_type=DataType.TEXT),
-            Property(name="content", data_type=DataType.TEXT),
+            Property(
+                name="doc_id",
+                data_type=DataType.TEXT,
+                tokenization=Tokenization.FIELD,
+            ),
+            Property(
+                name="category",
+                data_type=DataType.TEXT,
+                tokenization=Tokenization.LOWERCASE,
+            ),
+            Property(
+                name="title",
+                data_type=DataType.TEXT,
+                tokenization=Tokenization.WORD,
+            ),
+            Property(
+                name="content",
+                data_type=DataType.TEXT,
+                tokenization=Tokenization.WORD,
+            ),
         ],
         vectorizer_config=Configure.Vectorizer.none(),
         vector_index_config=Configure.VectorIndex.hnsw(distance_metric=VectorDistances.COSINE),
+        # Enable inverted index for BM25 search
+        inverted_index_config=Configure.inverted_index(
+            bm25_b=0.75,
+            bm25_k1=1.2,
+        ),
     )
 
     logger.info(f"Collection {collection_name} created successfully")
