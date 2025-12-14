@@ -36,6 +36,7 @@ services:
       - SENTENCE_TRANSFORMERS_HOME=/app/.cache/huggingface
     volumes:
       - huggingface_cache:/app/.cache/huggingface
+      - .:/app
     depends_on:
       weaviate:
         condition: service_healthy

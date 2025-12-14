@@ -1,0 +1,702 @@
+{
+  "timestamp": "20251214_161952",
+  "config": {
+    "embedding_model": "google/embeddinggemma-300m",
+    "top_k": 1,
+    "search_type": "vector_only",
+    "reranking": false
+  },
+  "metrics": {
+    "hit_rate_percent": 90.0,
+    "mrr": 0.9,
+    "avg_precision_at_k": 0.9,
+    "avg_latency_ms": 63.71880009999131,
+    "total_queries": 40,
+    "successful_retrievals": 36
+  },
+  "detailed_results": [
+    {
+      "query_id": "Q1",
+      "query": "amino acids building blocks muscle repair",
+      "retrieved_doc_ids": [
+        "macro_proteins"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_proteins"
+      ],
+      "distances": [
+        0.5766372084617615
+      ],
+      "latency_ms": 355.12229200003276,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q2",
+      "query": "GI low foods sustained energy",
+      "retrieved_doc_ids": [
+        "macro_carbs"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_carbs"
+      ],
+      "distances": [
+        0.5351607203483582
+      ],
+      "latency_ms": 69.8897509996641,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q3",
+      "query": "EPA DHA brain inflammation fish",
+      "retrieved_doc_ids": [
+        "food_salmon"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_fats",
+        "food_salmon"
+      ],
+      "distances": [
+        0.5985554456710815
+      ],
+      "latency_ms": 58.001249999961146,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q4",
+      "query": "sunshine vitamin bones calcium absorption northern climates",
+      "retrieved_doc_ids": [
+        "vitamin_d"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d"
+      ],
+      "distances": [
+        0.469133198261261
+      ],
+      "latency_ms": 66.33191599985366,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q5",
+      "query": "nerve function DNA red blood cells vegans must supplement",
+      "retrieved_doc_ids": [
+        "diet_vegan"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_b12"
+      ],
+      "distances": [
+        0.5250645875930786
+      ],
+      "latency_ms": 57.66487499977302,
+      "hit": false,
+      "reciprocal_rank": 0.0,
+      "precision_at_k": 0.0
+    },
+    {
+      "query_id": "Q6",
+      "query": "oxygen transport hemoglobin anemia fatigue menstruating women",
+      "retrieved_doc_ids": [
+        "iron_mineral"
+      ],
+      "ground_truth_doc_ids": [
+        "iron_mineral"
+      ],
+      "distances": [
+        0.517295241355896
+      ],
+      "latency_ms": 58.56929199990191,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q7",
+      "query": "olive oil fish legumes reduced cardiovascular disease traditional eating",
+      "retrieved_doc_ids": [
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_mediterranean"
+      ],
+      "distances": [
+        0.36862897872924805
+      ],
+      "latency_ms": 151.86916699985886,
+      "hit": false,
+      "reciprocal_rank": 0.0,
+      "precision_at_k": 0.0
+    },
+    {
+      "query_id": "Q8",
+      "query": "ketosis 20 grams carbs fat burning 70 percent fat",
+      "retrieved_doc_ids": [
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_keto"
+      ],
+      "distances": [
+        0.3855612277984619
+      ],
+      "latency_ms": 63.808166999933746,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q9",
+      "query": "no animal products tofu tempeh seitan B12 deficiency risk",
+      "retrieved_doc_ids": [
+        "diet_vegan"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_vegan"
+      ],
+      "distances": [
+        0.4224415421485901
+      ],
+      "latency_ms": 57.52533300028517,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q10",
+      "query": "caveman diet no grains no legumes no dairy prehistoric",
+      "retrieved_doc_ids": [
+        "diet_paleo"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_paleo"
+      ],
+      "distances": [
+        0.47619855403900146
+      ],
+      "latency_ms": 63.62475000014456,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q11",
+      "query": "plate method half vegetables quarter protein quarter grains",
+      "retrieved_doc_ids": [
+        "meal_planning_basics"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_planning_basics"
+      ],
+      "distances": [
+        0.38927948474884033
+      ],
+      "latency_ms": 52.131082999949285,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q12",
+      "query": "16:8 eating window time restricted feeding circadian",
+      "retrieved_doc_ids": [
+        "meal_timing"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_timing"
+      ],
+      "distances": [
+        0.41452300548553467
+      ],
+      "latency_ms": 47.945667000021785,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q13",
+      "query": "500 calorie deficit 1 pound per week muscle preservation high protein",
+      "retrieved_doc_ids": [
+        "weight_loss_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "weight_loss_diet"
+      ],
+      "distances": [
+        0.31910836696624756
+      ],
+      "latency_ms": 57.054959000197414,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q14",
+      "query": "blood sugar control glycemic load carb distribution throughout day",
+      "retrieved_doc_ids": [
+        "diabetic_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "diabetic_diet"
+      ],
+      "distances": [
+        0.4598156213760376
+      ],
+      "latency_ms": 48.22029200022371,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q15",
+      "query": "saturated fat less than 7 percent trans fat DASH sodium 2300mg",
+      "retrieved_doc_ids": [
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "heart_healthy_diet"
+      ],
+      "distances": [
+        0.3893895149230957
+      ],
+      "latency_ms": 59.930082999926526,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q16",
+      "query": "choline lutein zeaxanthin eye health cholesterol impact breakfast",
+      "retrieved_doc_ids": [
+        "food_eggs"
+      ],
+      "ground_truth_doc_ids": [
+        "food_eggs"
+      ],
+      "distances": [
+        0.5309840440750122
+      ],
+      "latency_ms": 52.76224999988699,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q17",
+      "query": "astaxanthin pink flesh wild caught omega 3 twice weekly",
+      "retrieved_doc_ids": [
+        "food_salmon"
+      ],
+      "ground_truth_doc_ids": [
+        "food_salmon"
+      ],
+      "distances": [
+        0.5239123106002808
+      ],
+      "latency_ms": 55.370749999838154,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q18",
+      "query": "oxalates leafy green vitamin K folate low calorie cooking reduces",
+      "retrieved_doc_ids": [
+        "food_spinach"
+      ],
+      "ground_truth_doc_ids": [
+        "food_spinach"
+      ],
+      "distances": [
+        0.39848071336746216
+      ],
+      "latency_ms": 54.839500000070984,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q19",
+      "query": "64 ounces 8 cups pale yellow urine thirst not reliable indicator",
+      "retrieved_doc_ids": [
+        "hydration"
+      ],
+      "ground_truth_doc_ids": [
+        "hydration"
+      ],
+      "distances": [
+        0.3188496232032776
+      ],
+      "latency_ms": 51.148916999864014,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q20",
+      "query": "USP NSF third party testing fat soluble accumulation multivitamin",
+      "retrieved_doc_ids": [
+        "supplements"
+      ],
+      "ground_truth_doc_ids": [
+        "supplements"
+      ],
+      "distances": [
+        0.572147786617279
+      ],
+      "latency_ms": 48.747124999863445,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q21",
+      "query": "What helps my body use calcium better?",
+      "retrieved_doc_ids": [
+        "iron_mineral"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d"
+      ],
+      "distances": [
+        0.6552693843841553
+      ],
+      "latency_ms": 46.39670799997475,
+      "hit": false,
+      "reciprocal_rank": 0.0,
+      "precision_at_k": 0.0
+    },
+    {
+      "query_id": "Q22",
+      "query": "I'm tired all the time and a vegetarian woman, what might I be missing?",
+      "retrieved_doc_ids": [
+        "iron_mineral"
+      ],
+      "ground_truth_doc_ids": [
+        "iron_mineral",
+        "vitamin_b12"
+      ],
+      "distances": [
+        0.6712909936904907
+      ],
+      "latency_ms": 56.355041000188066,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q23",
+      "query": "anti-inflammatory eating pattern wine with meals social dining",
+      "retrieved_doc_ids": [
+        "diet_mediterranean"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_mediterranean"
+      ],
+      "distances": [
+        0.5057570934295654
+      ],
+      "latency_ms": 52.06083300026876,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q24",
+      "query": "keto flu constipation side effects very low carb",
+      "retrieved_doc_ids": [
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_keto"
+      ],
+      "distances": [
+        0.48699623346328735
+      ],
+      "latency_ms": 47.07845900020402,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q25",
+      "query": "complete vs incomplete protein combining plant sources essential amino",
+      "retrieved_doc_ids": [
+        "macro_proteins"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_proteins"
+      ],
+      "distances": [
+        0.40625298023223877
+      ],
+      "latency_ms": 48.15879100033271,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q26",
+      "query": "hormone production cell membrane nutrient absorption 20-35 percent calories",
+      "retrieved_doc_ids": [
+        "macro_fats"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_fats"
+      ],
+      "distances": [
+        0.5982790589332581
+      ],
+      "latency_ms": 60.893958999713504,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q27",
+      "query": "fiber 25g women 38g men whole grains vegetables legumes",
+      "retrieved_doc_ids": [
+        "macro_carbs"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_carbs"
+      ],
+      "distances": [
+        0.43474316596984863
+      ],
+      "latency_ms": 55.683125000086875,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q28",
+      "query": "methylcobalamin cyanocobalamin absorption decreases age injections",
+      "retrieved_doc_ids": [
+        "vitamin_b12"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_b12"
+      ],
+      "distances": [
+        0.5188126564025879
+      ],
+      "latency_ms": 50.607250000211934,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q29",
+      "query": "heme non-heme absorption vitamin C enhances tannins inhibit",
+      "retrieved_doc_ids": [
+        "iron_mineral"
+      ],
+      "ground_truth_doc_ids": [
+        "iron_mineral"
+      ],
+      "distances": [
+        0.5073754787445068
+      ],
+      "latency_ms": 51.5775419999045,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q30",
+      "query": "post workout nutrition 30-60 minutes muscle recovery",
+      "retrieved_doc_ids": [
+        "meal_timing"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_timing"
+      ],
+      "distances": [
+        0.4622611999511719
+      ],
+      "latency_ms": 53.52254199988238,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q31",
+      "query": "What's a good fish to eat for brain health?",
+      "retrieved_doc_ids": [
+        "food_salmon"
+      ],
+      "ground_truth_doc_ids": [
+        "food_salmon",
+        "macro_fats"
+      ],
+      "distances": [
+        0.5724095106124878
+      ],
+      "latency_ms": 57.015417000002344,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q32",
+      "query": "sedentary adult 0.8 grams per kilogram active 1.2 to 2.0",
+      "retrieved_doc_ids": [
+        "weight_loss_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_proteins"
+      ],
+      "distances": [
+        0.5150254964828491
+      ],
+      "latency_ms": 58.6986660000548,
+      "hit": false,
+      "reciprocal_rank": 0.0,
+      "precision_at_k": 0.0
+    },
+    {
+      "query_id": "Q33",
+      "query": "What should I avoid if I have high blood pressure?",
+      "retrieved_doc_ids": [
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "heart_healthy_diet"
+      ],
+      "distances": [
+        0.6118829250335693
+      ],
+      "latency_ms": 50.650583999868104,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q34",
+      "query": "fortified foods northern latitude darker skin older adults deficiency",
+      "retrieved_doc_ids": [
+        "vitamin_d"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d"
+      ],
+      "distances": [
+        0.6851080060005188
+      ],
+      "latency_ms": 45.661500000278465,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q35",
+      "query": "How do I know if I'm drinking enough water?",
+      "retrieved_doc_ids": [
+        "hydration"
+      ],
+      "ground_truth_doc_ids": [
+        "hydration"
+      ],
+      "distances": [
+        0.38174736499786377
+      ],
+      "latency_ms": 48.58020799974838,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q36",
+      "query": "registered dietitian personalized guidance blood sugar spikes",
+      "retrieved_doc_ids": [
+        "diabetic_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "diabetic_diet"
+      ],
+      "distances": [
+        0.4905685782432556
+      ],
+      "latency_ms": 42.75987500022893,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q37",
+      "query": "tracking food intake awareness accountability caloric deficit",
+      "retrieved_doc_ids": [
+        "weight_loss_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "weight_loss_diet"
+      ],
+      "distances": [
+        0.551787793636322
+      ],
+      "latency_ms": 47.132208999755676,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q38",
+      "query": "antioxidants fiber diverse nutrients colorful variety",
+      "retrieved_doc_ids": [
+        "meal_planning_basics"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_planning_basics"
+      ],
+      "distances": [
+        0.5856136679649353
+      ],
+      "latency_ms": 48.23929199983468,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q39",
+      "query": "genetic evolution excludes nutritious food groups long-term sustainability",
+      "retrieved_doc_ids": [
+        "diet_paleo"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_paleo"
+      ],
+      "distances": [
+        0.5915356278419495
+      ],
+      "latency_ms": 50.074374999894644,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    },
+    {
+      "query_id": "Q40",
+      "query": "type 2 diabetes cancer risk reduced well-planned no animal",
+      "retrieved_doc_ids": [
+        "diet_vegan"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_vegan"
+      ],
+      "distances": [
+        0.520566999912262
+      ],
+      "latency_ms": 47.048208999967756,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 1.0
+    }
+  ]
+}

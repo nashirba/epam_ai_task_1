@@ -1,0 +1,2226 @@
+{
+  "timestamp": "20251214_161959",
+  "config": {
+    "embedding_model": "google/embeddinggemma-300m",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "top_k": 5,
+    "candidate_pool_size": 15,
+    "use_hybrid": true,
+    "use_reranker": true,
+    "rrf_k": 60,
+    "search_type": "hybrid_with_reranking"
+  },
+  "metrics": {
+    "hit_rate_percent": 100.0,
+    "mrr": 0.9875,
+    "avg_precision_at_k": 0.215,
+    "avg_latency_ms": 166.43757402497386,
+    "total_queries": 40,
+    "successful_retrievals": 40
+  },
+  "detailed_results": [
+    {
+      "query_id": "Q1",
+      "query": "amino acids building blocks muscle repair",
+      "retrieved_doc_ids": [
+        "macro_proteins",
+        "food_eggs",
+        "food_spinach",
+        "weight_loss_diet",
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_proteins"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": 0.4233627915382385,
+          "bm25_score": 2.2772305011749268,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": -2.3226425647735596
+        },
+        {
+          "doc_id": "food_eggs",
+          "vector_score": 0.22192323207855225,
+          "bm25_score": 0.8737917542457581,
+          "fusion_score": 0.031754032258064516,
+          "rerank_score": -10.797040939331055
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.22180533409118652,
+          "bm25_score": null,
+          "fusion_score": 0.015384615384615385,
+          "rerank_score": -10.948963165283203
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.2121354341506958,
+          "bm25_score": 0.5277313590049744,
+          "fusion_score": 0.030330882352941176,
+          "rerank_score": -10.985702514648438
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.21512603759765625,
+          "bm25_score": 0.3016997277736664,
+          "fusion_score": 0.030303030303030304,
+          "rerank_score": -11.034927368164062
+        }
+      ],
+      "latency_ms": 203.74274999994668,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q2",
+      "query": "GI low foods sustained energy",
+      "retrieved_doc_ids": [
+        "macro_carbs",
+        "meal_planning_basics",
+        "diet_keto",
+        "diet_paleo",
+        "weight_loss_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_carbs"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.46483927965164185,
+          "bm25_score": 3.483912229537964,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 6.230241775512695
+        },
+        {
+          "doc_id": "meal_planning_basics",
+          "vector_score": 0.355749249458313,
+          "bm25_score": 0.8935638666152954,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -4.517638683319092
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.3178836703300476,
+          "bm25_score": 0.9748659729957581,
+          "fusion_score": 0.030834914611005692,
+          "rerank_score": -7.152726173400879
+        },
+        {
+          "doc_id": "diet_paleo",
+          "vector_score": 0.32016605138778687,
+          "bm25_score": 0.8676496148109436,
+          "fusion_score": 0.03055037313432836,
+          "rerank_score": -8.754274368286133
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.3651186227798462,
+          "bm25_score": 0.409164160490036,
+          "fusion_score": 0.031024531024531024,
+          "rerank_score": -9.533703804016113
+        }
+      ],
+      "latency_ms": 169.1265829999793,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q3",
+      "query": "EPA DHA brain inflammation fish",
+      "retrieved_doc_ids": [
+        "macro_fats",
+        "food_salmon",
+        "diet_mediterranean",
+        "vitamin_b12",
+        "vitamin_d"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_fats",
+        "food_salmon"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.38915109634399414,
+          "bm25_score": 2.658332109451294,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": 3.1596903800964355
+        },
+        {
+          "doc_id": "food_salmon",
+          "vector_score": 0.40144455432891846,
+          "bm25_score": 1.6737726926803589,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": 0.6877472996711731
+        },
+        {
+          "doc_id": "diet_mediterranean",
+          "vector_score": 0.3088427782058716,
+          "bm25_score": 0.6298494935035706,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -10.461322784423828
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.24826908111572266,
+          "bm25_score": 0.14142154157161713,
+          "fusion_score": 0.029877369007803793,
+          "rerank_score": -10.674076080322266
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.2943301796913147,
+          "bm25_score": 0.12749186158180237,
+          "fusion_score": 0.02904040404040404,
+          "rerank_score": -10.985107421875
+        }
+      ],
+      "latency_ms": 154.36145900002884,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.4
+    },
+    {
+      "query_id": "Q4",
+      "query": "sunshine vitamin bones calcium absorption northern climates",
+      "retrieved_doc_ids": [
+        "vitamin_d",
+        "iron_mineral",
+        "food_spinach",
+        "vitamin_b12",
+        "diet_vegan"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d"
+      ],
+      "scores": [
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.530866801738739,
+          "bm25_score": 2.912632703781128,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 5.262888431549072
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.33486872911453247,
+          "bm25_score": 0.928229033946991,
+          "fusion_score": 0.03200204813108039,
+          "rerank_score": -9.727110862731934
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.245000958442688,
+          "bm25_score": 1.1114375591278076,
+          "fusion_score": 0.031054405392392875,
+          "rerank_score": -10.10770034790039
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.2386355996131897,
+          "bm25_score": 0.699823260307312,
+          "fusion_score": 0.030330882352941176,
+          "rerank_score": -10.356632232666016
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": null,
+          "bm25_score": 0.6474446654319763,
+          "fusion_score": 0.015384615384615385,
+          "rerank_score": -11.169227600097656
+        }
+      ],
+      "latency_ms": 148.8798330001373,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q5",
+      "query": "nerve function DNA red blood cells vegans must supplement",
+      "retrieved_doc_ids": [
+        "vitamin_b12",
+        "diet_vegan",
+        "supplements",
+        "vitamin_d",
+        "iron_mineral"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_b12"
+      ],
+      "scores": [
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.47059762477874756,
+          "bm25_score": 4.843033313751221,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": 6.539236545562744
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.4749354124069214,
+          "bm25_score": null,
+          "fusion_score": 0.01639344262295082,
+          "rerank_score": -7.674056053161621
+        },
+        {
+          "doc_id": "supplements",
+          "vector_score": 0.38616085052490234,
+          "bm25_score": 0.5138043165206909,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -8.778959274291992
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.3228791356086731,
+          "bm25_score": 0.49958372116088867,
+          "fusion_score": 0.03076923076923077,
+          "rerank_score": -10.368866920471191
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.33731043338775635,
+          "bm25_score": 0.5970103740692139,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -10.559412002563477
+        }
+      ],
+      "latency_ms": 196.4447499999551,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q6",
+      "query": "oxygen transport hemoglobin anemia fatigue menstruating women",
+      "retrieved_doc_ids": [
+        "iron_mineral",
+        "vitamin_b12",
+        "supplements",
+        "food_spinach",
+        "hydration"
+      ],
+      "ground_truth_doc_ids": [
+        "iron_mineral"
+      ],
+      "scores": [
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.482704758644104,
+          "bm25_score": 2.664374828338623,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": -0.20580771565437317
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.26610779762268066,
+          "bm25_score": 1.160298466682434,
+          "fusion_score": 0.031746031746031744,
+          "rerank_score": -10.073660850524902
+        },
+        {
+          "doc_id": "supplements",
+          "vector_score": 0.2712145447731018,
+          "bm25_score": 1.3340266942977905,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -10.735666275024414
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.24316942691802979,
+          "bm25_score": 1.1127891540527344,
+          "fusion_score": 0.03125,
+          "rerank_score": -10.840859413146973
+        },
+        {
+          "doc_id": "hydration",
+          "vector_score": 0.2403324842453003,
+          "bm25_score": 0.46095675230026245,
+          "fusion_score": 0.030536130536130537,
+          "rerank_score": -11.193357467651367
+        }
+      ],
+      "latency_ms": 149.5485830000689,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q7",
+      "query": "olive oil fish legumes reduced cardiovascular disease traditional eating",
+      "retrieved_doc_ids": [
+        "diet_mediterranean",
+        "heart_healthy_diet",
+        "macro_fats",
+        "diet_vegan",
+        "food_salmon"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_mediterranean"
+      ],
+      "scores": [
+        {
+          "doc_id": "diet_mediterranean",
+          "vector_score": 0.5912337899208069,
+          "bm25_score": 4.550866603851318,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": 6.100435256958008
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.631371021270752,
+          "bm25_score": 1.4068282842636108,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": 2.412386417388916
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.49394500255584717,
+          "bm25_score": 1.2238162755966187,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -1.2696133852005005
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.45145219564437866,
+          "bm25_score": 0.8282527923583984,
+          "fusion_score": 0.031009615384615385,
+          "rerank_score": -4.491333961486816
+        },
+        {
+          "doc_id": "food_salmon",
+          "vector_score": 0.39749467372894287,
+          "bm25_score": 0.6746623516082764,
+          "fusion_score": 0.029631255487269532,
+          "rerank_score": -6.577080726623535
+        }
+      ],
+      "latency_ms": 185.31141700032094,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q8",
+      "query": "ketosis 20 grams carbs fat burning 70 percent fat",
+      "retrieved_doc_ids": [
+        "diet_keto",
+        "macro_fats",
+        "macro_carbs",
+        "weight_loss_diet",
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_keto"
+      ],
+      "scores": [
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.6144387722015381,
+          "bm25_score": 3.412899971008301,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 6.2500691413879395
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.38570261001586914,
+          "bm25_score": 1.1658968925476074,
+          "fusion_score": 0.031024531024531024,
+          "rerank_score": -9.101203918457031
+        },
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.42660361528396606,
+          "bm25_score": 1.7179816961288452,
+          "fusion_score": 0.03200204813108039,
+          "rerank_score": -9.262451171875
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.4656935930252075,
+          "bm25_score": 0.4485507309436798,
+          "fusion_score": 0.030621785881252923,
+          "rerank_score": -10.377847671508789
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.35719019174575806,
+          "bm25_score": 0.46536964178085327,
+          "fusion_score": 0.029631255487269532,
+          "rerank_score": -10.552974700927734
+        }
+      ],
+      "latency_ms": 171.91170800015243,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q9",
+      "query": "no animal products tofu tempeh seitan B12 deficiency risk",
+      "retrieved_doc_ids": [
+        "diet_vegan",
+        "vitamin_b12",
+        "macro_proteins",
+        "supplements",
+        "iron_mineral"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_vegan"
+      ],
+      "scores": [
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.5775584578514099,
+          "bm25_score": 3.8191380500793457,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 2.414003849029541
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.4843794107437134,
+          "bm25_score": 2.1525864601135254,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -1.951108455657959
+        },
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": 0.248957097530365,
+          "bm25_score": 0.9618545174598694,
+          "fusion_score": 0.030117753623188408,
+          "rerank_score": -9.429285049438477
+        },
+        {
+          "doc_id": "supplements",
+          "vector_score": 0.3146101236343384,
+          "bm25_score": 0.4325721561908722,
+          "fusion_score": 0.03055037313432836,
+          "rerank_score": -10.141061782836914
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.3020440340042114,
+          "bm25_score": 1.2347241640090942,
+          "fusion_score": 0.03125763125763126,
+          "rerank_score": -10.227293968200684
+        }
+      ],
+      "latency_ms": 158.47562499993728,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q10",
+      "query": "caveman diet no grains no legumes no dairy prehistoric",
+      "retrieved_doc_ids": [
+        "diet_paleo",
+        "diet_vegan",
+        "diet_mediterranean",
+        "macro_proteins",
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_paleo"
+      ],
+      "scores": [
+        {
+          "doc_id": "diet_paleo",
+          "vector_score": 0.5238014459609985,
+          "bm25_score": 3.041313886642456,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 1.098352074623108
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.41999363899230957,
+          "bm25_score": 2.2756268978118896,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -5.886505126953125
+        },
+        {
+          "doc_id": "diet_mediterranean",
+          "vector_score": 0.2906670570373535,
+          "bm25_score": 2.154069662094116,
+          "fusion_score": 0.03057889822595705,
+          "rerank_score": -8.883307456970215
+        },
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": 0.22219014167785645,
+          "bm25_score": 0.6212081909179688,
+          "fusion_score": 0.02862400327131466,
+          "rerank_score": -9.978365898132324
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.3149227499961853,
+          "bm25_score": 0.9832804799079895,
+          "fusion_score": 0.03125763125763126,
+          "rerank_score": -10.232741355895996
+        }
+      ],
+      "latency_ms": 166.03066600009697,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q11",
+      "query": "plate method half vegetables quarter protein quarter grains",
+      "retrieved_doc_ids": [
+        "meal_planning_basics",
+        "diabetic_diet",
+        "diet_vegan",
+        "heart_healthy_diet",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_planning_basics"
+      ],
+      "scores": [
+        {
+          "doc_id": "meal_planning_basics",
+          "vector_score": 0.6107205152511597,
+          "bm25_score": 4.2924604415893555,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 5.897613525390625
+        },
+        {
+          "doc_id": "diabetic_diet",
+          "vector_score": 0.4684784412384033,
+          "bm25_score": 4.28593111038208,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": 4.228812217712402
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.26694589853286743,
+          "bm25_score": 0.6487018465995789,
+          "fusion_score": 0.029910714285714284,
+          "rerank_score": -10.98716926574707
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.2918550968170166,
+          "bm25_score": 0.46895527839660645,
+          "fusion_score": 0.029631255487269532,
+          "rerank_score": -11.017115592956543
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.26916003227233887,
+          "bm25_score": 0.39697691798210144,
+          "fusion_score": 0.02919863597612958,
+          "rerank_score": -11.086589813232422
+        }
+      ],
+      "latency_ms": 160.49183399991307,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q12",
+      "query": "16:8 eating window time restricted feeding circadian",
+      "retrieved_doc_ids": [
+        "meal_timing",
+        "diet_keto",
+        "heart_healthy_diet",
+        "weight_loss_diet",
+        "diet_mediterranean"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_timing"
+      ],
+      "scores": [
+        {
+          "doc_id": "meal_timing",
+          "vector_score": 0.5854769945144653,
+          "bm25_score": 3.793597459793091,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 4.788711071014404
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.20898622274398804,
+          "bm25_score": 0.38546237349510193,
+          "fusion_score": 0.029418126757516764,
+          "rerank_score": -11.313953399658203
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.23210757970809937,
+          "bm25_score": null,
+          "fusion_score": 0.015384615384615385,
+          "rerank_score": -11.347894668579102
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.2702229619026184,
+          "bm25_score": null,
+          "fusion_score": 0.015625,
+          "rerank_score": -11.354402542114258
+        },
+        {
+          "doc_id": "diet_mediterranean",
+          "vector_score": 0.19387060403823853,
+          "bm25_score": 0.659942626953125,
+          "fusion_score": 0.029827662395050816,
+          "rerank_score": -11.365425109863281
+        }
+      ],
+      "latency_ms": 156.33070900003077,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q13",
+      "query": "500 calorie deficit 1 pound per week muscle preservation high protein",
+      "retrieved_doc_ids": [
+        "weight_loss_diet",
+        "heart_healthy_diet",
+        "macro_proteins",
+        "food_salmon",
+        "vitamin_d"
+      ],
+      "ground_truth_doc_ids": [
+        "weight_loss_diet"
+      ],
+      "scores": [
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.6808916330337524,
+          "bm25_score": 5.503814220428467,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 6.505124568939209
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.43675076961517334,
+          "bm25_score": 0.9438216090202332,
+          "fusion_score": 0.031754032258064516,
+          "rerank_score": -8.973194122314453
+        },
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": 0.31777071952819824,
+          "bm25_score": 0.8736381530761719,
+          "fusion_score": 0.030309988518943745,
+          "rerank_score": -9.37884521484375
+        },
+        {
+          "doc_id": "food_salmon",
+          "vector_score": 0.2683166265487671,
+          "bm25_score": 1.500183343887329,
+          "fusion_score": 0.02946236559139785,
+          "rerank_score": -10.235297203063965
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.28877443075180054,
+          "bm25_score": null,
+          "fusion_score": 0.013888888888888888,
+          "rerank_score": -10.299522399902344
+        }
+      ],
+      "latency_ms": 179.41675100018983,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q14",
+      "query": "blood sugar control glycemic load carb distribution throughout day",
+      "retrieved_doc_ids": [
+        "diabetic_diet",
+        "macro_carbs",
+        "diet_keto",
+        "vitamin_d",
+        "meal_planning_basics"
+      ],
+      "ground_truth_doc_ids": [
+        "diabetic_diet"
+      ],
+      "scores": [
+        {
+          "doc_id": "diabetic_diet",
+          "vector_score": 0.5401843786239624,
+          "bm25_score": 4.0088276863098145,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 5.737126350402832
+        },
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.3813748359680176,
+          "bm25_score": 1.145696997642517,
+          "fusion_score": 0.031754032258064516,
+          "rerank_score": -3.365255832672119
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.26167207956314087,
+          "bm25_score": 1.701602578163147,
+          "fusion_score": 0.031054405392392875,
+          "rerank_score": -6.557294845581055
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.20806348323822021,
+          "bm25_score": 0.17033861577510834,
+          "fusion_score": 0.028370221327967807,
+          "rerank_score": -11.030191421508789
+        },
+        {
+          "doc_id": "meal_planning_basics",
+          "vector_score": 0.3104686141014099,
+          "bm25_score": 0.49514999985694885,
+          "fusion_score": 0.03125763125763126,
+          "rerank_score": -11.13987922668457
+        }
+      ],
+      "latency_ms": 161.649916999977,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q15",
+      "query": "saturated fat less than 7 percent trans fat DASH sodium 2300mg",
+      "retrieved_doc_ids": [
+        "heart_healthy_diet",
+        "macro_fats",
+        "diet_keto",
+        "weight_loss_diet",
+        "vitamin_d"
+      ],
+      "ground_truth_doc_ids": [
+        "heart_healthy_diet"
+      ],
+      "scores": [
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.6106104850769043,
+          "bm25_score": 4.798503398895264,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 1.909781813621521
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.4783529043197632,
+          "bm25_score": 3.5075979232788086,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -3.1032867431640625
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.38068723678588867,
+          "bm25_score": 0.9050058722496033,
+          "fusion_score": 0.031009615384615385,
+          "rerank_score": -10.557594299316406
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.43712401390075684,
+          "bm25_score": 1.2250679731369019,
+          "fusion_score": 0.031746031746031744,
+          "rerank_score": -11.153966903686523
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.2973712682723999,
+          "bm25_score": null,
+          "fusion_score": 0.0136986301369863,
+          "rerank_score": -11.160362243652344
+        }
+      ],
+      "latency_ms": 177.03862500002288,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q16",
+      "query": "choline lutein zeaxanthin eye health cholesterol impact breakfast",
+      "retrieved_doc_ids": [
+        "food_eggs",
+        "food_spinach",
+        "meal_timing",
+        "diet_keto",
+        "vitamin_d"
+      ],
+      "ground_truth_doc_ids": [
+        "food_eggs"
+      ],
+      "scores": [
+        {
+          "doc_id": "food_eggs",
+          "vector_score": 0.4690159559249878,
+          "bm25_score": 4.7582106590271,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 1.4652162790298462
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.33455073833465576,
+          "bm25_score": 1.2083052396774292,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -6.425294876098633
+        },
+        {
+          "doc_id": "meal_timing",
+          "vector_score": 0.318825364112854,
+          "bm25_score": 0.6664422154426575,
+          "fusion_score": 0.03125763125763126,
+          "rerank_score": -11.014083862304688
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.2508465051651001,
+          "bm25_score": null,
+          "fusion_score": 0.013513513513513514,
+          "rerank_score": -11.131052017211914
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.2905898094177246,
+          "bm25_score": 0.2530255615711212,
+          "fusion_score": 0.029411764705882353,
+          "rerank_score": -11.135868072509766
+        }
+      ],
+      "latency_ms": 160.9555420000106,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q17",
+      "query": "astaxanthin pink flesh wild caught omega 3 twice weekly",
+      "retrieved_doc_ids": [
+        "food_salmon",
+        "heart_healthy_diet",
+        "macro_fats",
+        "supplements",
+        "diet_vegan"
+      ],
+      "ground_truth_doc_ids": [
+        "food_salmon"
+      ],
+      "scores": [
+        {
+          "doc_id": "food_salmon",
+          "vector_score": 0.47608768939971924,
+          "bm25_score": 3.5809457302093506,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 2.1327710151672363
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.32652825117111206,
+          "bm25_score": 1.8728325366973877,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -4.524062156677246
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.30916333198547363,
+          "bm25_score": 0.7440189123153687,
+          "fusion_score": 0.031746031746031744,
+          "rerank_score": -10.284149169921875
+        },
+        {
+          "doc_id": "supplements",
+          "vector_score": 0.217423677444458,
+          "bm25_score": 0.606574296951294,
+          "fusion_score": 0.029273504273504274,
+          "rerank_score": -10.505778312683105
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": null,
+          "bm25_score": 0.6230159401893616,
+          "fusion_score": 0.015625,
+          "rerank_score": -11.014430046081543
+        }
+      ],
+      "latency_ms": 150.20849999973507,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q18",
+      "query": "oxalates leafy green vitamin K folate low calorie cooking reduces",
+      "retrieved_doc_ids": [
+        "food_spinach",
+        "weight_loss_diet",
+        "heart_healthy_diet",
+        "vitamin_d",
+        "macro_fats"
+      ],
+      "ground_truth_doc_ids": [
+        "food_spinach"
+      ],
+      "scores": [
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.6015192866325378,
+          "bm25_score": 5.449913024902344,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 4.393088340759277
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.4082554578781128,
+          "bm25_score": 0.5277313590049744,
+          "fusion_score": 0.03128054740957967,
+          "rerank_score": -9.520357131958008
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.4078996181488037,
+          "bm25_score": 0.5475192070007324,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -9.61359691619873
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": null,
+          "bm25_score": 0.30852368474006653,
+          "fusion_score": 0.014285714285714285,
+          "rerank_score": -10.357107162475586
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.3642275929450989,
+          "bm25_score": null,
+          "fusion_score": 0.014705882352941176,
+          "rerank_score": -10.477770805358887
+        }
+      ],
+      "latency_ms": 178.08404200013683,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q19",
+      "query": "64 ounces 8 cups pale yellow urine thirst not reliable indicator",
+      "retrieved_doc_ids": [
+        "hydration",
+        "meal_timing",
+        "diet_paleo",
+        "vitamin_d",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "hydration"
+      ],
+      "scores": [
+        {
+          "doc_id": "hydration",
+          "vector_score": 0.6811503767967224,
+          "bm25_score": 6.506732940673828,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 7.882069110870361
+        },
+        {
+          "doc_id": "meal_timing",
+          "vector_score": 0.19011592864990234,
+          "bm25_score": 0.6211573481559753,
+          "fusion_score": 0.02964254577157803,
+          "rerank_score": -11.307343482971191
+        },
+        {
+          "doc_id": "diet_paleo",
+          "vector_score": 0.20908594131469727,
+          "bm25_score": null,
+          "fusion_score": 0.014492753623188406,
+          "rerank_score": -11.308866500854492
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.28058481216430664,
+          "bm25_score": null,
+          "fusion_score": 0.016129032258064516,
+          "rerank_score": -11.31055736541748
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.19592642784118652,
+          "bm25_score": null,
+          "fusion_score": 0.0136986301369863,
+          "rerank_score": -11.316937446594238
+        }
+      ],
+      "latency_ms": 162.73766599988448,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q20",
+      "query": "USP NSF third party testing fat soluble accumulation multivitamin",
+      "retrieved_doc_ids": [
+        "supplements",
+        "vitamin_b12",
+        "macro_fats",
+        "vitamin_d",
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "supplements"
+      ],
+      "scores": [
+        {
+          "doc_id": "supplements",
+          "vector_score": 0.42785221338272095,
+          "bm25_score": 4.041133403778076,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 1.7103217840194702
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.20916783809661865,
+          "bm25_score": null,
+          "fusion_score": 0.013333333333333334,
+          "rerank_score": -11.23468017578125
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.30274999141693115,
+          "bm25_score": 0.2678344249725342,
+          "fusion_score": 0.03200204813108039,
+          "rerank_score": -11.289546966552734
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.2740016579627991,
+          "bm25_score": null,
+          "fusion_score": 0.015625,
+          "rerank_score": -11.295242309570312
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.2595056891441345,
+          "bm25_score": 0.23268482089042664,
+          "fusion_score": 0.030536130536130537,
+          "rerank_score": -11.316143035888672
+        }
+      ],
+      "latency_ms": 192.2514160000901,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q21",
+      "query": "What helps my body use calcium better?",
+      "retrieved_doc_ids": [
+        "vitamin_d",
+        "iron_mineral",
+        "diet_paleo",
+        "food_spinach",
+        "supplements"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d"
+      ],
+      "scores": [
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.3408600091934204,
+          "bm25_score": 0.32924509048461914,
+          "fusion_score": 0.030621785881252923,
+          "rerank_score": -2.7984280586242676
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.3447306156158447,
+          "bm25_score": 0.3581043779850006,
+          "fusion_score": 0.03131881575727918,
+          "rerank_score": -5.955809116363525
+        },
+        {
+          "doc_id": "diet_paleo",
+          "vector_score": 0.24467307329177856,
+          "bm25_score": 0.7908074855804443,
+          "fusion_score": 0.03047794966520434,
+          "rerank_score": -7.34639835357666
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.22122812271118164,
+          "bm25_score": 0.3803289830684662,
+          "fusion_score": 0.028484848484848488,
+          "rerank_score": -7.792349815368652
+        },
+        {
+          "doc_id": "supplements",
+          "vector_score": 0.30228108167648315,
+          "bm25_score": 0.283121794462204,
+          "fusion_score": 0.029138513513513514,
+          "rerank_score": -8.226463317871094
+        }
+      ],
+      "latency_ms": 169.24058399990827,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q22",
+      "query": "I'm tired all the time and a vegetarian woman, what might I be missing?",
+      "retrieved_doc_ids": [
+        "vitamin_b12",
+        "diet_vegan",
+        "supplements",
+        "iron_mineral",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "iron_mineral",
+        "vitamin_b12"
+      ],
+      "scores": [
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.276119589805603,
+          "bm25_score": null,
+          "fusion_score": 0.015151515151515152,
+          "rerank_score": -8.326974868774414
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.3150755763053894,
+          "bm25_score": 0.5324177742004395,
+          "fusion_score": 0.03200204813108039,
+          "rerank_score": -9.913631439208984
+        },
+        {
+          "doc_id": "supplements",
+          "vector_score": 0.2761874198913574,
+          "bm25_score": null,
+          "fusion_score": 0.015384615384615385,
+          "rerank_score": -10.68022632598877
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.3287090063095093,
+          "bm25_score": null,
+          "fusion_score": 0.01639344262295082,
+          "rerank_score": -11.077676773071289
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.20370495319366455,
+          "bm25_score": null,
+          "fusion_score": 0.013333333333333334,
+          "rerank_score": -11.127735137939453
+        }
+      ],
+      "latency_ms": 168.17300000002433,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.4
+    },
+    {
+      "query_id": "Q23",
+      "query": "anti-inflammatory eating pattern wine with meals social dining",
+      "retrieved_doc_ids": [
+        "diet_mediterranean",
+        "food_salmon",
+        "diet_paleo",
+        "meal_planning_basics",
+        "macro_fats"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_mediterranean"
+      ],
+      "scores": [
+        {
+          "doc_id": "diet_mediterranean",
+          "vector_score": 0.49424290657043457,
+          "bm25_score": 2.587167978286743,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 1.272159218788147
+        },
+        {
+          "doc_id": "food_salmon",
+          "vector_score": 0.2647455930709839,
+          "bm25_score": null,
+          "fusion_score": 0.014084507042253521,
+          "rerank_score": -10.304795265197754
+        },
+        {
+          "doc_id": "diet_paleo",
+          "vector_score": 0.3276858329772949,
+          "bm25_score": 0.3890092074871063,
+          "fusion_score": 0.03055037313432836,
+          "rerank_score": -10.693888664245605
+        },
+        {
+          "doc_id": "meal_planning_basics",
+          "vector_score": 0.4074673652648926,
+          "bm25_score": 0.43641117215156555,
+          "fusion_score": 0.03200204813108039,
+          "rerank_score": -10.85161018371582
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.308607280254364,
+          "bm25_score": null,
+          "fusion_score": 0.014492753623188406,
+          "rerank_score": -10.89936351776123
+        }
+      ],
+      "latency_ms": 149.4164579999051,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q24",
+      "query": "keto flu constipation side effects very low carb",
+      "retrieved_doc_ids": [
+        "diet_keto",
+        "macro_carbs",
+        "diabetic_diet",
+        "vitamin_d",
+        "food_spinach"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_keto"
+      ],
+      "scores": [
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.5130037665367126,
+          "bm25_score": 5.084141731262207,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 4.918507099151611
+        },
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.2942326068878174,
+          "bm25_score": 0.4933280348777771,
+          "fusion_score": 0.031746031746031744,
+          "rerank_score": -10.492290496826172
+        },
+        {
+          "doc_id": "diabetic_diet",
+          "vector_score": 0.2731305956840515,
+          "bm25_score": null,
+          "fusion_score": 0.015151515151515152,
+          "rerank_score": -10.886180877685547
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.22224217653274536,
+          "bm25_score": null,
+          "fusion_score": 0.0136986301369863,
+          "rerank_score": -11.001993179321289
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.28307604789733887,
+          "bm25_score": null,
+          "fusion_score": 0.015625,
+          "rerank_score": -11.012004852294922
+        }
+      ],
+      "latency_ms": 155.7436250000137,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q25",
+      "query": "complete vs incomplete protein combining plant sources essential amino",
+      "retrieved_doc_ids": [
+        "macro_proteins",
+        "food_eggs",
+        "diet_vegan",
+        "iron_mineral",
+        "food_spinach"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_proteins"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": 0.5937470197677612,
+          "bm25_score": 4.66748046875,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 7.628713607788086
+        },
+        {
+          "doc_id": "food_eggs",
+          "vector_score": 0.27186304330825806,
+          "bm25_score": 1.731326937675476,
+          "fusion_score": 0.03021353930031804,
+          "rerank_score": -4.286471366882324
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.3510419726371765,
+          "bm25_score": 1.2907084226608276,
+          "fusion_score": 0.031746031746031744,
+          "rerank_score": -8.7272367477417
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.31253331899642944,
+          "bm25_score": 0.6497991681098938,
+          "fusion_score": 0.030536130536130537,
+          "rerank_score": -10.483686447143555
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.23894590139389038,
+          "bm25_score": 0.22517867386341095,
+          "fusion_score": 0.027402402402402402,
+          "rerank_score": -10.891829490661621
+        }
+      ],
+      "latency_ms": 156.77404200005185,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q26",
+      "query": "hormone production cell membrane nutrient absorption 20-35 percent calories",
+      "retrieved_doc_ids": [
+        "macro_fats",
+        "food_spinach",
+        "vitamin_d",
+        "vitamin_b12",
+        "macro_carbs"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_fats"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.40172094106674194,
+          "bm25_score": 5.566691875457764,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 3.0696115493774414
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.24422478675842285,
+          "bm25_score": 1.7404680252075195,
+          "fusion_score": 0.02964254577157803,
+          "rerank_score": -9.358034133911133
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.31043052673339844,
+          "bm25_score": 0.32924509048461914,
+          "fusion_score": 0.029850746268656716,
+          "rerank_score": -9.957674980163574
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": null,
+          "bm25_score": 0.8536462187767029,
+          "fusion_score": 0.015625,
+          "rerank_score": -10.014570236206055
+        },
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.3884274363517761,
+          "bm25_score": 0.32288697361946106,
+          "fusion_score": 0.030834914611005692,
+          "rerank_score": -10.024164199829102
+        }
+      ],
+      "latency_ms": 164.98774999990928,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q27",
+      "query": "fiber 25g women 38g men whole grains vegetables legumes",
+      "retrieved_doc_ids": [
+        "macro_carbs",
+        "heart_healthy_diet",
+        "iron_mineral",
+        "diet_mediterranean",
+        "diabetic_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_carbs"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.5652568340301514,
+          "bm25_score": 2.662147283554077,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 4.323974609375
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.41871172189712524,
+          "bm25_score": 1.2314099073410034,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -6.867954254150391
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.4113035202026367,
+          "bm25_score": 1.3229669332504272,
+          "fusion_score": 0.031754032258064516,
+          "rerank_score": -7.92984676361084
+        },
+        {
+          "doc_id": "diet_mediterranean",
+          "vector_score": 0.3072912096977234,
+          "bm25_score": 1.3047970533370972,
+          "fusion_score": 0.029386529386529386,
+          "rerank_score": -8.637321472167969
+        },
+        {
+          "doc_id": "diabetic_diet",
+          "vector_score": 0.38235044479370117,
+          "bm25_score": 1.1427911520004272,
+          "fusion_score": 0.03007688828584351,
+          "rerank_score": -9.527801513671875
+        }
+      ],
+      "latency_ms": 171.37345800028925,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q28",
+      "query": "methylcobalamin cyanocobalamin absorption decreases age injections",
+      "retrieved_doc_ids": [
+        "vitamin_b12",
+        "vitamin_d",
+        "iron_mineral",
+        "food_spinach",
+        "macro_fats"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_b12"
+      ],
+      "scores": [
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.4811873435974121,
+          "bm25_score": 3.73124098777771,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 3.8470401763916016
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.26044923067092896,
+          "bm25_score": 0.32924509048461914,
+          "fusion_score": 0.031024531024531024,
+          "rerank_score": -10.442037582397461
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.2891661524772644,
+          "bm25_score": 0.8370185494422913,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -10.482775688171387
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.18531334400177002,
+          "bm25_score": 0.3803289830684662,
+          "fusion_score": 0.02946912242686891,
+          "rerank_score": -11.057388305664062
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": null,
+          "bm25_score": 0.39674410223960876,
+          "fusion_score": 0.015625,
+          "rerank_score": -11.124634742736816
+        }
+      ],
+      "latency_ms": 155.8719999998175,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q29",
+      "query": "heme non-heme absorption vitamin C enhances tannins inhibit",
+      "retrieved_doc_ids": [
+        "iron_mineral",
+        "food_spinach",
+        "vitamin_d",
+        "vitamin_b12",
+        "macro_fats"
+      ],
+      "ground_truth_doc_ids": [
+        "iron_mineral"
+      ],
+      "scores": [
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.49262452125549316,
+          "bm25_score": 5.913887023925781,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 5.455339431762695
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.37082111835479736,
+          "bm25_score": 1.3352612257003784,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -8.868818283081055
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.30800068378448486,
+          "bm25_score": 0.6377688050270081,
+          "fusion_score": 0.03125,
+          "rerank_score": -9.297571182250977
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.25381481647491455,
+          "bm25_score": 0.699823260307312,
+          "fusion_score": 0.03125763125763126,
+          "rerank_score": -9.774297714233398
+        },
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.23902058601379395,
+          "bm25_score": 0.39674410223960876,
+          "fusion_score": 0.029631255487269532,
+          "rerank_score": -11.150543212890625
+        }
+      ],
+      "latency_ms": 149.42279199976838,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q30",
+      "query": "post workout nutrition 30-60 minutes muscle recovery",
+      "retrieved_doc_ids": [
+        "meal_timing",
+        "weight_loss_diet",
+        "diet_keto",
+        "vitamin_d",
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_timing"
+      ],
+      "scores": [
+        {
+          "doc_id": "meal_timing",
+          "vector_score": 0.5377388000488281,
+          "bm25_score": 5.073539733886719,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 7.455644130706787
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.3103395700454712,
+          "bm25_score": 0.5277313590049744,
+          "fusion_score": 0.03125,
+          "rerank_score": -9.834137916564941
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.2817951440811157,
+          "bm25_score": null,
+          "fusion_score": 0.014925373134328358,
+          "rerank_score": -10.925372123718262
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.24528992176055908,
+          "bm25_score": 0.5230059027671814,
+          "fusion_score": 0.02871794871794872,
+          "rerank_score": -10.97497272491455
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.27228009700775146,
+          "bm25_score": null,
+          "fusion_score": 0.014705882352941176,
+          "rerank_score": -10.985384941101074
+        }
+      ],
+      "latency_ms": 154.02741699972466,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q31",
+      "query": "What's a good fish to eat for brain health?",
+      "retrieved_doc_ids": [
+        "macro_fats",
+        "food_salmon",
+        "food_eggs",
+        "macro_proteins",
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "food_salmon",
+        "macro_fats"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.40962135791778564,
+          "bm25_score": 1.1721854209899902,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": 1.4367027282714844
+        },
+        {
+          "doc_id": "food_salmon",
+          "vector_score": 0.4275904893875122,
+          "bm25_score": 1.0672842264175415,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": -0.5958691239356995
+        },
+        {
+          "doc_id": "food_eggs",
+          "vector_score": 0.36025571823120117,
+          "bm25_score": 0.9943696856498718,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -3.353260040283203
+        },
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": null,
+          "bm25_score": 0.6939977407455444,
+          "fusion_score": 0.015151515151515152,
+          "rerank_score": -5.035577774047852
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.3788355588912964,
+          "bm25_score": 0.3983522951602936,
+          "fusion_score": 0.030798389007344232,
+          "rerank_score": -5.12457799911499
+        }
+      ],
+      "latency_ms": 170.42062500013344,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.4
+    },
+    {
+      "query_id": "Q32",
+      "query": "sedentary adult 0.8 grams per kilogram active 1.2 to 2.0",
+      "retrieved_doc_ids": [
+        "macro_proteins",
+        "weight_loss_diet",
+        "macro_carbs",
+        "vitamin_b12",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_proteins"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": 0.45632433891296387,
+          "bm25_score": 6.791333198547363,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": 5.2245917320251465
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.4849745035171509,
+          "bm25_score": 2.53353214263916,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": -8.349861145019531
+        },
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.4074835181236267,
+          "bm25_score": 0.5784883499145508,
+          "fusion_score": 0.03036576949620428,
+          "rerank_score": -10.14603042602539
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.2677267789840698,
+          "bm25_score": 0.7304365038871765,
+          "fusion_score": 0.02871794871794872,
+          "rerank_score": -10.771255493164062
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.30744147300720215,
+          "bm25_score": 0.3352489769458771,
+          "fusion_score": 0.027984344422700584,
+          "rerank_score": -10.975072860717773
+        }
+      ],
+      "latency_ms": 179.27774999998292,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q33",
+      "query": "What should I avoid if I have high blood pressure?",
+      "retrieved_doc_ids": [
+        "macro_fats",
+        "heart_healthy_diet",
+        "weight_loss_diet",
+        "meal_timing",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "heart_healthy_diet"
+      ],
+      "scores": [
+        {
+          "doc_id": "macro_fats",
+          "vector_score": 0.27902913093566895,
+          "bm25_score": 0.5744657516479492,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -9.046574592590332
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.38811707496643066,
+          "bm25_score": null,
+          "fusion_score": 0.01639344262295082,
+          "rerank_score": -9.589052200317383
+        },
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.2730339765548706,
+          "bm25_score": 1.0738390684127808,
+          "fusion_score": 0.031754032258064516,
+          "rerank_score": -10.140840530395508
+        },
+        {
+          "doc_id": "meal_timing",
+          "vector_score": 0.23224157094955444,
+          "bm25_score": 0.537443220615387,
+          "fusion_score": 0.030090497737556562,
+          "rerank_score": -10.286890029907227
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.2575175166130066,
+          "bm25_score": 0.46689215302467346,
+          "fusion_score": 0.030090497737556562,
+          "rerank_score": -10.299643516540527
+        }
+      ],
+      "latency_ms": 172.45574999969904,
+      "hit": true,
+      "reciprocal_rank": 0.5,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q34",
+      "query": "fortified foods northern latitude darker skin older adults deficiency",
+      "retrieved_doc_ids": [
+        "vitamin_d",
+        "vitamin_b12",
+        "iron_mineral",
+        "macro_proteins",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d"
+      ],
+      "scores": [
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.3148919939994812,
+          "bm25_score": 2.1777169704437256,
+          "fusion_score": 0.03252247488101534,
+          "rerank_score": -1.7288594245910645
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.2567485570907593,
+          "bm25_score": 2.7445340156555176,
+          "fusion_score": 0.032266458495966696,
+          "rerank_score": -2.7031054496765137
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.2733270525932312,
+          "bm25_score": 1.2347241640090942,
+          "fusion_score": 0.03200204813108039,
+          "rerank_score": -7.403756618499756
+        },
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": null,
+          "bm25_score": 0.4697639048099518,
+          "fusion_score": 0.015384615384615385,
+          "rerank_score": -10.848255157470703
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": null,
+          "bm25_score": 0.2576395273208618,
+          "fusion_score": 0.014285714285714285,
+          "rerank_score": -11.073139190673828
+        }
+      ],
+      "latency_ms": 173.20891700001084,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q35",
+      "query": "How do I know if I'm drinking enough water?",
+      "retrieved_doc_ids": [
+        "hydration",
+        "vitamin_d",
+        "iron_mineral",
+        "macro_proteins",
+        "macro_carbs"
+      ],
+      "ground_truth_doc_ids": [
+        "hydration"
+      ],
+      "scores": [
+        {
+          "doc_id": "hydration",
+          "vector_score": 0.6182526350021362,
+          "bm25_score": 1.5010008811950684,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": -5.00023078918457
+        },
+        {
+          "doc_id": "vitamin_d",
+          "vector_score": 0.2955036163330078,
+          "bm25_score": null,
+          "fusion_score": 0.015625,
+          "rerank_score": -10.089469909667969
+        },
+        {
+          "doc_id": "iron_mineral",
+          "vector_score": 0.27345651388168335,
+          "bm25_score": null,
+          "fusion_score": 0.014925373134328358,
+          "rerank_score": -10.649540901184082
+        },
+        {
+          "doc_id": "macro_proteins",
+          "vector_score": 0.2338971495628357,
+          "bm25_score": null,
+          "fusion_score": 0.0136986301369863,
+          "rerank_score": -10.762763023376465
+        },
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.31029415130615234,
+          "bm25_score": 0.7266159057617188,
+          "fusion_score": 0.03200204813108039,
+          "rerank_score": -10.805597305297852
+        }
+      ],
+      "latency_ms": 153.73354199982714,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q36",
+      "query": "registered dietitian personalized guidance blood sugar spikes",
+      "retrieved_doc_ids": [
+        "diabetic_diet",
+        "meal_planning_basics",
+        "diet_keto",
+        "macro_carbs",
+        "diet_paleo"
+      ],
+      "ground_truth_doc_ids": [
+        "diabetic_diet"
+      ],
+      "scores": [
+        {
+          "doc_id": "diabetic_diet",
+          "vector_score": 0.5094314217567444,
+          "bm25_score": 4.374563217163086,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 5.999526023864746
+        },
+        {
+          "doc_id": "meal_planning_basics",
+          "vector_score": 0.288318932056427,
+          "bm25_score": 1.0135142803192139,
+          "fusion_score": 0.03200204813108039,
+          "rerank_score": -7.835313320159912
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.2786548137664795,
+          "bm25_score": 0.5086937546730042,
+          "fusion_score": 0.031009615384615385,
+          "rerank_score": -10.139907836914062
+        },
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.3098336458206177,
+          "bm25_score": 0.5597275495529175,
+          "fusion_score": 0.031754032258064516,
+          "rerank_score": -10.592626571655273
+        },
+        {
+          "doc_id": "diet_paleo",
+          "vector_score": null,
+          "bm25_score": 0.8197397589683533,
+          "fusion_score": 0.015873015873015872,
+          "rerank_score": -11.084362983703613
+        }
+      ],
+      "latency_ms": 168.28483299968866,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q37",
+      "query": "tracking food intake awareness accountability caloric deficit",
+      "retrieved_doc_ids": [
+        "weight_loss_diet",
+        "macro_carbs",
+        "diabetic_diet",
+        "meal_planning_basics",
+        "heart_healthy_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "weight_loss_diet"
+      ],
+      "scores": [
+        {
+          "doc_id": "weight_loss_diet",
+          "vector_score": 0.448212206363678,
+          "bm25_score": 3.9343154430389404,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 5.04835319519043
+        },
+        {
+          "doc_id": "macro_carbs",
+          "vector_score": 0.2944018840789795,
+          "bm25_score": 0.1908453404903412,
+          "fusion_score": 0.02967032967032967,
+          "rerank_score": -9.682750701904297
+        },
+        {
+          "doc_id": "diabetic_diet",
+          "vector_score": 0.344180166721344,
+          "bm25_score": 0.1817294806241989,
+          "fusion_score": 0.029827662395050816,
+          "rerank_score": -10.010839462280273
+        },
+        {
+          "doc_id": "meal_planning_basics",
+          "vector_score": 0.3324275612831116,
+          "bm25_score": 0.6871911883354187,
+          "fusion_score": 0.03125763125763126,
+          "rerank_score": -10.342153549194336
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.24528568983078003,
+          "bm25_score": 0.1783224195241928,
+          "fusion_score": 0.028006267136701922,
+          "rerank_score": -10.739278793334961
+        }
+      ],
+      "latency_ms": 168.48574999994526,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q38",
+      "query": "antioxidants fiber diverse nutrients colorful variety",
+      "retrieved_doc_ids": [
+        "meal_planning_basics",
+        "food_spinach",
+        "heart_healthy_diet",
+        "diet_mediterranean",
+        "food_eggs"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_planning_basics"
+      ],
+      "scores": [
+        {
+          "doc_id": "meal_planning_basics",
+          "vector_score": 0.4143863320350647,
+          "bm25_score": 1.928351640701294,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": -3.1494131088256836
+        },
+        {
+          "doc_id": "food_spinach",
+          "vector_score": 0.3838479518890381,
+          "bm25_score": 0.7295780777931213,
+          "fusion_score": 0.03149801587301587,
+          "rerank_score": -4.485299110412598
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.37493109703063965,
+          "bm25_score": 0.6611872911453247,
+          "fusion_score": 0.030536130536130537,
+          "rerank_score": -8.873082160949707
+        },
+        {
+          "doc_id": "diet_mediterranean",
+          "vector_score": 0.36408865451812744,
+          "bm25_score": 0.7005914449691772,
+          "fusion_score": 0.030536130536130537,
+          "rerank_score": -9.268221855163574
+        },
+        {
+          "doc_id": "food_eggs",
+          "vector_score": 0.3350854516029358,
+          "bm25_score": 0.8820646405220032,
+          "fusion_score": 0.03057889822595705,
+          "rerank_score": -9.813480377197266
+        }
+      ],
+      "latency_ms": 141.9972499998039,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q39",
+      "query": "genetic evolution excludes nutritious food groups long-term sustainability",
+      "retrieved_doc_ids": [
+        "diet_paleo",
+        "diet_keto",
+        "diet_vegan",
+        "food_salmon",
+        "food_eggs"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_paleo"
+      ],
+      "scores": [
+        {
+          "doc_id": "diet_paleo",
+          "vector_score": 0.40846437215805054,
+          "bm25_score": 4.387604713439941,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 4.751133918762207
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.179327130317688,
+          "bm25_score": 1.725451946258545,
+          "fusion_score": 0.029138513513513514,
+          "rerank_score": -7.142337799072266
+        },
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.3180140256881714,
+          "bm25_score": 0.5277313590049744,
+          "fusion_score": 0.03128054740957967,
+          "rerank_score": -7.367561340332031
+        },
+        {
+          "doc_id": "food_salmon",
+          "vector_score": null,
+          "bm25_score": 1.7617911100387573,
+          "fusion_score": 0.015873015873015872,
+          "rerank_score": -8.810722351074219
+        },
+        {
+          "doc_id": "food_eggs",
+          "vector_score": 0.20172160863876343,
+          "bm25_score": 1.7794101238250732,
+          "fusion_score": 0.030017921146953404,
+          "rerank_score": -10.311841011047363
+        }
+      ],
+      "latency_ms": 175.2000839996981,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    },
+    {
+      "query_id": "Q40",
+      "query": "type 2 diabetes cancer risk reduced well-planned no animal",
+      "retrieved_doc_ids": [
+        "diet_vegan",
+        "heart_healthy_diet",
+        "vitamin_b12",
+        "diabetic_diet",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_vegan"
+      ],
+      "scores": [
+        {
+          "doc_id": "diet_vegan",
+          "vector_score": 0.47943300008773804,
+          "bm25_score": 3.585075855255127,
+          "fusion_score": 0.03278688524590164,
+          "rerank_score": 0.30995625257492065
+        },
+        {
+          "doc_id": "heart_healthy_diet",
+          "vector_score": 0.36973708868026733,
+          "bm25_score": 0.8056336045265198,
+          "fusion_score": 0.03125763125763126,
+          "rerank_score": -9.741155624389648
+        },
+        {
+          "doc_id": "vitamin_b12",
+          "vector_score": 0.21943140029907227,
+          "bm25_score": 0.8536462187767029,
+          "fusion_score": 0.029513888888888888,
+          "rerank_score": -11.047143936157227
+        },
+        {
+          "doc_id": "diabetic_diet",
+          "vector_score": 0.470916211605072,
+          "bm25_score": 1.1159605979919434,
+          "fusion_score": 0.03225806451612903,
+          "rerank_score": -11.065557479858398
+        },
+        {
+          "doc_id": "diet_keto",
+          "vector_score": 0.3008764386177063,
+          "bm25_score": null,
+          "fusion_score": 0.014705882352941176,
+          "rerank_score": -11.138151168823242
+        }
+      ],
+      "latency_ms": 176.40895800013823,
+      "hit": true,
+      "reciprocal_rank": 1.0,
+      "precision_at_k": 0.2
+    }
+  ]
+}
