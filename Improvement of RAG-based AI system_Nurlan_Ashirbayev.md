@@ -91,7 +91,7 @@ python scripts/data_loader.py
 # Run evaluation with challenging questions
 python evaluation/run_evaluation.py
 ```
-#### See
+ See script results at file **RAG_EVALUATION_REPORT.md**
 
 ---
 
