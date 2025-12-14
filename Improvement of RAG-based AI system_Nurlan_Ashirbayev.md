@@ -1,5 +1,7 @@
 # Advanced RAG Practical task: Improvement of RAG-based AI system
 
+### [Github repository link](https://github.com/nashirba/epam_ai_task_1/tree/feature/RAG_assignment_2)
+
 ---
 
 ## 1. Introduction
