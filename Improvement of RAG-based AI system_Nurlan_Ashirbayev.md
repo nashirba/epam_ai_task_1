@@ -8,11 +8,11 @@
 
 This document summarizes my work on evaluating and enhancing a RAG system for Diet & Nutrition Assistant. **The complete detailed report is available at:** [`COMPREHENSIVE_RAG_EVALUATION_REPORT.md`](./COMPREHENSIVE_RAG_EVALUATION_REPORT.md)
 
-### 🎉 Target Achieved: +31.6% Improvement in Recall@K
+### Target Achieved: +31.6% Improvement in Recall@K
 
 | Metric | Baseline | Enhanced | Improvement | Target |
 |--------|----------|----------|-------------|--------|
-| **Recall@K** | 70.7% | 93.0% | **+31.6%** | ✅ Achieved |
+| **Recall@K** | 70.7% | 93.0% | **+31.6%** | Achieved |
 | Hit Rate | 80.0% | 86.0% | +7.5% | - |
 | MRR | 0.800 | 0.807 | +0.8% | - |
 
@@ -76,25 +76,6 @@ Search       Search
 |--------|--------|-------------|
 | Latency | +48ms | Reranking adds computational overhead |
 | Recall | +31.6% | Primary goal achieved |
-
----
-
-## Files Structure
-
-```
-evaluation/
-├── comprehensive_evaluation.py      # Main evaluation framework
-├── run_comprehensive_evaluation.py  # Evaluation runner script
-├── expanded_test_questions.json     # 50 test questions
-├── deepeval_evaluation.py           # DeepEval LLM-as-judge integration
-└── results/                         # JSON results files
-
-scripts/
-├── data_loader.py                   # Data loading with --use-expanded flag
-└── data/
-    ├── diet_knowledge.json          # Original 20 documents
-    └── expanded_diet_knowledge.json # Expanded 72 documents
-```
 
 ---
 
