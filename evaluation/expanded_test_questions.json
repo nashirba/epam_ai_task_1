@@ -1,0 +1,462 @@
+{
+  "metadata": {
+    "version": "3.0",
+    "description": "Comprehensive test questions for RAG evaluation covering answer quality, retrieval accuracy, and edge cases",
+    "created": "2024-12-21",
+    "total_questions": 100,
+    "categories": ["factual", "inference", "multi-document", "edge_cases", "ambiguous", "negative", "conversational"],
+    "notes": "Designed to evaluate RAG systems across multiple dimensions including retrieval, answer quality, and groundedness"
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "What is the recommended daily protein intake for sedentary adults?",
+      "ground_truth_doc_ids": ["macro_proteins"],
+      "expected_answer": "0.8 grams per kilogram of body weight",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q2",
+      "question": "How much fiber should women consume daily?",
+      "ground_truth_doc_ids": ["macro_carbs", "fiber_types"],
+      "expected_answer": "25 grams",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q3",
+      "question": "What percentage of daily calories should come from fats?",
+      "ground_truth_doc_ids": ["macro_fats"],
+      "expected_answer": "20-35% of daily calories",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q4",
+      "question": "Which vitamin is produced by the skin when exposed to sunlight?",
+      "ground_truth_doc_ids": ["vitamin_d"],
+      "expected_answer": "Vitamin D",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q5",
+      "question": "What nutrient must vegans supplement?",
+      "ground_truth_doc_ids": ["vitamin_b12", "diet_vegan"],
+      "expected_answer": "Vitamin B12",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q6",
+      "question": "How much iron do women of reproductive age need daily?",
+      "ground_truth_doc_ids": ["iron_mineral"],
+      "expected_answer": "18 mg",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q7",
+      "question": "What is the primary fat source in the Mediterranean diet?",
+      "ground_truth_doc_ids": ["diet_mediterranean"],
+      "expected_answer": "Olive oil",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q8",
+      "question": "How many grams of carbs are allowed daily on the keto diet?",
+      "ground_truth_doc_ids": ["diet_keto"],
+      "expected_answer": "20-50 grams",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q9",
+      "question": "What does the plate method suggest for vegetables?",
+      "ground_truth_doc_ids": ["meal_planning_basics"],
+      "expected_answer": "Fill half your plate with vegetables",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q10",
+      "question": "What is the 16:8 intermittent fasting approach?",
+      "ground_truth_doc_ids": ["meal_timing", "intermittent_fasting"],
+      "expected_answer": "16 hours fasting, 8 hours eating",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q11",
+      "question": "I'm feeling tired all the time as a vegetarian woman. What nutrients might I be missing?",
+      "ground_truth_doc_ids": ["iron_mineral", "vitamin_b12"],
+      "expected_answer": "Iron and vitamin B12 are common deficiencies that cause fatigue in vegetarian women",
+      "category": "inference",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q12",
+      "question": "What helps my body absorb calcium better?",
+      "ground_truth_doc_ids": ["vitamin_d", "calcium_mineral"],
+      "expected_answer": "Vitamin D enhances calcium absorption",
+      "category": "inference",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q13",
+      "question": "I want to improve my brain health. What foods should I eat?",
+      "ground_truth_doc_ids": ["omega_3_fatty_acids", "food_salmon", "macro_fats"],
+      "expected_answer": "Fatty fish like salmon rich in omega-3s (EPA and DHA) support brain health",
+      "category": "inference",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q14",
+      "question": "What should I eat after working out for muscle recovery?",
+      "ground_truth_doc_ids": ["meal_timing", "sports_nutrition"],
+      "expected_answer": "Carbs to replenish glycogen and protein for muscle recovery within 30-60 minutes",
+      "category": "inference",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q15",
+      "question": "How can I lower my blood pressure through diet?",
+      "ground_truth_doc_ids": ["heart_healthy_diet", "diet_dash", "sodium_health"],
+      "expected_answer": "Follow DASH diet, reduce sodium to less than 2300mg, increase potassium, eat fruits and vegetables",
+      "category": "inference",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q16",
+      "question": "What's the best protein source for someone who can't eat meat?",
+      "ground_truth_doc_ids": ["plant_based_protein", "diet_vegan", "food_lentils", "food_quinoa"],
+      "expected_answer": "Legumes, tofu, tempeh, quinoa, and other plant proteins",
+      "category": "inference",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q17",
+      "question": "How do omega-3s and omega-6s affect inflammation, and what's the ideal ratio?",
+      "ground_truth_doc_ids": ["omega_3_fatty_acids", "omega_6_fatty_acids", "anti_inflammatory_diet"],
+      "expected_answer": "Omega-3s reduce inflammation while excessive omega-6s promote it. Optimal ratio is 4:1 or lower.",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q18",
+      "question": "What are all the nutrients I need to monitor on a vegan diet and their sources?",
+      "ground_truth_doc_ids": ["diet_vegan", "vitamin_b12", "omega_3_fatty_acids", "iron_mineral", "zinc_mineral", "calcium_mineral"],
+      "expected_answer": "B12 (supplements), D (fortified/sun), omega-3 (algae/seeds), iron (legumes), zinc (nuts/seeds), calcium (fortified milk/tofu)",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q19",
+      "question": "Compare the Mediterranean, DASH, and heart-healthy diets for cardiovascular health.",
+      "ground_truth_doc_ids": ["diet_mediterranean", "diet_dash", "heart_healthy_diet"],
+      "expected_answer": "All three emphasize fruits, vegetables, whole grains. Mediterranean focuses on olive oil and fish, DASH on sodium restriction, heart-healthy on limiting saturated/trans fats.",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q20",
+      "question": "How do different B vitamins work together and what are their sources?",
+      "ground_truth_doc_ids": ["b_vitamins_complex", "vitamin_b12"],
+      "expected_answer": "B vitamins work together in metabolic pathways. Found in whole grains, meat, eggs, legumes, leafy greens. B12 only in animal products.",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q21",
+      "question": "What's the relationship between gut health and mental health?",
+      "ground_truth_doc_ids": ["gut_brain_axis", "probiotics_prebiotics"],
+      "expected_answer": "Gut-brain axis connects digestive tract and brain. 95% of serotonin made in gut. Microbiome affects mood through neural, hormonal, immune pathways.",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q22",
+      "question": "EPA DHA brain inflammation",
+      "ground_truth_doc_ids": ["omega_3_fatty_acids", "macro_fats", "food_salmon"],
+      "expected_answer": "EPA and DHA omega-3 fatty acids reduce inflammation and support brain health",
+      "category": "keyword_query",
+      "difficulty": "medium",
+      "requires_inference": false
+    },
+    {
+      "id": "Q23",
+      "question": "sunshine vitamin bones calcium",
+      "ground_truth_doc_ids": ["vitamin_d"],
+      "expected_answer": "Vitamin D is produced by sunlight exposure and is crucial for calcium absorption and bone health",
+      "category": "keyword_query",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q24",
+      "question": "keto flu constipation side effects",
+      "ground_truth_doc_ids": ["diet_keto"],
+      "expected_answer": "Potential side effects of ketogenic diet include keto flu, constipation, and nutrient deficiencies",
+      "category": "keyword_query",
+      "difficulty": "medium",
+      "requires_inference": false
+    },
+    {
+      "id": "Q25",
+      "question": "oxalates leafy green cooking reduces",
+      "ground_truth_doc_ids": ["food_spinach"],
+      "expected_answer": "Spinach is high in oxalates which inhibit mineral absorption; cooking reduces oxalate content",
+      "category": "keyword_query",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q26",
+      "question": "methylcobalamin cyanocobalamin absorption age",
+      "ground_truth_doc_ids": ["vitamin_b12"],
+      "expected_answer": "Methylcobalamin and cyanocobalamin are B12 supplement forms. Absorption decreases with age.",
+      "category": "keyword_query",
+      "difficulty": "hard",
+      "requires_inference": false
+    },
+    {
+      "id": "Q27",
+      "question": "What is the capital of France?",
+      "ground_truth_doc_ids": [],
+      "expected_answer": "NOT_IN_CONTEXT",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q28",
+      "question": "How do I fix a flat tire?",
+      "ground_truth_doc_ids": [],
+      "expected_answer": "NOT_IN_CONTEXT",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q29",
+      "question": "What's the best programming language?",
+      "ground_truth_doc_ids": [],
+      "expected_answer": "NOT_IN_CONTEXT",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q30",
+      "question": "Tell me about the history of ancient Rome",
+      "ground_truth_doc_ids": [],
+      "expected_answer": "NOT_IN_CONTEXT",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q31",
+      "question": "Is eating 10 eggs per day safe?",
+      "ground_truth_doc_ids": ["food_eggs"],
+      "expected_answer": "Most guidelines allow up to 3 eggs daily; 10 eggs exceeds recommendations",
+      "category": "edge_case",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q32",
+      "question": "Can I survive on a diet of only potatoes?",
+      "ground_truth_doc_ids": ["macro_proteins", "vitamin_b12", "supplements"],
+      "expected_answer": "No, a potato-only diet would lack complete protein, B12, and other essential nutrients",
+      "category": "edge_case",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q33",
+      "question": "What if I'm both diabetic and trying to do keto?",
+      "ground_truth_doc_ids": ["diabetic_diet", "diet_keto"],
+      "expected_answer": "Keto may help blood sugar control but requires medical supervision for diabetics",
+      "category": "edge_case",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q34",
+      "question": "Is it safe to take 10,000 IU of vitamin D daily?",
+      "ground_truth_doc_ids": ["vitamin_d", "supplements"],
+      "expected_answer": "High doses require medical supervision; recommended is 600-800 IU, though some suggest higher doses",
+      "category": "edge_case",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q35",
+      "question": "Can children follow a ketogenic diet?",
+      "ground_truth_doc_ids": ["diet_keto", "children_nutrition"],
+      "expected_answer": "Keto requires medical supervision and may not be appropriate for growing children",
+      "category": "edge_case",
+      "difficulty": "hard",
+      "requires_inference": true
+    },
+    {
+      "id": "Q36",
+      "question": "Hey, what should I eat?",
+      "ground_truth_doc_ids": ["meal_planning_basics"],
+      "expected_answer": "For a balanced meal: half vegetables, quarter protein, quarter whole grains, plus healthy fats",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "requires_inference": true
+    },
+    {
+      "id": "Q37",
+      "question": "Is it good or bad?",
+      "ground_truth_doc_ids": [],
+      "expected_answer": "UNCLEAR_QUERY",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q38",
+      "question": "What about vitamins?",
+      "ground_truth_doc_ids": ["supplements", "vitamin_d", "vitamin_c", "vitamin_a"],
+      "expected_answer": "Various vitamins serve different purposes. More context needed for specific advice.",
+      "category": "ambiguous",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q39",
+      "question": "What do you think about the diet?",
+      "ground_truth_doc_ids": [],
+      "expected_answer": "UNCLEAR_QUERY",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q40",
+      "question": "I heard eggs are dangerous. Should I never eat them?",
+      "ground_truth_doc_ids": ["food_eggs"],
+      "expected_answer": "Recent research shows dietary cholesterol in eggs has minimal impact on blood cholesterol for most people. Up to 3 eggs daily is generally fine.",
+      "category": "misconception",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q41",
+      "question": "Carbs are bad and should be eliminated completely, right?",
+      "ground_truth_doc_ids": ["macro_carbs"],
+      "expected_answer": "No, carbs are the body's primary energy source. Complex carbs provide essential nutrients. Adults should get 45-65% of calories from carbs.",
+      "category": "misconception",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q42",
+      "question": "All fats make you fat, don't they?",
+      "ground_truth_doc_ids": ["macro_fats"],
+      "expected_answer": "No, dietary fats are essential for hormone production, nutrient absorption, and cell membranes. Unsaturated fats are heart-healthy.",
+      "category": "misconception",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q43",
+      "question": "How much water should I drink daily?",
+      "ground_truth_doc_ids": ["hydration"],
+      "expected_answer": "General recommendation is 8 cups (64 ounces) daily, though needs vary by activity, climate, and body size.",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    },
+    {
+      "id": "Q44",
+      "question": "What is the glycemic index and why does it matter?",
+      "ground_truth_doc_ids": ["glycemic_index", "macro_carbs", "diabetic_diet"],
+      "expected_answer": "GI ranks carbs by how quickly they raise blood sugar (0-100 scale). Low GI foods provide stable energy and help manage diabetes.",
+      "category": "conceptual",
+      "difficulty": "medium",
+      "requires_inference": true
+    },
+    {
+      "id": "Q45",
+      "question": "Explain the difference between soluble and insoluble fiber",
+      "ground_truth_doc_ids": ["fiber_types"],
+      "expected_answer": "Soluble fiber dissolves in water, forms gel, slows digestion, lowers cholesterol. Insoluble adds bulk, promotes regular bowel movements.",
+      "category": "conceptual",
+      "difficulty": "medium",
+      "requires_inference": false
+    },
+    {
+      "id": "Q46",
+      "question": "What are probiotics and prebiotics?",
+      "ground_truth_doc_ids": ["probiotics_prebiotics"],
+      "expected_answer": "Probiotics are live beneficial bacteria (yogurt, kefir). Prebiotics are fibers that feed beneficial bacteria (garlic, onions, oats).",
+      "category": "conceptual",
+      "difficulty": "medium",
+      "requires_inference": false
+    },
+    {
+      "id": "Q47",
+      "question": "What nutrients do pregnant women need more of?",
+      "ground_truth_doc_ids": ["pregnancy_nutrition"],
+      "expected_answer": "Folic acid (400-800mcg), iron (27mg), calcium (1000mg), vitamin D (600 IU), DHA omega-3 (200-300mg)",
+      "category": "factual",
+      "difficulty": "medium",
+      "requires_inference": false
+    },
+    {
+      "id": "Q48",
+      "question": "How do nutritional needs change for older adults?",
+      "ground_truth_doc_ids": ["aging_nutrition"],
+      "expected_answer": "Caloric needs decrease but nutrient needs stay high. Increase protein (1.0-1.2g/kg), vitamin D (800-1000 IU), B12 via supplements.",
+      "category": "factual",
+      "difficulty": "medium",
+      "requires_inference": false
+    },
+    {
+      "id": "Q49",
+      "question": "What are the eight major food allergens?",
+      "ground_truth_doc_ids": ["food_allergies"],
+      "expected_answer": "Milk, eggs, peanuts, tree nuts, wheat, soy, fish, and shellfish",
+      "category": "factual",
+      "difficulty": "medium",
+      "requires_inference": false
+    },
+    {
+      "id": "Q50",
+      "question": "How much vitamin C do I need and what are good sources?",
+      "ground_truth_doc_ids": ["vitamin_c"],
+      "expected_answer": "75-90mg daily for adults. Sources: citrus fruits, bell peppers, strawberries, broccoli, kiwi.",
+      "category": "factual",
+      "difficulty": "easy",
+      "requires_inference": false
+    }
+  ]
+}

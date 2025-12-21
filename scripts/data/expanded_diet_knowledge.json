@@ -1,0 +1,434 @@
+[
+  {
+    "id": "macro_proteins",
+    "category": "Macronutrients",
+    "title": "Proteins",
+    "content": "Proteins are essential macronutrients made up of amino acids. They are crucial for building and repairing tissues, making enzymes and hormones, and supporting immune function. Good sources include lean meats, fish, eggs, dairy products, legumes, and tofu. The recommended daily intake is 0.8 grams per kilogram of body weight for sedentary adults, increasing to 1.2-2.0 grams for active individuals. Complete proteins contain all nine essential amino acids, while incomplete proteins lack one or more. Combining plant proteins can provide complete amino acid profiles."
+  },
+  {
+    "id": "macro_carbs",
+    "category": "Macronutrients",
+    "title": "Carbohydrates",
+    "content": "Carbohydrates are the body's primary energy source. They are classified into simple carbs (sugars) and complex carbs (starches and fiber). Complex carbohydrates from whole grains, vegetables, and legumes provide sustained energy and essential nutrients. The glycemic index (GI) measures how quickly foods raise blood sugar levels. Low-GI foods are preferable for stable energy. Adults should aim for 45-65% of calories from carbohydrates, with emphasis on fiber-rich sources. Minimum recommended fiber intake is 25 grams for women and 38 grams for men daily."
+  },
+  {
+    "id": "macro_fats",
+    "category": "Macronutrients",
+    "title": "Dietary Fats",
+    "content": "Dietary fats are essential for hormone production, nutrient absorption, and cell membrane integrity. Fats are categorized as saturated, unsaturated (mono and poly), and trans fats. Unsaturated fats from olive oil, nuts, avocados, and fatty fish are heart-healthy. Omega-3 fatty acids (EPA and DHA) from fatty fish reduce inflammation and support brain health. Saturated fats should be limited to less than 10% of daily calories. Trans fats should be avoided entirely. Total fat intake should comprise 20-35% of daily calories."
+  },
+  {
+    "id": "vitamin_d",
+    "category": "Micronutrients",
+    "title": "Vitamin D",
+    "content": "Vitamin D is crucial for calcium absorption, bone health, and immune function. It is produced by the skin when exposed to sunlight and found in fatty fish, fortified dairy, and egg yolks. Many people are deficient, especially in northern climates. The recommended daily intake is 600-800 IU, though some experts suggest higher doses. Deficiency can lead to weakened bones, increased infection risk, and mood disorders. Blood levels of 30-50 ng/mL are considered optimal. Supplementation may be necessary for those with limited sun exposure."
+  },
+  {
+    "id": "vitamin_b12",
+    "category": "Micronutrients",
+    "title": "Vitamin B12",
+    "content": "Vitamin B12 is essential for nerve function, DNA synthesis, and red blood cell formation. It is found naturally only in animal products including meat, fish, eggs, and dairy. Vegans and vegetarians must supplement or consume fortified foods. Deficiency can cause anemia, neurological problems, and fatigue. The recommended daily intake is 2.4 micrograms for adults. Absorption decreases with age, so older adults may need higher doses or injections. Methylcobalamin and cyanocobalamin are common supplement forms."
+  },
+  {
+    "id": "iron_mineral",
+    "category": "Micronutrients",
+    "title": "Iron",
+    "content": "Iron is vital for oxygen transport in blood and energy metabolism. Heme iron from animal sources is more easily absorbed than non-heme iron from plants. Good sources include red meat, poultry, fish, legumes, and fortified cereals. Vitamin C enhances iron absorption, while calcium and tannins inhibit it. Women of reproductive age need 18 mg daily, while men need 8 mg. Iron deficiency is the most common nutritional deficiency worldwide, causing anemia and fatigue. Excess iron can be toxic, so supplementation should be approached carefully."
+  },
+  {
+    "id": "diet_mediterranean",
+    "category": "Diet Types",
+    "title": "Mediterranean Diet",
+    "content": "The Mediterranean diet is based on traditional eating patterns of countries bordering the Mediterranean Sea. It emphasizes olive oil as the primary fat source, abundant fruits and vegetables, whole grains, legumes, nuts, and seeds. Fish and seafood are consumed regularly, while red meat is limited. Moderate wine consumption with meals is traditional. This diet is associated with reduced cardiovascular disease, lower inflammation, and improved cognitive function. It is rich in antioxidants, fiber, and healthy fats. The diet promotes social eating and mindful food enjoyment."
+  },
+  {
+    "id": "diet_keto",
+    "category": "Diet Types",
+    "title": "Ketogenic Diet",
+    "content": "The ketogenic diet is a high-fat, very low-carbohydrate eating plan that puts the body into ketosis. Carbohydrates are limited to 20-50 grams daily, forcing the body to burn fat for fuel. Macronutrient ratios are typically 70-75% fat, 20-25% protein, and 5-10% carbohydrates. The diet can promote rapid weight loss and improve blood sugar control. Foods include meats, fatty fish, eggs, butter, cheese, nuts, and low-carb vegetables. Potential side effects include keto flu, constipation, and nutrient deficiencies. Long-term sustainability and safety require medical supervision."
+  },
+  {
+    "id": "diet_vegan",
+    "category": "Diet Types",
+    "title": "Vegan Diet",
+    "content": "A vegan diet excludes all animal products including meat, fish, dairy, eggs, and honey. It relies on plant-based protein sources like legumes, tofu, tempeh, seitan, and plant-based meat alternatives. Whole grains, fruits, vegetables, nuts, and seeds form the foundation. Critical nutrients to monitor include vitamin B12, vitamin D, omega-3 fatty acids, iron, zinc, and calcium. Supplementation is typically necessary for B12. When well-planned, vegan diets can meet all nutritional needs and may reduce risk of heart disease, type 2 diabetes, and certain cancers."
+  },
+  {
+    "id": "diet_paleo",
+    "category": "Diet Types",
+    "title": "Paleo Diet",
+    "content": "The Paleo diet mimics the eating patterns of our prehistoric ancestors, focusing on whole, unprocessed foods. It includes lean meats, fish, fruits, vegetables, nuts, and seeds while excluding grains, legumes, dairy, refined sugar, and processed foods. Proponents claim it aligns with human genetic evolution. Benefits may include weight loss, improved blood lipids, and better blood sugar control. Critics note that it excludes nutritious food groups and may be difficult to sustain long-term. The diet is high in protein and fiber but may be low in calcium and vitamin D."
+  },
+  {
+    "id": "meal_planning_basics",
+    "category": "Meal Planning",
+    "title": "Balanced Meal Composition",
+    "content": "A balanced meal includes all macronutrient groups in appropriate proportions. The plate method suggests filling half your plate with vegetables, one quarter with lean protein, and one quarter with whole grains or starchy vegetables. Include a source of healthy fat like olive oil, avocado, or nuts. Aim for colorful variety to ensure diverse nutrient intake. Meals should provide sustained energy without causing blood sugar spikes. Preparation in advance through meal prepping can improve dietary adherence. Consider individual caloric needs based on age, sex, activity level, and health goals."
+  },
+  {
+    "id": "meal_timing",
+    "category": "Meal Planning",
+    "title": "Meal Timing and Frequency",
+    "content": "Meal timing can affect metabolism, weight management, and energy levels. Traditional advice suggests three main meals with optional snacks. Intermittent fasting approaches limit eating to specific time windows, such as 16:8 (16 hours fasting, 8 hours eating). Eating breakfast may benefit some individuals but is not essential for everyone. Avoid large meals close to bedtime for better sleep quality. Post-workout nutrition within 30-60 minutes supports muscle recovery. Consistent meal times help regulate hunger hormones and circadian rhythms. Individual responses to meal timing vary significantly."
+  },
+  {
+    "id": "weight_loss_diet",
+    "category": "Special Diets",
+    "title": "Weight Loss Fundamentals",
+    "content": "Sustainable weight loss requires a moderate caloric deficit of 500-750 calories daily, resulting in 1-1.5 pounds lost per week. Protein intake should be prioritized to preserve muscle mass during weight loss. Aim for 0.7-1 gram of protein per pound of body weight. High-fiber foods increase satiety and reduce overall calorie intake. Avoid drastic restrictions that are unsustainable. Focus on whole, nutrient-dense foods rather than processed diet products. Regular physical activity enhances fat loss and metabolic health. Tracking food intake increases awareness and accountability."
+  },
+  {
+    "id": "diabetic_diet",
+    "category": "Special Diets",
+    "title": "Diabetic-Friendly Diet",
+    "content": "Managing diabetes through diet involves controlling blood sugar levels through carbohydrate management. The glycemic index and glycemic load help identify foods that cause minimal blood sugar spikes. Focus on fiber-rich complex carbohydrates, lean proteins, and healthy fats. Distribute carbohydrate intake evenly throughout the day. Limit added sugars and refined grains. The plate method works well for diabetics: half non-starchy vegetables, quarter lean protein, quarter whole grains. Regular meal timing helps maintain stable blood sugar. Work with a registered dietitian for personalized guidance."
+  },
+  {
+    "id": "heart_healthy_diet",
+    "category": "Special Diets",
+    "title": "Heart-Healthy Diet",
+    "content": "A heart-healthy diet reduces cardiovascular disease risk through specific dietary choices. Limit saturated fat to less than 7% of calories and eliminate trans fats. Increase omega-3 fatty acids from fatty fish eaten twice weekly. Reduce sodium intake to less than 2,300 mg daily, ideally 1,500 mg. Emphasize fruits, vegetables, whole grains, and legumes for fiber and antioxidants. Choose lean proteins and plant-based options. Limit red meat and processed meats. The DASH diet and Mediterranean diet are evidence-based approaches for heart health."
+  },
+  {
+    "id": "food_eggs",
+    "category": "Food Facts",
+    "title": "Eggs Nutritional Profile",
+    "content": "Eggs are highly nutritious, providing complete protein with all essential amino acids. One large egg contains 6 grams of protein, 5 grams of fat, and 77 calories. Eggs are rich in choline for brain health, B vitamins, and vitamin D. The yolk contains most nutrients including healthy fats and antioxidants like lutein and zeaxanthin for eye health. Recent research indicates dietary cholesterol in eggs has minimal impact on blood cholesterol for most people. Eggs can be part of a healthy diet, with most guidelines allowing up to 3 eggs daily."
+  },
+  {
+    "id": "food_salmon",
+    "category": "Food Facts",
+    "title": "Salmon Nutritional Profile",
+    "content": "Salmon is one of the most nutritious foods available, particularly rich in omega-3 fatty acids EPA and DHA. A 3.5-ounce serving provides 25 grams of high-quality protein and over 2 grams of omega-3s. Wild-caught salmon is generally leaner with fewer contaminants than farmed varieties. Salmon is an excellent source of vitamin D, B vitamins, selenium, and astaxanthin. Regular consumption is associated with reduced inflammation, improved heart health, and better cognitive function. Aim to eat fatty fish like salmon at least twice per week."
+  },
+  {
+    "id": "food_spinach",
+    "category": "Food Facts",
+    "title": "Spinach Nutritional Profile",
+    "content": "Spinach is a nutrient-dense leafy green vegetable with minimal calories. It provides vitamin K for blood clotting, vitamin A for vision, folate for cell division, and iron for oxygen transport. Spinach contains antioxidants including lutein, zeaxanthin, and beta-carotene. Raw spinach is high in oxalates which can inhibit calcium and iron absorption; cooking reduces oxalate content. One cup of raw spinach provides 7 calories, 1 gram of protein, and 1 gram of fiber. It can be eaten raw in salads or cooked in various dishes."
+  },
+  {
+    "id": "hydration",
+    "category": "Nutrition Basics",
+    "title": "Hydration and Water Intake",
+    "content": "Adequate hydration is essential for all bodily functions including temperature regulation, nutrient transport, and waste removal. General recommendations suggest 8 cups (64 ounces) of water daily, though individual needs vary based on activity level, climate, and body size. Thirst is not always a reliable indicator of hydration status. Urine color should be pale yellow. All beverages contribute to hydration, though water is calorie-free and ideal. Fruits and vegetables also contribute to water intake. During exercise or hot weather, increase fluid intake and consider electrolyte replacement for extended activity."
+  },
+  {
+    "id": "supplements",
+    "category": "Nutrition Basics",
+    "title": "Dietary Supplements",
+    "content": "Dietary supplements can fill nutritional gaps but should not replace a balanced diet. Common supplements include multivitamins, vitamin D, omega-3 fish oil, and probiotics. Certain populations may benefit from specific supplements: B12 for vegans, iron for menstruating women, folic acid for pregnant women. Quality varies significantly between brands; look for third-party testing certifications like USP or NSF. Some supplements can interact with medications or have side effects at high doses. Consult healthcare providers before starting supplementation, especially for fat-soluble vitamins that can accumulate in the body."
+  },
+  {
+    "id": "vitamin_c",
+    "category": "Micronutrients",
+    "title": "Vitamin C (Ascorbic Acid)",
+    "content": "Vitamin C is a water-soluble antioxidant essential for collagen synthesis, immune function, and iron absorption. The recommended daily intake is 75-90 mg for adults, with smokers needing an additional 35 mg. Excellent sources include citrus fruits, bell peppers, strawberries, broccoli, and kiwi. Unlike most animals, humans cannot synthesize vitamin C and must obtain it from diet. Deficiency causes scurvy with symptoms including fatigue, bleeding gums, and poor wound healing. High doses (over 2000 mg) may cause digestive upset. Vitamin C is heat-sensitive and best preserved in raw or lightly cooked foods."
+  },
+  {
+    "id": "vitamin_a",
+    "category": "Micronutrients",
+    "title": "Vitamin A and Beta-Carotene",
+    "content": "Vitamin A is essential for vision, immune function, reproduction, and cell growth. It exists as preformed vitamin A (retinol) in animal foods like liver, fish, eggs, and dairy, and as provitamin A carotenoids (beta-carotene) in colorful vegetables and fruits. The recommended daily intake is 700-900 mcg RAE (retinol activity equivalents). Beta-carotene from foods is safely converted to vitamin A as needed, while excessive preformed vitamin A can be toxic. Good plant sources include sweet potatoes, carrots, spinach, and cantaloupe. Deficiency causes night blindness and increased infection risk."
+  },
+  {
+    "id": "vitamin_e",
+    "category": "Micronutrients",
+    "title": "Vitamin E",
+    "content": "Vitamin E is a fat-soluble antioxidant that protects cell membranes from oxidative damage. The recommended daily intake is 15 mg of alpha-tocopherol for adults. Rich sources include wheat germ oil, sunflower seeds, almonds, hazelnuts, and spinach. Vitamin E works synergistically with vitamin C and selenium. Deficiency is rare but can cause nerve and muscle damage. High-dose supplements (over 400 IU) may increase bleeding risk and have not shown benefits in clinical trials. Food sources are preferred over supplements for obtaining vitamin E."
+  },
+  {
+    "id": "vitamin_k",
+    "category": "Micronutrients",
+    "title": "Vitamin K",
+    "content": "Vitamin K is essential for blood clotting and bone metabolism. It exists as K1 (phylloquinone) in green leafy vegetables and K2 (menaquinone) produced by gut bacteria and found in fermented foods. The adequate intake is 90-120 mcg daily. Excellent sources include kale, spinach, collard greens, broccoli, and Brussels sprouts. Vitamin K interacts with blood-thinning medications like warfarin; those on these medications should maintain consistent vitamin K intake. Newborns receive vitamin K injections to prevent bleeding disorders. Deficiency causes impaired blood clotting."
+  },
+  {
+    "id": "b_vitamins_complex",
+    "category": "Micronutrients",
+    "title": "B Vitamins Complex",
+    "content": "The B vitamin complex includes eight water-soluble vitamins essential for energy metabolism, nervous system function, and cell health. B1 (thiamine), B2 (riboflavin), B3 (niacin), B5 (pantothenic acid), B6 (pyridoxine), B7 (biotin), B9 (folate), and B12 (cobalamin) work together in metabolic pathways. Whole grains, meat, eggs, legumes, and leafy greens provide B vitamins. Folate is critical during pregnancy to prevent neural tube defects; supplementation of 400-800 mcg is recommended. B vitamins are water-soluble and excess amounts are typically excreted, though B6 can cause nerve damage at very high doses."
+  },
+  {
+    "id": "calcium_mineral",
+    "category": "Micronutrients",
+    "title": "Calcium",
+    "content": "Calcium is the most abundant mineral in the body, essential for bone health, muscle function, nerve transmission, and blood clotting. The recommended daily intake is 1000-1200 mg for adults. Dairy products are the richest sources, but calcium is also found in fortified plant milks, tofu made with calcium sulfate, sardines with bones, and leafy greens like bok choy. Vitamin D enhances calcium absorption. Excessive calcium from supplements (over 2000 mg daily) may increase kidney stone risk and cardiovascular events. Calcium competes with iron for absorption; take supplements separately."
+  },
+  {
+    "id": "magnesium_mineral",
+    "category": "Micronutrients",
+    "title": "Magnesium",
+    "content": "Magnesium is involved in over 300 enzymatic reactions including energy production, protein synthesis, muscle and nerve function, and blood sugar control. The recommended daily intake is 310-420 mg for adults. Rich sources include pumpkin seeds, almonds, spinach, black beans, dark chocolate, and whole grains. Magnesium deficiency is common and associated with muscle cramps, fatigue, and poor sleep. Different supplement forms have varying absorption and effects: magnesium glycinate for sleep, citrate for constipation, and oxide for laxative effect. Excess magnesium from supplements can cause diarrhea."
+  },
+  {
+    "id": "zinc_mineral",
+    "category": "Micronutrients",
+    "title": "Zinc",
+    "content": "Zinc is essential for immune function, wound healing, protein synthesis, and DNA formation. The recommended daily intake is 8-11 mg for adults. Excellent sources include oysters, beef, crab, pumpkin seeds, chickpeas, and fortified cereals. Zinc absorption is enhanced by animal protein and inhibited by phytates in whole grains and legumes. Deficiency impairs immune function, causes hair loss, and delays wound healing. Zinc lozenges may reduce cold duration if taken early. Excessive zinc (over 40 mg daily) can interfere with copper absorption and cause nausea."
+  },
+  {
+    "id": "potassium_mineral",
+    "category": "Micronutrients",
+    "title": "Potassium",
+    "content": "Potassium is an electrolyte crucial for heart function, muscle contraction, nerve transmission, and fluid balance. The adequate intake is 2600-3400 mg daily for adults. Most people don't consume enough potassium. Rich sources include bananas, potatoes, sweet potatoes, white beans, spinach, salmon, and avocados. Potassium helps counteract sodium's blood pressure effects. The DASH diet emphasizes potassium-rich foods for heart health. Those with kidney disease should limit potassium intake. Supplements are typically limited to 99 mg per dose due to risk of heart arrhythmias."
+  },
+  {
+    "id": "selenium_mineral",
+    "category": "Micronutrients",
+    "title": "Selenium",
+    "content": "Selenium is a trace mineral essential for thyroid function, reproduction, and antioxidant defense through selenoproteins. The recommended daily intake is 55 mcg for adults. Brazil nuts are the richest source—just one or two nuts provide the daily requirement. Other sources include seafood, meat, poultry, eggs, and whole grains. Selenium content in plant foods varies by soil selenium levels. Deficiency can impair thyroid function and immune response. Excess selenium (over 400 mcg) causes selenosis with symptoms including hair loss, nail brittleness, and garlic breath."
+  },
+  {
+    "id": "omega_3_fatty_acids",
+    "category": "Fatty Acids",
+    "title": "Omega-3 Fatty Acids",
+    "content": "Omega-3 fatty acids are essential polyunsaturated fats that must be obtained from diet. The three main types are ALA (alpha-linolenic acid) from plant sources, and EPA and DHA (eicosapentaenoic and docosahexaenoic acids) from fatty fish. The body poorly converts ALA to EPA and DHA, making direct sources important. Omega-3s reduce inflammation, support heart health, brain function, and eye health. Fatty fish like salmon, mackerel, sardines, and herring are the best sources. The American Heart Association recommends two servings of fatty fish weekly. Fish oil supplements provide concentrated EPA and DHA."
+  },
+  {
+    "id": "omega_6_fatty_acids",
+    "category": "Fatty Acids",
+    "title": "Omega-6 Fatty Acids",
+    "content": "Omega-6 fatty acids are essential polyunsaturated fats found in vegetable oils, nuts, and seeds. Linoleic acid is the primary omega-6, converted to arachidonic acid in the body. While essential, excessive omega-6 relative to omega-3 may promote inflammation. The Western diet typically has an omega-6 to omega-3 ratio of 15:1 or higher; optimal is thought to be 4:1 or lower. Major sources include soybean oil, corn oil, sunflower oil, and most processed foods. Balance omega-6 intake by reducing vegetable oil consumption and increasing omega-3 foods."
+  },
+  {
+    "id": "fiber_types",
+    "category": "Macronutrients",
+    "title": "Dietary Fiber Types",
+    "content": "Dietary fiber is indigestible plant material classified as soluble or insoluble. Soluble fiber dissolves in water, forms a gel, slows digestion, and helps lower cholesterol and blood sugar. Sources include oats, beans, apples, citrus, and psyllium. Insoluble fiber adds bulk to stool and promotes regular bowel movements. Sources include whole wheat, vegetables, and wheat bran. Most plant foods contain both types. The recommended intake is 25-38 grams daily, but average American intake is only 15 grams. Increase fiber gradually to prevent digestive discomfort. Adequate water intake is essential with high-fiber diets."
+  },
+  {
+    "id": "probiotics_prebiotics",
+    "category": "Gut Health",
+    "title": "Probiotics and Prebiotics",
+    "content": "Probiotics are live beneficial bacteria that support gut health and immune function. Food sources include yogurt, kefir, sauerkraut, kimchi, miso, and kombucha. Different strains have different benefits; Lactobacillus and Bifidobacterium are most common. Prebiotics are non-digestible fibers that feed beneficial gut bacteria. Sources include garlic, onions, leeks, asparagus, bananas, and oats. Together, probiotics and prebiotics support a healthy gut microbiome. Benefits include improved digestion, enhanced immunity, and potential mental health benefits through the gut-brain axis. Quality and potency of probiotic supplements vary widely."
+  },
+  {
+    "id": "food_allergies",
+    "category": "Food Safety",
+    "title": "Common Food Allergies",
+    "content": "Food allergies occur when the immune system mistakenly identifies a food protein as harmful. The eight major allergens are milk, eggs, peanuts, tree nuts, wheat, soy, fish, and shellfish. Symptoms range from mild (hives, itching) to severe anaphylaxis requiring emergency treatment. Food allergies differ from intolerances, which don't involve the immune system. There is no cure; strict avoidance is the primary management. Always read labels and ask about ingredients when dining out. Epinephrine auto-injectors (EpiPens) should be carried by those with severe allergies. New therapies like oral immunotherapy show promise for some allergies."
+  },
+  {
+    "id": "food_intolerances",
+    "category": "Food Safety",
+    "title": "Food Intolerances",
+    "content": "Food intolerances cause digestive symptoms but don't involve the immune system. Lactose intolerance, the most common, results from insufficient lactase enzyme to digest milk sugar. Symptoms include bloating, gas, diarrhea, and cramping. Lactose-free products and lactase supplements help manage it. Gluten sensitivity causes symptoms similar to celiac disease but without intestinal damage; it improves with gluten-free eating. FODMAP intolerance involves fermentable carbohydrates that cause digestive distress in some people, especially those with IBS. Elimination diets under professional guidance help identify trigger foods."
+  },
+  {
+    "id": "glycemic_index",
+    "category": "Nutrition Science",
+    "title": "Glycemic Index and Glycemic Load",
+    "content": "The glycemic index (GI) ranks carbohydrate-containing foods by how quickly they raise blood sugar on a scale of 0-100. Pure glucose has a GI of 100. Low GI foods (55 or less) include most vegetables, legumes, and whole grains. High GI foods (70+) include white bread, white rice, and sugary foods. Glycemic load (GL) accounts for portion size: GL = (GI × grams of carbs) / 100. A GL under 10 is low, over 20 is high. Low GI/GL diets help manage diabetes, reduce heart disease risk, and promote satiety. Factors affecting GI include fiber content, food processing, and fat and protein combinations."
+  },
+  {
+    "id": "caloric_density",
+    "category": "Nutrition Science",
+    "title": "Caloric Density and Satiety",
+    "content": "Caloric density is the number of calories per gram of food. Low-calorie-density foods like vegetables, fruits, and broth-based soups provide fewer calories per bite while being filling. High-calorie-density foods like oils, nuts, and processed snacks pack many calories into small portions. Water and fiber content lower caloric density. Research shows people tend to eat similar volumes of food regardless of calories. Choosing low-calorie-density foods supports weight management without constant hunger. The volumetrics approach emphasizes filling up on water-rich and fiber-rich foods to naturally reduce calorie intake."
+  },
+  {
+    "id": "antioxidants",
+    "category": "Nutrition Science",
+    "title": "Antioxidants in Food",
+    "content": "Antioxidants are compounds that neutralize free radicals, unstable molecules that can damage cells and contribute to aging and disease. Key antioxidants include vitamins C and E, beta-carotene, selenium, and phytochemicals like flavonoids and polyphenols. Colorful fruits and vegetables are the best sources: berries, dark leafy greens, tomatoes, red grapes, and dark chocolate. Antioxidant supplements have not shown the same benefits as food sources and may even be harmful in high doses. The ORAC (Oxygen Radical Absorbance Capacity) scale measures antioxidant capacity but has limitations. Eating a variety of colorful plant foods ensures diverse antioxidant intake."
+  },
+  {
+    "id": "intermittent_fasting",
+    "category": "Diet Strategies",
+    "title": "Intermittent Fasting",
+    "content": "Intermittent fasting (IF) involves cycling between periods of eating and fasting. Common approaches include 16:8 (16 hours fasting, 8-hour eating window), 5:2 (normal eating 5 days, restricted calories 2 days), and alternate-day fasting. During fasting, the body shifts from using glucose to burning stored fat. Benefits may include weight loss, improved insulin sensitivity, cellular autophagy, and reduced inflammation. IF may not be suitable for pregnant women, those with eating disorder history, or people with certain medical conditions. Staying hydrated during fasting periods is essential. Results vary; it works best when combined with healthy food choices during eating windows."
+  },
+  {
+    "id": "diet_dash",
+    "category": "Diet Types",
+    "title": "DASH Diet",
+    "content": "DASH (Dietary Approaches to Stop Hypertension) is specifically designed to lower blood pressure. It emphasizes fruits, vegetables, whole grains, lean proteins, and low-fat dairy while limiting sodium, red meat, sweets, and added sugars. The standard DASH diet limits sodium to 2,300 mg daily; the lower-sodium version restricts to 1,500 mg. Studies show DASH can lower blood pressure within weeks. The diet is rich in potassium, calcium, magnesium, and fiber. DASH consistently ranks among the healthiest diets for overall health, not just blood pressure. It's sustainable long-term and suitable for the whole family."
+  },
+  {
+    "id": "diet_whole30",
+    "category": "Diet Types",
+    "title": "Whole30 Diet",
+    "content": "Whole30 is a 30-day elimination diet that removes sugar, alcohol, grains, legumes, soy, and dairy. The goal is to identify foods that may be negatively affecting health by eliminating them completely, then systematically reintroducing them. Allowed foods include meat, seafood, eggs, vegetables, fruits, and natural fats. The diet prohibits weighing during the 30 days, focusing instead on non-scale victories like energy and sleep. After completion, foods are reintroduced one group at a time to identify sensitivities. Critics note it's restrictive and lacks long-term evidence. It may help reset eating habits and identify trigger foods."
+  },
+  {
+    "id": "diet_flexitarian",
+    "category": "Diet Types",
+    "title": "Flexitarian Diet",
+    "content": "The flexitarian diet is primarily plant-based but allows occasional meat and animal products. It focuses on fruits, vegetables, legumes, and whole grains as dietary foundations while treating meat as a side dish or occasional item rather than the main course. This approach offers health benefits similar to vegetarian diets while being more flexible and sustainable. Environmental benefits include reduced carbon footprint compared to typical Western diets. The diet doesn't have strict rules, making it adaptable to individual preferences. Research associates flexitarian eating with lower rates of heart disease, diabetes, and obesity."
+  },
+  {
+    "id": "sports_nutrition",
+    "category": "Special Populations",
+    "title": "Sports Nutrition Basics",
+    "content": "Athletes have increased nutritional needs based on training intensity, duration, and type. Carbohydrates fuel high-intensity exercise; athletes may need 5-12 grams per kilogram of body weight daily. Protein requirements are 1.2-2.0 grams per kilogram for muscle repair and growth. Hydration is critical; athletes should drink before, during, and after exercise. Electrolytes (sodium, potassium) need replacement during prolonged exercise. Pre-workout meals should be high in carbs, moderate in protein, low in fat. Post-workout nutrition should include carbs to replenish glycogen and protein for muscle recovery within 30-60 minutes of exercise."
+  },
+  {
+    "id": "pregnancy_nutrition",
+    "category": "Special Populations",
+    "title": "Nutrition During Pregnancy",
+    "content": "Pregnancy increases nutritional needs to support fetal development. Caloric needs increase by about 340-450 calories daily in the second and third trimesters. Folic acid (400-800 mcg) is critical before conception and early pregnancy to prevent neural tube defects. Iron needs nearly double to 27 mg daily to support increased blood volume. Calcium (1000 mg) and vitamin D (600 IU) support bone development. DHA omega-3 (200-300 mg) supports fetal brain development. Avoid high-mercury fish, raw seafood, unpasteurized products, and excessive vitamin A. Prenatal vitamins help fill nutritional gaps."
+  },
+  {
+    "id": "aging_nutrition",
+    "category": "Special Populations",
+    "title": "Nutrition for Older Adults",
+    "content": "Nutritional needs change with aging. Caloric needs decrease due to reduced metabolism and activity, but nutrient needs remain high or increase. Protein intake should increase to 1.0-1.2 grams per kilogram to prevent muscle loss (sarcopenia). Vitamin D needs increase to 800-1000 IU as skin synthesis decreases. B12 absorption declines; supplements or fortified foods may be necessary. Calcium remains important for bone health (1200 mg daily). Hydration needs attention as thirst sensation diminishes. Fiber helps maintain digestive health. Social eating and enjoyable meals support overall wellbeing."
+  },
+  {
+    "id": "children_nutrition",
+    "category": "Special Populations",
+    "title": "Childhood Nutrition",
+    "content": "Children have unique nutritional needs for growth and development. Protein supports tissue building; requirements are higher per kilogram than adults. Calcium and vitamin D are critical for bone development. Iron is essential for cognitive development and preventing anemia. Healthy fats, particularly DHA, support brain development. Children should eat varied diets with fruits, vegetables, whole grains, lean proteins, and dairy. Limit added sugars to less than 10% of calories. Model healthy eating behaviors. Avoid using food as reward or punishment. Regular family meals are associated with better nutrition and psychosocial outcomes."
+  },
+  {
+    "id": "food_avocado",
+    "category": "Food Facts",
+    "title": "Avocado Nutritional Profile",
+    "content": "Avocados are nutrient-dense fruits rich in heart-healthy monounsaturated fats. One medium avocado contains about 320 calories, 30 grams of fat (mostly monounsaturated), 4 grams of protein, and 17 grams of carbs including 13 grams of fiber. They're excellent sources of potassium (more than bananas), vitamins K, C, B5, B6, and E, and folate. The monounsaturated fats help absorb fat-soluble nutrients from other foods. Research associates avocado consumption with improved cholesterol levels and heart health. Despite high calorie content, they can be part of weight management due to satiety effects."
+  },
+  {
+    "id": "food_blueberries",
+    "category": "Food Facts",
+    "title": "Blueberries Nutritional Profile",
+    "content": "Blueberries are among the most antioxidant-rich foods available. One cup contains 84 calories, 21 grams of carbs, 4 grams of fiber, and negligible fat. They're excellent sources of vitamins C and K and manganese. The deep blue color comes from anthocyanins, powerful antioxidants linked to improved brain function, heart health, and reduced inflammation. Studies show regular consumption may improve memory and delay cognitive decline. Blueberries have a relatively low glycemic index despite their sweetness. Fresh, frozen, and wild blueberries all offer similar nutritional benefits. They're versatile in smoothies, yogurt, oatmeal, and baked goods."
+  },
+  {
+    "id": "food_quinoa",
+    "category": "Food Facts",
+    "title": "Quinoa Nutritional Profile",
+    "content": "Quinoa is a pseudo-grain that provides complete protein with all nine essential amino acids—rare for plant foods. One cooked cup contains 222 calories, 8 grams of protein, 39 grams of carbs, 5 grams of fiber, and 4 grams of fat. It's gluten-free and suitable for celiac disease. Quinoa is high in iron, magnesium, B vitamins, and antioxidants. The glycemic index is relatively low at 53. It should be rinsed before cooking to remove bitter saponins. Quinoa cooks quickly (15-20 minutes) and can substitute for rice or pasta. White, red, and black varieties have similar nutrition."
+  },
+  {
+    "id": "food_sweet_potato",
+    "category": "Food Facts",
+    "title": "Sweet Potato Nutritional Profile",
+    "content": "Sweet potatoes are highly nutritious root vegetables. One medium sweet potato (about 150g) provides 103 calories, 24 grams of carbs, 4 grams of fiber, and 2 grams of protein. They're exceptional sources of beta-carotene (converted to vitamin A), providing over 400% of daily needs. Also rich in vitamins C, B5, B6, potassium, and manganese. The orange flesh indicates high antioxidant content. Purple sweet potatoes contain additional anthocyanins. Despite sweetness, they have a moderate glycemic index, lower when boiled than baked. The fiber and complex carbs provide sustained energy."
+  },
+  {
+    "id": "food_almonds",
+    "category": "Food Facts",
+    "title": "Almonds Nutritional Profile",
+    "content": "Almonds are nutrient-dense tree nuts with significant health benefits. One ounce (about 23 almonds) contains 164 calories, 14 grams of fat (mostly monounsaturated), 6 grams of protein, 6 grams of carbs, and 3.5 grams of fiber. They're excellent sources of vitamin E (37% daily value), magnesium, and antioxidants concentrated in the brown skin. Research associates regular almond consumption with reduced LDL cholesterol, better blood sugar control, and heart health. Despite high calories, almonds may not contribute to weight gain due to satiety effects and incomplete calorie absorption. Raw and roasted almonds have similar nutrition."
+  },
+  {
+    "id": "food_greek_yogurt",
+    "category": "Food Facts",
+    "title": "Greek Yogurt Nutritional Profile",
+    "content": "Greek yogurt is strained to remove whey, resulting in thicker texture and higher protein content. One cup of plain, non-fat Greek yogurt contains about 100 calories, 17 grams of protein, 6 grams of carbs, and minimal fat. It provides calcium, B12, probiotics for gut health, and phosphorus. The protein content is nearly double that of regular yogurt. Choose plain varieties to avoid added sugars; flavored versions can contain 20+ grams of sugar. Greek yogurt works as a healthy substitute for sour cream or mayonnaise in recipes. Probiotics are live cultures that support digestive health."
+  },
+  {
+    "id": "food_broccoli",
+    "category": "Food Facts",
+    "title": "Broccoli Nutritional Profile",
+    "content": "Broccoli is a cruciferous vegetable packed with nutrients. One cup of raw broccoli contains just 31 calories with 6 grams of carbs, 2.5 grams of fiber, and 2.5 grams of protein. It provides over 100% of daily vitamin C and vitamin K needs, plus significant folate, potassium, and vitamin A. Broccoli contains sulforaphane, a compound studied for potential anti-cancer properties. Other beneficial compounds include indole-3-carbinol and glucosinolates. Light steaming preserves nutrients better than boiling. Both florets and stems are nutritious; the stems can be peeled and eaten. Broccoli sprouts contain even higher sulforaphane concentrations."
+  },
+  {
+    "id": "food_lentils",
+    "category": "Food Facts",
+    "title": "Lentils Nutritional Profile",
+    "content": "Lentils are legumes offering exceptional nutrition at low cost. One cup of cooked lentils contains 230 calories, 18 grams of protein, 40 grams of carbs, 16 grams of fiber, and minimal fat. They're excellent sources of folate (90% daily value), iron, manganese, and phosphorus. Unlike dried beans, lentils require no soaking and cook in 20-30 minutes. Brown, green, red, and black lentils have similar nutrition but different textures. Lentils have a low glycemic index, making them suitable for blood sugar management. Their protein and fiber content promotes satiety. Versatile in soups, salads, and curries."
+  },
+  {
+    "id": "gut_brain_axis",
+    "category": "Gut Health",
+    "title": "Gut-Brain Connection",
+    "content": "The gut-brain axis is a bidirectional communication system between the digestive tract and the brain. The gut contains over 100 million neurons (the enteric nervous system) and produces neurotransmitters including serotonin—about 95% of the body's serotonin is made in the gut. The gut microbiome influences brain function, mood, and behavior through neural, hormonal, and immune pathways. Diet significantly affects gut bacteria composition. Fermented foods, fiber, and polyphenols support beneficial bacteria. Stress, antibiotics, and poor diet can disrupt the microbiome. Emerging research connects gut health to anxiety, depression, and neurodegenerative diseases."
+  },
+  {
+    "id": "food_labels",
+    "category": "Nutrition Literacy",
+    "title": "Reading Food Labels",
+    "content": "Understanding food labels helps make informed dietary choices. Serving size determines all other values on the label. Daily values are based on a 2,000-calorie diet. Key nutrients to monitor include calories, saturated fat, trans fat, sodium, added sugars, and fiber. The ingredient list shows items in descending order by weight. Watch for hidden sugars under names like sucrose, high fructose corn syrup, dextrose, and maltose. 'Percent daily value' of 5% or less is low; 20% or more is high. Claims like 'natural,' 'multigrain,' and 'lightly sweetened' are unregulated. 'Organic,' 'whole grain,' and nutrition facts are regulated."
+  },
+  {
+    "id": "portion_control",
+    "category": "Nutrition Literacy",
+    "title": "Understanding Portion Sizes",
+    "content": "Portion sizes have increased dramatically over decades, contributing to overconsumption. Standard serving sizes differ from typical portions served in restaurants. Visual guides help estimate portions: a deck of cards equals 3 oz of meat; a tennis ball equals one cup of pasta; a thumb equals one tablespoon of fat. Using smaller plates and bowls can reduce intake without feeling deprived. Pre-portioning snacks prevents mindless eating from packages. Restaurant portions often contain 2-3 servings. Eating slowly helps recognize satiety signals. Reading labels reveals serving sizes that may be smaller than expected."
+  },
+  {
+    "id": "mindful_eating",
+    "category": "Diet Strategies",
+    "title": "Mindful Eating Practices",
+    "content": "Mindful eating involves paying full attention to the experience of eating without judgment. It includes eating slowly, noticing hunger and fullness cues, appreciating food's appearance, smell, and taste, and eating without distractions. Benefits may include better weight management, reduced emotional eating, improved digestion, and greater food enjoyment. Practices include eating at a table (not in front of screens), putting down utensils between bites, chewing thoroughly, and noticing when satisfaction occurs before fullness. Mindful eating is not a diet but a way of relating to food that can complement any eating pattern."
+  },
+  {
+    "id": "anti_inflammatory_diet",
+    "category": "Diet Strategies",
+    "title": "Anti-Inflammatory Eating",
+    "content": "Chronic inflammation contributes to heart disease, diabetes, cancer, and autoimmune conditions. Anti-inflammatory diets reduce inflammation through food choices. Foods that fight inflammation include fatty fish, olive oil, leafy greens, berries, nuts, tomatoes, and turmeric. Foods that promote inflammation include refined carbohydrates, fried foods, red and processed meats, margarine, and sugary beverages. The Mediterranean diet is inherently anti-inflammatory. Key principles include emphasizing omega-3s over omega-6s, choosing whole foods over processed, eating abundant vegetables, and limiting added sugars. Regular exercise and adequate sleep also reduce inflammation."
+  },
+  {
+    "id": "organic_vs_conventional",
+    "category": "Food Safety",
+    "title": "Organic vs Conventional Foods",
+    "content": "Organic foods are produced without synthetic pesticides, fertilizers, GMOs, or routine antibiotics in animals. USDA organic certification requires specific farming practices. Organic produce has lower pesticide residues but isn't pesticide-free (natural pesticides are allowed). Nutritional differences between organic and conventional foods are minimal. Environmental benefits of organic farming include improved soil health and biodiversity. Organic foods typically cost more due to farming methods and lower yields. The 'Dirty Dozen' list highlights produce with highest pesticide residues. The 'Clean Fifteen' lists produce lowest in residues, where organic may matter less."
+  },
+  {
+    "id": "food_processing_levels",
+    "category": "Food Safety",
+    "title": "Understanding Food Processing",
+    "content": "Food processing exists on a spectrum from minimal to ultra-processed. Minimally processed foods include washed salad, frozen vegetables, and roasted nuts. Processed culinary ingredients include oils, butter, and sugar. Processed foods are manufactured with few ingredients: canned vegetables, cheese, and fresh bread. Ultra-processed foods contain industrial formulations with additives: soft drinks, packaged snacks, instant noodles, and reconstituted meats. The NOVA classification system categorizes these levels. Research links ultra-processed food consumption to obesity, heart disease, and mortality. Reading ingredients helps identify processing level; longer lists with unfamiliar ingredients indicate more processing."
+  },
+  {
+    "id": "electrolytes",
+    "category": "Nutrition Basics",
+    "title": "Electrolytes and Balance",
+    "content": "Electrolytes are minerals carrying electrical charges essential for nerve function, muscle contraction, hydration, and pH balance. Key electrolytes include sodium, potassium, calcium, magnesium, chloride, phosphate, and bicarbonate. Electrolyte imbalances can cause muscle cramps, weakness, irregular heartbeat, and confusion. Most people get adequate electrolytes from food. Athletes, those in hot climates, or people with vomiting/diarrhea may need supplementation. Sports drinks provide electrolytes but often contain excess sugar. Coconut water is a natural electrolyte source. Balance matters: excessive sodium with inadequate potassium is common and problematic."
+  },
+  {
+    "id": "meal_prep_strategies",
+    "category": "Meal Planning",
+    "title": "Meal Preparation Strategies",
+    "content": "Meal prepping involves preparing meals or meal components in advance to save time and improve dietary adherence. Strategies include batch cooking proteins and grains, pre-chopping vegetables, preparing overnight oats, and assembling mason jar salads. Choose one or two days weekly for prep. Invest in quality containers for storage. Most prepped meals last 3-5 days refrigerated; some items freeze well. Theme nights (Taco Tuesday, Stir-Fry Friday) simplify planning. Build meals around proteins, add vegetables, include healthy fats, and finish with complex carbs. Having healthy options ready reduces reliance on takeout and convenience foods."
+  },
+  {
+    "id": "budget_nutrition",
+    "category": "Meal Planning",
+    "title": "Eating Healthy on a Budget",
+    "content": "Healthy eating doesn't require expensive specialty foods. Budget-friendly nutritious foods include eggs, beans, lentils, canned fish, oats, brown rice, frozen vegetables, and bananas. Buy in bulk when possible for pantry staples. Frozen produce is nutritious and often cheaper than fresh. Seasonal produce offers better prices. Cook at home rather than eating out. Plan meals to reduce food waste. Store brands are typically identical to name brands. Protein from legumes costs a fraction of meat. Growing herbs saves money and adds fresh flavor. Compare unit prices when shopping. Meal prepping reduces impulse purchases."
+  },
+  {
+    "id": "alcohol_nutrition",
+    "category": "Special Topics",
+    "title": "Alcohol and Nutrition",
+    "content": "Alcohol provides 7 calories per gram with no nutritional value (empty calories). A standard drink (5 oz wine, 12 oz beer, 1.5 oz spirits) contains about 100-150 calories. Alcohol impairs nutrient absorption, particularly B vitamins and zinc. Heavy drinking contributes to malnutrition despite adequate calorie intake. Moderate drinking is defined as up to one drink daily for women, two for men. Even moderate alcohol increases certain cancer risks. Alcohol can disrupt sleep quality and dehydrate the body. If you don't drink, don't start for potential health benefits. If you drink, limit intake and avoid binge drinking."
+  },
+  {
+    "id": "caffeine_effects",
+    "category": "Special Topics",
+    "title": "Caffeine in Diet",
+    "content": "Caffeine is a stimulant found in coffee, tea, chocolate, and many sodas and energy drinks. Moderate intake (up to 400 mg daily, about 4 cups of coffee) is considered safe for most adults. Benefits include improved alertness, concentration, and physical performance. Caffeine blocks adenosine receptors, reducing feelings of tiredness. Tolerance develops with regular use. Withdrawal symptoms include headache, fatigue, and irritability. Excessive intake can cause anxiety, insomnia, digestive issues, and rapid heartbeat. Pregnant women should limit intake to 200 mg daily. Caffeine sensitivity varies individually. Avoid caffeine 6+ hours before bedtime for better sleep."
+  },
+  {
+    "id": "plant_based_protein",
+    "category": "Protein Sources",
+    "title": "Plant-Based Protein Sources",
+    "content": "Plant proteins can fully meet dietary needs when consumed in variety. Complete plant proteins include quinoa, buckwheat, hemp seeds, and soy (tofu, tempeh, edamame). Combining grains with legumes (rice and beans, hummus with pita) provides complete amino acids. Per serving, tofu provides 10g protein, tempeh 15g, lentils 18g, chickpeas 15g, and black beans 15g. Seitan (wheat gluten) contains 25g protein per serving. Protein quality improves by eating varied sources throughout the day. Plant proteins typically have lower methionine (beneficial for longevity) and higher fiber. Processing affects protein digestibility—whole foods require more chewing and digestion."
+  },
+  {
+    "id": "collagen_benefits",
+    "category": "Supplements",
+    "title": "Collagen Supplements",
+    "content": "Collagen is the most abundant protein in the body, providing structure to skin, bones, tendons, and ligaments. Collagen production decreases with age, contributing to wrinkles and joint issues. Collagen supplements come from animal sources (bovine, marine, chicken) as hydrolyzed peptides for better absorption. Types I and III support skin; Type II supports joints. Research shows benefits for skin elasticity, joint pain, and bone density, though studies are often industry-funded. Bone broth is a food source of collagen. Vitamin C is essential for collagen synthesis. Results typically take 4-8 weeks of consistent use."
+  },
+  {
+    "id": "creatine_supplement",
+    "category": "Supplements",
+    "title": "Creatine for Performance",
+    "content": "Creatine is one of the most researched and effective sports supplements. It's naturally found in meat and fish and synthesized by the body. Creatine increases phosphocreatine stores, providing quick energy for high-intensity exercise. Benefits include increased strength, power, and muscle mass. Standard dosing is 3-5 grams daily; loading phases are unnecessary. Creatine monohydrate is the most studied and cost-effective form. It causes water retention in muscles, leading to weight gain. Safe for long-term use in healthy individuals. May benefit older adults for muscle preservation. No evidence of kidney damage in healthy people."
+  },
+  {
+    "id": "sodium_health",
+    "category": "Micronutrients",
+    "title": "Sodium and Health",
+    "content": "Sodium is essential for fluid balance, nerve function, and muscle contraction. However, most people consume excessive amounts. The recommended limit is 2,300 mg daily (about 1 teaspoon of salt); those with hypertension should aim for 1,500 mg. About 70% of dietary sodium comes from processed and restaurant foods, not the salt shaker. High sodium intake is linked to hypertension, heart disease, and stroke. Reading labels helps identify hidden sodium in bread, cheese, condiments, and canned goods. Potassium helps counteract sodium's blood pressure effects. Gradually reducing sodium allows taste preferences to adjust."
+  },
+  {
+    "id": "iodine_thyroid",
+    "category": "Micronutrients",
+    "title": "Iodine and Thyroid Function",
+    "content": "Iodine is essential for thyroid hormone production, which regulates metabolism, growth, and development. The recommended daily intake is 150 mcg for adults, increasing to 220-290 mcg during pregnancy and lactation. Iodized salt is the primary source in many countries. Natural sources include seaweed, fish, dairy, and eggs. Iodine content in plant foods depends on soil levels. Deficiency causes goiter (enlarged thyroid) and can impair cognitive development in children. Pregnant women and vegans may be at higher risk for deficiency. Excess iodine can also disrupt thyroid function. Sea salt and specialty salts often lack added iodine."
+  }
+]

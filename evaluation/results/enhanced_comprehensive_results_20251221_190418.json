@@ -1,0 +1,1473 @@
+{
+  "timestamp": "20251221_190418",
+  "config": {
+    "embedding_model": "google/embeddinggemma-300m",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "top_k": 5,
+    "candidate_pool_size": 15,
+    "search_type": "hybrid",
+    "fusion_method": "Reciprocal Rank Fusion (k=60)",
+    "use_reranker": true,
+    "rrf_k": 60,
+    "description": "Enhanced with hybrid search and cross-encoder reranking"
+  },
+  "aggregated_metrics": {
+    "total_queries": 50,
+    "successful_queries": 50,
+    "failed_queries": 0,
+    "retrieval": {
+      "hit_rate": 0.86,
+      "mrr": 0.8066666666666668,
+      "precision_at_k": 0.268,
+      "recall_at_k": 0.93,
+      "ndcg_at_k": 0.8127789546431959,
+      "contextual_relevancy": 0.36800000000000005
+    },
+    "performance": {
+      "avg_latency_ms": 115.59848247954505,
+      "p50_latency_ms": 85.26449999772012,
+      "p95_latency_ms": 285.31350000048405,
+      "p99_latency_ms": 774.9622919982357
+    },
+    "by_category": {
+      "edge_case": {
+        "count": 5,
+        "hit_rate": 0.8,
+        "mrr": 0.8
+      },
+      "ambiguous": {
+        "count": 4,
+        "hit_rate": 0.5,
+        "mrr": 0.25
+      },
+      "inference": {
+        "count": 6,
+        "hit_rate": 1.0,
+        "mrr": 0.9166666666666666
+      },
+      "factual": {
+        "count": 15,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "multi-document": {
+        "count": 5,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "out_of_scope": {
+        "count": 4,
+        "hit_rate": 0.0,
+        "mrr": 0.0
+      },
+      "keyword_query": {
+        "count": 5,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "misconception": {
+        "count": 3,
+        "hit_rate": 1.0,
+        "mrr": 0.611111111111111
+      },
+      "conceptual": {
+        "count": 3,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "by_difficulty": {
+      "easy": {
+        "count": 19,
+        "hit_rate": 0.6842105263157895,
+        "mrr": 0.6578947368421053
+      },
+      "hard": {
+        "count": 10,
+        "hit_rate": 0.9,
+        "mrr": 0.9
+      },
+      "medium": {
+        "count": 21,
+        "hit_rate": 1.0,
+        "mrr": 0.8968253968253967
+      }
+    }
+  },
+  "detailed_results": [
+    {
+      "query_id": "Q1",
+      "query": "What is the recommended daily protein intake for sedentary adults?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "macro_proteins",
+        "zinc_mineral",
+        "magnesium_mineral",
+        "selenium_mineral",
+        "vitamin_b12"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_proteins"
+      ],
+      "is_hit": true,
+      "latency_ms": 774.9622919982357,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 1.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q2",
+      "query": "How much fiber should women consume daily?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "macro_carbs",
+        "fiber_types",
+        "weight_loss_diet",
+        "aging_nutrition",
+        "iron_mineral"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_carbs",
+        "fiber_types"
+      ],
+      "is_hit": true,
+      "latency_ms": 296.23849999916274,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.6
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q3",
+      "query": "What percentage of daily calories should come from fats?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "macro_fats",
+        "food_labels",
+        "macro_carbs",
+        "heart_healthy_diet",
+        "food_almonds"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_fats"
+      ],
+      "is_hit": true,
+      "latency_ms": 82.31904200147255,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.6
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q4",
+      "query": "Which vitamin is produced by the skin when exposed to sunlight?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "vitamin_d",
+        "collagen_benefits",
+        "b_vitamins_complex",
+        "vitamin_a",
+        "vitamin_c"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d"
+      ],
+      "is_hit": true,
+      "latency_ms": 285.31350000048405,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q5",
+      "query": "What nutrient must vegans supplement?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "vitamin_b12",
+        "diet_vegan",
+        "supplements",
+        "iodine_thyroid",
+        "vitamin_d"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_b12",
+        "diet_vegan"
+      ],
+      "is_hit": true,
+      "latency_ms": 192.19754100049613,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q6",
+      "query": "How much iron do women of reproductive age need daily?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "iron_mineral",
+        "pregnancy_nutrition",
+        "calcium_mineral",
+        "selenium_mineral",
+        "iodine_thyroid"
+      ],
+      "ground_truth_doc_ids": [
+        "iron_mineral"
+      ],
+      "is_hit": true,
+      "latency_ms": 83.67191599973012,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q7",
+      "query": "What is the primary fat source in the Mediterranean diet?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "diet_mediterranean",
+        "omega_6_fatty_acids",
+        "heart_healthy_diet",
+        "anti_inflammatory_diet",
+        "omega_3_fatty_acids"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_mediterranean"
+      ],
+      "is_hit": true,
+      "latency_ms": 76.8799580000632,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q8",
+      "query": "How many grams of carbs are allowed daily on the keto diet?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "diet_keto",
+        "macro_carbs",
+        "sports_nutrition",
+        "food_sweet_potato",
+        "food_lentils"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_keto"
+      ],
+      "is_hit": true,
+      "latency_ms": 88.240916000359,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 1.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q9",
+      "query": "What does the plate method suggest for vegetables?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "meal_planning_basics",
+        "diabetic_diet",
+        "hydration",
+        "food_processing_levels",
+        "diet_dash"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_planning_basics"
+      ],
+      "is_hit": true,
+      "latency_ms": 87.80470899728243,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q10",
+      "query": "What is the 16:8 intermittent fasting approach?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "intermittent_fasting",
+        "meal_timing",
+        "diet_dash",
+        "diet_flexitarian",
+        "diet_whole30"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_timing",
+        "intermittent_fasting"
+      ],
+      "is_hit": true,
+      "latency_ms": 179.23891700047534,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q11",
+      "query": "I'm feeling tired all the time as a vegetarian woman. What nutrients might I be missing?",
+      "category": "inference",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "vitamin_b12",
+        "diet_vegan",
+        "supplements",
+        "iron_mineral",
+        "macro_carbs"
+      ],
+      "ground_truth_doc_ids": [
+        "iron_mineral",
+        "vitamin_b12"
+      ],
+      "is_hit": true,
+      "latency_ms": 109.23175000061747,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.8772153153380493,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q12",
+      "query": "What helps my body absorb calcium better?",
+      "category": "inference",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "calcium_mineral",
+        "vitamin_d",
+        "aging_nutrition",
+        "iron_mineral",
+        "collagen_benefits"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d",
+        "calcium_mineral"
+      ],
+      "is_hit": true,
+      "latency_ms": 162.41187499690568,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q13",
+      "query": "I want to improve my brain health. What foods should I eat?",
+      "category": "inference",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "macro_fats",
+        "children_nutrition",
+        "food_blueberries",
+        "omega_3_fatty_acids",
+        "probiotics_prebiotics"
+      ],
+      "ground_truth_doc_ids": [
+        "omega_3_fatty_acids",
+        "food_salmon",
+        "macro_fats"
+      ],
+      "is_hit": true,
+      "latency_ms": 92.27337500124122,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.6666666666666666,
+        "ndcg_at_k": 0.8772153153380493,
+        "contextual_relevancy": 0.8
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q14",
+      "query": "What should I eat after working out for muscle recovery?",
+      "category": "inference",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "sports_nutrition",
+        "meal_timing",
+        "weight_loss_diet",
+        "aging_nutrition",
+        "magnesium_mineral"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_timing",
+        "sports_nutrition"
+      ],
+      "is_hit": true,
+      "latency_ms": 79.87341700209072,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.6
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q15",
+      "query": "How can I lower my blood pressure through diet?",
+      "category": "inference",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "diet_dash",
+        "diabetic_diet",
+        "heart_healthy_diet",
+        "potassium_mineral",
+        "sodium_health"
+      ],
+      "ground_truth_doc_ids": [
+        "heart_healthy_diet",
+        "diet_dash",
+        "sodium_health"
+      ],
+      "is_hit": true,
+      "latency_ms": 77.51400000051945,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.6,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.8854598815714874,
+        "contextual_relevancy": 0.8
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q16",
+      "query": "What's the best protein source for someone who can't eat meat?",
+      "category": "inference",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "macro_proteins",
+        "diet_vegan",
+        "plant_based_protein",
+        "collagen_benefits",
+        "food_salmon"
+      ],
+      "ground_truth_doc_ids": [
+        "plant_based_protein",
+        "diet_vegan",
+        "food_lentils",
+        "food_quinoa"
+      ],
+      "is_hit": true,
+      "latency_ms": 79.68849999815575,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 0.5,
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "ndcg_at_k": 0.6934264036172708,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q17",
+      "query": "How do omega-3s and omega-6s affect inflammation, and what's the ideal ratio?",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "omega_6_fatty_acids",
+        "anti_inflammatory_diet",
+        "omega_3_fatty_acids",
+        "macro_fats",
+        "food_salmon"
+      ],
+      "ground_truth_doc_ids": [
+        "omega_3_fatty_acids",
+        "omega_6_fatty_acids",
+        "anti_inflammatory_diet"
+      ],
+      "is_hit": true,
+      "latency_ms": 91.27812500082655,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.6,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q18",
+      "query": "What are all the nutrients I need to monitor on a vegan diet and their sources?",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "diet_vegan",
+        "vitamin_b12",
+        "food_labels",
+        "supplements",
+        "iodine_thyroid"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_vegan",
+        "vitamin_b12",
+        "omega_3_fatty_acids",
+        "iron_mineral",
+        "zinc_mineral",
+        "calcium_mineral"
+      ],
+      "is_hit": true,
+      "latency_ms": 93.61462499873596,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.3333333333333333,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q19",
+      "query": "Compare the Mediterranean, DASH, and heart-healthy diets for cardiovascular health.",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "heart_healthy_diet",
+        "diet_mediterranean",
+        "diet_dash",
+        "potassium_mineral",
+        "anti_inflammatory_diet"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_mediterranean",
+        "diet_dash",
+        "heart_healthy_diet"
+      ],
+      "is_hit": true,
+      "latency_ms": 79.53616699887789,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.6,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q20",
+      "query": "How do different B vitamins work together and what are their sources?",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "b_vitamins_complex",
+        "vitamin_e",
+        "vitamin_b12",
+        "probiotics_prebiotics",
+        "antioxidants"
+      ],
+      "ground_truth_doc_ids": [
+        "b_vitamins_complex",
+        "vitamin_b12"
+      ],
+      "is_hit": true,
+      "latency_ms": 88.22608300033608,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.9197207891481876,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q21",
+      "query": "What's the relationship between gut health and mental health?",
+      "category": "multi-document",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "gut_brain_axis",
+        "probiotics_prebiotics",
+        "food_greek_yogurt",
+        "macro_fats",
+        "vitamin_k"
+      ],
+      "ground_truth_doc_ids": [
+        "gut_brain_axis",
+        "probiotics_prebiotics"
+      ],
+      "is_hit": true,
+      "latency_ms": 89.38204099831637,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q22",
+      "query": "EPA DHA brain inflammation",
+      "category": "keyword_query",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "omega_3_fatty_acids",
+        "macro_fats",
+        "food_salmon",
+        "children_nutrition",
+        "pregnancy_nutrition"
+      ],
+      "ground_truth_doc_ids": [
+        "omega_3_fatty_acids",
+        "macro_fats",
+        "food_salmon"
+      ],
+      "is_hit": true,
+      "latency_ms": 104.4547080018674,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.6,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.6
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q23",
+      "query": "sunshine vitamin bones calcium",
+      "category": "keyword_query",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "vitamin_d",
+        "calcium_mineral",
+        "aging_nutrition",
+        "vitamin_k",
+        "pregnancy_nutrition"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d"
+      ],
+      "is_hit": true,
+      "latency_ms": 78.16420900053345,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.8
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q24",
+      "query": "keto flu constipation side effects",
+      "category": "keyword_query",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "diet_keto",
+        "magnesium_mineral",
+        "food_intolerances",
+        "probiotics_prebiotics",
+        "vitamin_k"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_keto"
+      ],
+      "is_hit": true,
+      "latency_ms": 70.56562499928987,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q25",
+      "query": "oxalates leafy green cooking reduces",
+      "category": "keyword_query",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "food_spinach",
+        "anti_inflammatory_diet",
+        "vitamin_k",
+        "calcium_mineral",
+        "antioxidants"
+      ],
+      "ground_truth_doc_ids": [
+        "food_spinach"
+      ],
+      "is_hit": true,
+      "latency_ms": 77.13549999971292,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q26",
+      "query": "methylcobalamin cyanocobalamin absorption age",
+      "category": "keyword_query",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "vitamin_b12",
+        "b_vitamins_complex",
+        "zinc_mineral",
+        "collagen_benefits",
+        "vitamin_c"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_b12"
+      ],
+      "is_hit": true,
+      "latency_ms": 82.21091700033867,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q27",
+      "query": "What is the capital of France?",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "iodine_thyroid",
+        "probiotics_prebiotics",
+        "calcium_mineral",
+        "diet_vegan",
+        "hydration"
+      ],
+      "ground_truth_doc_ids": [],
+      "is_hit": false,
+      "latency_ms": 131.18941699940478,
+      "retrieval_metrics": {
+        "hit_rate": 0.0,
+        "mrr": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.0,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q28",
+      "query": "How do I fix a flat tire?",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "sports_nutrition",
+        "fiber_types",
+        "hydration",
+        "glycemic_index",
+        "diabetic_diet"
+      ],
+      "ground_truth_doc_ids": [],
+      "is_hit": false,
+      "latency_ms": 82.8382910003711,
+      "retrieval_metrics": {
+        "hit_rate": 0.0,
+        "mrr": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.0,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q29",
+      "query": "What's the best programming language?",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "antioxidants",
+        "diet_dash",
+        "omega_3_fatty_acids",
+        "vitamin_c",
+        "creatine_supplement"
+      ],
+      "ground_truth_doc_ids": [],
+      "is_hit": false,
+      "latency_ms": 80.6771249990561,
+      "retrieval_metrics": {
+        "hit_rate": 0.0,
+        "mrr": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.0,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q30",
+      "query": "Tell me about the history of ancient Rome",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "caffeine_effects",
+        "anti_inflammatory_diet",
+        "sodium_health",
+        "potassium_mineral",
+        "calcium_mineral"
+      ],
+      "ground_truth_doc_ids": [],
+      "is_hit": false,
+      "latency_ms": 86.36850000038976,
+      "retrieval_metrics": {
+        "hit_rate": 0.0,
+        "mrr": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.0,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q31",
+      "query": "Is eating 10 eggs per day safe?",
+      "category": "edge_case",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "food_eggs",
+        "macro_proteins",
+        "diet_keto",
+        "vitamin_d",
+        "diet_whole30"
+      ],
+      "ground_truth_doc_ids": [
+        "food_eggs"
+      ],
+      "is_hit": true,
+      "latency_ms": 88.59708399904775,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q32",
+      "query": "Can I survive on a diet of only potatoes?",
+      "category": "edge_case",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "food_sweet_potato",
+        "potassium_mineral",
+        "diet_vegan",
+        "vitamin_a",
+        "diet_paleo"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_proteins",
+        "vitamin_b12",
+        "supplements"
+      ],
+      "is_hit": false,
+      "latency_ms": 78.61024999874644,
+      "retrieval_metrics": {
+        "hit_rate": 0.0,
+        "mrr": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "ndcg_at_k": 0.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q33",
+      "query": "What if I'm both diabetic and trying to do keto?",
+      "category": "edge_case",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "diet_keto",
+        "diabetic_diet",
+        "anti_inflammatory_diet",
+        "intermittent_fasting",
+        "glycemic_index"
+      ],
+      "ground_truth_doc_ids": [
+        "diabetic_diet",
+        "diet_keto"
+      ],
+      "is_hit": true,
+      "latency_ms": 65.4530829997384,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q34",
+      "query": "Is it safe to take 10,000 IU of vitamin D daily?",
+      "category": "edge_case",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "vitamin_d",
+        "aging_nutrition",
+        "calcium_mineral",
+        "vitamin_e",
+        "pregnancy_nutrition"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_d",
+        "supplements"
+      ],
+      "is_hit": true,
+      "latency_ms": 77.2816659991804,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.5,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.8
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q35",
+      "query": "Can children follow a ketogenic diet?",
+      "category": "edge_case",
+      "difficulty": "hard",
+      "retrieved_doc_ids": [
+        "diet_keto",
+        "children_nutrition",
+        "diet_paleo",
+        "iodine_thyroid",
+        "diet_vegan"
+      ],
+      "ground_truth_doc_ids": [
+        "diet_keto",
+        "children_nutrition"
+      ],
+      "is_hit": true,
+      "latency_ms": 80.11804099805886,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.4,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q36",
+      "query": "Hey, what should I eat?",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "children_nutrition",
+        "meal_planning_basics",
+        "potassium_mineral",
+        "budget_nutrition",
+        "sodium_health"
+      ],
+      "ground_truth_doc_ids": [
+        "meal_planning_basics"
+      ],
+      "is_hit": true,
+      "latency_ms": 82.72995799779892,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 0.5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.6309297535714575,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q37",
+      "query": "Is it good or bad?",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "iron_mineral",
+        "vitamin_a",
+        "creatine_supplement",
+        "macro_proteins",
+        "caffeine_effects"
+      ],
+      "ground_truth_doc_ids": [],
+      "is_hit": false,
+      "latency_ms": 71.72175000232528,
+      "retrieval_metrics": {
+        "hit_rate": 0.0,
+        "mrr": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.0,
+        "contextual_relevancy": 0.8
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q38",
+      "query": "What about vitamins?",
+      "category": "ambiguous",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "b_vitamins_complex",
+        "vitamin_a",
+        "vitamin_e",
+        "calcium_mineral",
+        "supplements"
+      ],
+      "ground_truth_doc_ids": [
+        "supplements",
+        "vitamin_d",
+        "vitamin_c",
+        "vitamin_a"
+      ],
+      "is_hit": true,
+      "latency_ms": 88.33995800159755,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 0.5,
+        "precision_at_k": 0.4,
+        "recall_at_k": 0.5,
+        "ndcg_at_k": 0.6240505200038379,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q39",
+      "query": "What do you think about the diet?",
+      "category": "ambiguous",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "diet_paleo",
+        "diet_mediterranean",
+        "diet_flexitarian",
+        "diet_vegan",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [],
+      "is_hit": false,
+      "latency_ms": 78.10437499938416,
+      "retrieval_metrics": {
+        "hit_rate": 0.0,
+        "mrr": 0.0,
+        "precision_at_k": 0.0,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.0,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q40",
+      "query": "I heard eggs are dangerous. Should I never eat them?",
+      "category": "misconception",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "food_allergies",
+        "food_eggs",
+        "diet_whole30",
+        "vitamin_a",
+        "diet_keto"
+      ],
+      "ground_truth_doc_ids": [
+        "food_eggs"
+      ],
+      "is_hit": true,
+      "latency_ms": 89.49849999771686,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 0.5,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.6309297535714575,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q41",
+      "query": "Carbs are bad and should be eliminated completely, right?",
+      "category": "misconception",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "diet_whole30",
+        "food_quinoa",
+        "macro_carbs",
+        "diet_keto",
+        "sports_nutrition"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_carbs"
+      ],
+      "is_hit": true,
+      "latency_ms": 82.96374999918044,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 0.3333333333333333,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 0.5,
+        "contextual_relevancy": 0.8
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q42",
+      "query": "All fats make you fat, don't they?",
+      "category": "misconception",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "macro_fats",
+        "omega_6_fatty_acids",
+        "omega_3_fatty_acids",
+        "diet_keto",
+        "food_avocado"
+      ],
+      "ground_truth_doc_ids": [
+        "macro_fats"
+      ],
+      "is_hit": true,
+      "latency_ms": 92.47891699851607,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q43",
+      "query": "How much water should I drink daily?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "hydration",
+        "sodium_health",
+        "caffeine_effects",
+        "calcium_mineral",
+        "vitamin_c"
+      ],
+      "ground_truth_doc_ids": [
+        "hydration"
+      ],
+      "is_hit": true,
+      "latency_ms": 182.50850000185892,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q44",
+      "query": "What is the glycemic index and why does it matter?",
+      "category": "conceptual",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "glycemic_index",
+        "macro_carbs",
+        "diabetic_diet",
+        "food_quinoa",
+        "food_blueberries"
+      ],
+      "ground_truth_doc_ids": [
+        "glycemic_index",
+        "macro_carbs",
+        "diabetic_diet"
+      ],
+      "is_hit": true,
+      "latency_ms": 145.5826249984966,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.6,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 1.0
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q45",
+      "query": "Explain the difference between soluble and insoluble fiber",
+      "category": "conceptual",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "fiber_types",
+        "food_avocado",
+        "b_vitamins_complex",
+        "macro_carbs",
+        "vitamin_c"
+      ],
+      "ground_truth_doc_ids": [
+        "fiber_types"
+      ],
+      "is_hit": true,
+      "latency_ms": 81.0639999981504,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q46",
+      "query": "What are probiotics and prebiotics?",
+      "category": "conceptual",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "probiotics_prebiotics",
+        "supplements",
+        "food_greek_yogurt",
+        "antioxidants",
+        "fiber_types"
+      ],
+      "ground_truth_doc_ids": [
+        "probiotics_prebiotics"
+      ],
+      "is_hit": true,
+      "latency_ms": 68.28462499834131,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q47",
+      "query": "What nutrients do pregnant women need more of?",
+      "category": "factual",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "pregnancy_nutrition",
+        "supplements",
+        "iron_mineral",
+        "b_vitamins_complex",
+        "iodine_thyroid"
+      ],
+      "ground_truth_doc_ids": [
+        "pregnancy_nutrition"
+      ],
+      "is_hit": true,
+      "latency_ms": 81.12504199743853,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.4
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q48",
+      "query": "How do nutritional needs change for older adults?",
+      "category": "factual",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "aging_nutrition",
+        "vitamin_b12",
+        "children_nutrition",
+        "creatine_supplement",
+        "sports_nutrition"
+      ],
+      "ground_truth_doc_ids": [
+        "aging_nutrition"
+      ],
+      "is_hit": true,
+      "latency_ms": 85.02070900067338,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.6
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q49",
+      "query": "What are the eight major food allergens?",
+      "category": "factual",
+      "difficulty": "medium",
+      "retrieved_doc_ids": [
+        "food_allergies",
+        "b_vitamins_complex",
+        "food_blueberries",
+        "macro_proteins",
+        "glycemic_index"
+      ],
+      "ground_truth_doc_ids": [
+        "food_allergies"
+      ],
+      "is_hit": true,
+      "latency_ms": 91.67524999793386,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.2
+      },
+      "error": null
+    },
+    {
+      "query_id": "Q50",
+      "query": "How much vitamin C do I need and what are good sources?",
+      "category": "factual",
+      "difficulty": "easy",
+      "retrieved_doc_ids": [
+        "vitamin_c",
+        "iron_mineral",
+        "vitamin_e",
+        "vitamin_a",
+        "vitamin_d"
+      ],
+      "ground_truth_doc_ids": [
+        "vitamin_c"
+      ],
+      "is_hit": true,
+      "latency_ms": 85.26449999772012,
+      "retrieval_metrics": {
+        "hit_rate": 1.0,
+        "mrr": 1.0,
+        "precision_at_k": 0.2,
+        "recall_at_k": 1.0,
+        "ndcg_at_k": 1.0,
+        "contextual_relevancy": 0.8
+      },
+      "error": null
+    }
+  ]
+}
