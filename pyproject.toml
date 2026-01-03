@@ -1,19 +1,17 @@
 [project]
-name = "rag-assignment"
+name = "weather-news-mcp-agent"
 version = "1.0.0"
-description = "Simple RAG project"
-requires-python = ">=3.13"
+description = "Weather and News Agent with MCP (Model Context Protocol) integration"
+requires-python = ">=3.10"
 dependencies = [
-    "accelerate>=1.12.0",
-    "deepeval>=2.0.0",
-    "huggingface-hub>=0.36.0",
-    "langchain>=1.1.2",
-    "langchain-community>=0.4.1",
-    "langchain-openai>=1.1.0",
-    "python-dotenv>=1.2.1",
-    "sentence-transformers>=5.1.2",
-    "streamlit>=1.52.1",
-    "weaviate-client>=4.18.3",
+    "feedparser>=6.0.0",
+    "httpx>=0.28.0",
+    "langchain>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langchain-groq>=0.3.0",
+    "langchain-openai>=0.3.0",
+    "python-dotenv>=1.0.0",
+    "streamlit>=1.40.0",
 ]
 
 [project.optional-dependencies]
@@ -30,7 +28,7 @@ dev-dependencies = [
 
 [tool.ruff]
 line-length = 119
-target-version = "py313"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = [
@@ -42,11 +40,10 @@ select = [
     "UP",
     "B",
     "C4",
-    "DJ",
 ]
 ignore = [
     "E501",
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["config", "core", "utils"]
+known-first-party = ["agents", "mcp_servers", "settings"]

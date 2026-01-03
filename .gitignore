@@ -39,9 +39,6 @@ env/
 logs/
 *.log
 
-# Docker
-weaviate_data/
-
 # OS
 .DS_Store
 Thumbs.db

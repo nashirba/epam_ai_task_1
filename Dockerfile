@@ -1,34 +1,20 @@
-FROM python:3.13.3-slim
-
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-ENV LOG_LEVEL=INFO
-
-# Install git (needed for git-based dependencies)
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
-
-# Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-# Copy dependency files
-COPY pyproject.toml uv.lock /tmp/
-
-# Install dependencies using uv
-WORKDIR /tmp
-RUN uv sync --frozen --no-dev
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# Create cache directory for HuggingFace models
-RUN mkdir -p /app/.cache/huggingface
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Ensure the virtual environment is in PATH
-ENV PATH="/tmp/.venv/bin:$PATH"
-ENV PYTHONPATH="/app"
+RUN pip install --no-cache-dir uv
 
-# Copy application code
+COPY pyproject.toml .
+RUN uv pip install --system -e .
+
 COPY . .
 
-# Run the application
-CMD ["sh", "-c", "python scripts/data_loader.py && streamlit run app.py --server.address=0.0.0.0 --server.port=8000"]
+EXPOSE 8501
+
+ENV PYTHONUNBUFFERED=1
+
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]

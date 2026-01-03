@@ -1,0 +1,76 @@
+{
+  "mcpServers": {
+    "weather": {
+      "description": "Weather MCP Server using Open-Meteo API",
+      "transport": "stdio",
+      "command": "python",
+      "args": ["-m", "mcp_servers.weather_server"],
+      "tools": [
+        {
+          "name": "get_weather",
+          "description": "Get current weather for a city",
+          "parameters": {
+            "city": {
+              "type": "string",
+              "description": "City name"
+            }
+          }
+        },
+        {
+          "name": "get_forecast",
+          "description": "Get weather forecast for a city",
+          "parameters": {
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "days": {
+              "type": "integer",
+              "description": "Number of forecast days (1-7)",
+              "default": 3
+            }
+          }
+        }
+      ]
+    },
+    "news": {
+      "description": "News MCP Server using RSS feeds",
+      "transport": "stdio",
+      "command": "python",
+      "args": ["-m", "mcp_servers.news_server"],
+      "tools": [
+        {
+          "name": "get_news",
+          "description": "Get latest news headlines by category",
+          "parameters": {
+            "category": {
+              "type": "string",
+              "description": "News category: general, technology, business, science, world",
+              "default": "general"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Number of articles to return",
+              "default": 5
+            }
+          }
+        },
+        {
+          "name": "search_news",
+          "description": "Search news by keyword",
+          "parameters": {
+            "query": {
+              "type": "string",
+              "description": "Search query"
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Number of articles to return",
+              "default": 5
+            }
+          }
+        }
+      ]
+    }
+  }
+}
