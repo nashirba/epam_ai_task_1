@@ -2,7 +2,7 @@
 
 An AI-powered application that answers questions about current weather conditions and latest news using **Agent Orchestration** patterns and **MCP (Model Context Protocol)** for standardized tool integration.
 
-## 📋 Features
+## Features
 
 - **Weather Information**: Real-time weather data and forecasts using Open-Meteo API
 - **News Headlines**: Latest news from multiple RSS feeds across various categories
@@ -11,7 +11,7 @@ An AI-powered application that answers questions about current weather condition
 - **Multi-turn Conversations**: Chat-like interface with conversation history
 - **No API Keys Required**: Weather (Open-Meteo) and News (RSS feeds) work without API keys
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Streamlit UI (User Input)
@@ -37,7 +37,7 @@ LLM Provider           MCP Servers
    - **Weather Server**: Open-Meteo API integration (no API key)
    - **News Server**: RSS feed aggregation (no API key)
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -78,7 +78,7 @@ LLM Provider           MCP Servers
 5. **Open in browser**
    Navigate to: http://localhost:8501
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 project/
@@ -102,17 +102,17 @@ project/
 └── README.md                 # This file
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### LLM Providers
 
 The application supports multiple LLM providers. Set `LLM_PROVIDER` in `.env`:
 
 | Provider | Environment Variable | Free Tier |
-|----------|---------------------|-----------|
-| Groq | `GROQ_API_KEY` | ✅ Yes (recommended) |
-| xAI Grok | `XAI_API_KEY` | ✅ Limited |
-| OpenRouter | `OPENROUTER_API_KEY` | ✅ Free models available |
+|----------|---------------------|---------|
+| Groq | `GROQ_API_KEY` | Yes (recommended) |
+| xAI Grok | `XAI_API_KEY` | Limited |
+| OpenRouter | `OPENROUTER_API_KEY` | Free models available |
 
 ### News RSS Feeds
 
@@ -123,7 +123,7 @@ News sources are configured in `settings/configs.py`:
 - **Science**: BBC Science, ScienceDaily
 - **World**: BBC World, NY Times
 
-## 💡 Example Queries
+## Example Queries
 
 ### Weather
 - "What's the weather in London?"
@@ -139,7 +139,7 @@ News sources are configured in `settings/configs.py`:
 - "Weather in NYC and tech news"
 - "What's happening in the world today?"
 
-## 🛠️ How It Works
+## How It Works
 
 ### Intent Detection
 
@@ -172,7 +172,7 @@ MCP (Model Context Protocol) provides a standardized way to integrate external t
 - RSS feeds may have rate limits or temporary unavailability
 - Weather forecasts are limited to 7 days maximum
 
-## 🔗 Data Sources
+## Data Sources
 
 ### Weather
 - **Open-Meteo API**: [open-meteo.com](https://open-meteo.com/)
