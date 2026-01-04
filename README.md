@@ -51,7 +51,7 @@ LLM Provider           MCP Servers
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/nashirba/epam_ai_task_1/tree/feature/module_5
    cd task_1
    ```
 
