@@ -105,6 +105,11 @@ def test_delete_order_not_found():
     assert d.status_code == 404
 
 
+## ---------------------------------------------------------------------------
+# Pagination & filtering tests (AI-generated via GitHub Copilot, reviewed manually)
+# ---------------------------------------------------------------------------
+
+
 def test_list_orders_default_pagination():
     # create more orders
     for i in range(15):
@@ -205,3 +210,115 @@ def test_limit_one_returns_single_item():
     body = r.json()
     assert body["limit"] == 1
     assert len(body["items"]) == 1
+
+
+# ---------------------------------------------------------------------------
+# Edge-case & combined-filter tests (AI-generated via Claude Code, manually reviewed)
+# ---------------------------------------------------------------------------
+
+
+def test_page_beyond_total_pages():
+    r = client.get("/orders?page=9999&limit=10")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["page"] == 9999
+    assert body["items"] == []
+    assert body["total"] >= 0
+    assert body["pages"] < 9999
+
+
+def test_combined_status_and_amount_filter():
+    client.post("/orders", json=create_order_payload(
+        customer_name="Combo Ship", status="shipped", amount=500.0,
+    ))
+    r = client.get("/orders?status=shipped&min_amount=400&max_amount=600&limit=50")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["total"] >= 1
+    for item in body["items"]:
+        assert item["status"] == "shipped"
+        assert 400 <= item["amount"] <= 600
+
+
+def test_combined_all_filters():
+    today = str(date.today())
+    client.post("/orders", json=create_order_payload(
+        customer_name="Full Combo", status="cancelled", amount=250.0, order_date=today,
+    ))
+    r = client.get(
+        f"/orders?status=cancelled&min_amount=200&max_amount=300"
+        f"&start_date={today}&end_date={today}&limit=50"
+    )
+    assert r.status_code == 200
+    body = r.json()
+    assert body["total"] >= 1
+    for item in body["items"]:
+        assert item["status"] == "cancelled"
+        assert 200 <= item["amount"] <= 300
+        assert item["order_date"] == today
+
+
+def test_empty_results_filter():
+    r = client.get("/orders?min_amount=999999&max_amount=999999")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["total"] == 0
+    assert body["pages"] == 0
+    assert body["items"] == []
+
+
+def test_pagination_limit_zero():
+    r = client.get("/orders?limit=0")
+    assert r.status_code == 422
+
+
+def test_pagination_negative_limit():
+    r = client.get("/orders?limit=-5")
+    assert r.status_code == 422
+
+
+# ---------------------------------------------------------------------------
+# Edge cases added manually (developer-identified gaps not caught by AI)
+# ---------------------------------------------------------------------------
+
+
+def test_pagination_metadata_pages_calculation():
+    """Verify pages = ceil(total / limit) with a controlled dataset."""
+    for i in range(3):
+        client.post("/orders", json=create_order_payload(
+            customer_name=f"Pages Calc {i}", status="shipped", amount=7777.77,
+        ))
+    r = client.get("/orders?status=shipped&min_amount=7777&max_amount=7778&limit=2")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["total"] == 3
+    assert body["pages"] == 2  # ceil(3 / 2) == 2
+    assert len(body["items"]) == 2  # first page has exactly 2 items
+
+
+def test_filter_by_single_date():
+    """Edge case: start_date == end_date filters to exactly one day."""
+    target = date.today() - timedelta(days=30)
+    client.post("/orders", json=create_order_payload(
+        customer_name="Single Day", order_date=str(target), amount=4444.44,
+    ))
+    r = client.get(
+        f"/orders?start_date={target.isoformat()}&end_date={target.isoformat()}"
+        f"&min_amount=4444&max_amount=4445&limit=50"
+    )
+    assert r.status_code == 200
+    body = r.json()
+    assert body["total"] >= 1
+    assert all(item["order_date"] == target.isoformat() for item in body["items"])
+
+
+def test_filter_amount_boundary_exact_match():
+    """Edge case: min_amount == max_amount == order amount (exact boundary)."""
+    client.post("/orders", json=create_order_payload(
+        customer_name="Exact Boundary", amount=3333.33,
+    ))
+    r = client.get("/orders?min_amount=3333.33&max_amount=3333.33&limit=50")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["total"] >= 1
+    assert all(abs(item["amount"] - 3333.33) < 0.01 for item in body["items"])
