@@ -81,6 +81,15 @@ def list_orders_endpoint(
     end_date: str | None = Query(None, description="Filter end date (YYYY-MM-DD)"),
     db: Session = Depends(get_db),
 ):
+    """List orders with pagination and server-side filtering.
+
+    Pagination: page (default 1, min 1) and limit (default 10, min 1, max 100).
+    Offset is calculated as (page - 1) * limit. Pages beyond total return empty items.
+
+    Filters (all optional): status (pending|paid|shipped|cancelled), min_amount,
+    max_amount, start_date (YYYY-MM-DD), end_date (YYYY-MM-DD). Filters can be
+    combined. Validates min_amount <= max_amount and start_date <= end_date.
+    """
     # Pydantic validates status/amount/date formats via OrderFilters.
     try:
         filters = OrderFilters(
