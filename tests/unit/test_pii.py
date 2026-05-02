@@ -18,15 +18,13 @@ def test_iin_not_partial_match():
     assert "1234567890123" in result
 
 
-def test_iin_word_boundary():
-    # IIN embedded in a longer alphanumeric token should not match
-    result = redact_pii("X123456789012Y")
-    # "X123456789012Y" — digits are preceded/followed by alpha, not a word boundary
-    # The regex uses \b implicitly via (?<!\d) / (?!\d) — preceded by alpha is ok
-    # Actually our pattern uses (?<!\d) not \b — alpha prefix passes through.
-    # This is documented acceptable behavior; a financial amount like "123456789012"
-    # standalone will be redacted (conservative choice per ADR-0011).
-    pass  # boundary check documented; no assertion — see ADR-0011 false-positive note
+def test_iin_word_boundary_false_positive_is_documented_behavior():
+    """Per ADR-0011: 12-digit standalone numbers are unconditionally redacted as IIN,
+    including legitimate-looking serial or tracking IDs. This is an accepted false
+    positive in the regex baseline. If the regex is later tightened to require IIN
+    context, update both this test and ADR-0011."""
+    assert redact_pii("Serial: 123456789012") == "Serial: [IIN]"
+    assert redact_pii("Tracking number 999888777666") == "Tracking number [IIN]"
 
 
 def test_standalone_12_digit_number_redacted():

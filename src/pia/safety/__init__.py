@@ -4,7 +4,7 @@ The four public entrypoints and their exception class are re-exported here so
 callers only need ``from pia.safety import …``.
 
 Canonical pipeline in ``advise()``:
-  sanitize_input → redact_pii → rate_limit_check → planner.run → guardrail_output
+  rate_limit_check → sanitize_input → redact_pii → planner.run → guardrail_output
 """
 from pia.safety.guardrail import guardrail_output
 from pia.safety.pii import redact_pii

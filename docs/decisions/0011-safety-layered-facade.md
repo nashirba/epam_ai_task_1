@@ -24,10 +24,10 @@ Requirements:
 A **layered facade** wraps the core planner call inside ``advise()``:
 
 ```
-sanitize_input(user_text)
-  → redact_pii(sanitized)
-    → rate_limit_check()          # raises RateLimitExceeded if exhausted
-      → planner.run(clean_text)   # LLM call (may raise)
+rate_limit_check()               # raises RateLimitExceeded if exhausted
+  → sanitize_input(user_text)
+    → redact_pii(sanitized)
+      → planner.run(clean_text)  # LLM call (may raise)
         → guardrail_output(summary)
           → Recommendation(...)
 ```
@@ -43,12 +43,13 @@ Each layer is a pure function in its own module under ``src/pia/safety/``:
 
 ### Layer-order rationale
 
-1. **Sanitise first** — malformed control characters could confuse regex
+1. **Rate-limit first** — the rate-limit check runs first as a fail-fast
+   guard before any regex or normalisation work — a request that's going to
+   be rejected anyway shouldn't pay the sanitise+PII cost.
+2. **Sanitise second** — malformed control characters could confuse regex
    patterns in later layers; strip them before any matching.
-2. **PII second** — redact user PII before it reaches the LLM or any
+3. **PII third** — redact user PII before it reaches the LLM or any
    logging/tracing layer.
-3. **Rate-limit third** — check the budget before the potentially expensive
-   LLM call; keeps the order cheap-to-expensive.
 4. **LLM call** — the meaty part, intentionally isolated so degraded-path
    error handling is uniform.
 5. **Guardrail last** — post-process LLM output; must see the final text.
@@ -117,7 +118,7 @@ visible in adversarial fixtures are the highest-confidence leak indicators.
   allow/deny list or ML classifier.
 
 **Neutral**
-- The `sanitize → redact → rate_limit → run → guardrail` order is documented
+- The `rate_limit → sanitize → redact → run → guardrail` order is documented
   here and in inline comments; deviating requires updating this ADR.
 
 ## Alternatives considered
