@@ -64,19 +64,42 @@ with st.sidebar:
 
 # --- chat ---
 if "history" not in st.session_state:
-    st.session_state.history = []
+    st.session_state.history = []  # list of dicts: {"role": ..., "text": ..., "citations": ..., "sources": ...}
 
-for role, text in st.session_state.history:
-    with st.chat_message(role):
-        st.markdown(text)
+for msg in st.session_state.history:
+    with st.chat_message(msg["role"]):
+        st.markdown(msg["text"])
+        if msg.get("citations"):
+            with st.expander(f"Sources ({len(msg['citations'])})", expanded=False):
+                for c in msg["citations"]:
+                    st.markdown(
+                        f"- **{c['source']}** — `{c['source_url']}` "
+                        + (f"_(published {c['published_at']})_" if c.get("published_at") else "")
+                    )
+                    if c.get("snippet"):
+                        st.caption(c["snippet"])
 
 if user_text := st.chat_input("Ask about your portfolio, the market, or what to do next…"):
-    st.session_state.history.append(("user", user_text))
+    st.session_state.history.append({"role": "user", "text": user_text})
     with st.chat_message("user"):
         st.markdown(user_text)
     with st.chat_message("assistant"):
         with st.spinner("Thinking…"):
             rec = advise(user_text)
         st.markdown(rec.summary)
+        if rec.citations:
+            with st.expander(f"Sources ({len(rec.citations)})", expanded=True):
+                for c in rec.citations:
+                    st.markdown(
+                        f"- **{c.source}** — `{c.source_url}` "
+                        + (f"_(published {c.published_at})_" if c.published_at else "")
+                    )
+                    if c.snippet:
+                        st.caption(c.snippet)
         st.caption(rec.disclaimer)
-    st.session_state.history.append(("assistant", rec.summary))
+    st.session_state.history.append({
+        "role": "assistant",
+        "text": rec.summary,
+        "citations": [c.model_dump() for c in rec.citations],
+        "sources": [s.model_dump() for s in rec.market_sources],
+    })

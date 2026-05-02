@@ -1,0 +1,26 @@
+# tests/fixtures/golden_qa.yaml
+- id: q1
+  question: "What is the latest NBK base rate?"
+  language: en
+  expected_substrings: ["base rate", "15.5%"]   # current latest in fx_history
+  must_call_tools: ["get_nbk_rate"]
+- id: q2
+  question: "Какая у меня позиция по Halyk?"
+  language: ru
+  expected_substrings: ["HSBK", "2500"]
+  must_call_tools: ["ask_portfolio"]
+- id: q3
+  question: "Какие банки дают самую высокую ставку по KZT депозиту на 12 месяцев?"
+  language: ru
+  expected_substrings: ["KZT", "12"]
+  must_call_tools: ["get_deposit_rates"]
+- id: q4
+  question: "What does my plan say about hard-currency exposure?"
+  language: en
+  expected_substrings: ["30%", "hard"]
+  must_call_tools: ["retrieve"]
+- id: q5
+  question: "Какой сейчас курс KZT/USD?"
+  language: ru
+  expected_substrings: ["USD"]
+  must_call_tools: ["get_fx_rate"]

@@ -1,0 +1,16 @@
+# tests/fixtures/retrieval_labels.yaml
+- query: "NBK base rate cut"
+  expected_sources: ["nbk", "news"]
+  min_score: 0.4
+- query: "Halyk dividend"
+  expected_sources: ["news", "user_note"]
+  min_score: 0.3
+- query: "USD KZT курс"
+  expected_sources: ["nbk", "news", "user_note"]
+  min_score: 0.3
+- query: "VOO position"
+  expected_sources: ["user_note", "user_holdings"]
+  min_score: 0.3
+- query: "Krisha Bostandyk listings"
+  expected_sources: ["real_estate", "user_note"]
+  min_score: 0.3
