@@ -41,7 +41,16 @@ uv run pytest -m adversarial     # safety/jailbreak suite (post-draft)
 
 ## Layout
 
-See `docs/superpowers/plans/2026-05-02-pia-pre-draft.md` for the implementation plan and project layout.
+```
+src/pia/    — agents, RAG, MCP, LLM client, config, UI (Streamlit entry: src/pia/ui/app.py)
+data/       — corpus (personal holdings/plan/notes; public news, bank rates, KASE, NBK, Krisha)
+scripts/    — CLI helpers (ingest, snapshots)
+tests/      — unit, integration, fixtures
+docs/       — brief, NFRs, success criteria, requirements addendum, ADRs, spec, plans
+docker-compose.yml — Weaviate (only container; app runs locally via `uv`)
+```
+
+See `docs/superpowers/specs/2026-05-02-personal-investment-assistant-design.md` for the full spec and `docs/decisions/` for ADRs.
 
 ## License
 
