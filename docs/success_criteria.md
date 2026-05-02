@@ -1,4 +1,4 @@
-### Base Requirements (70 Points - Pass Threshold)
+``### Base Requirements (70 Points - Pass Threshold)
 - **Working Application**: Functional multi-agent system demonstrated in video
 - **Code Delivery**: Complete codebase with clear structure and comments
 - **LLM Behavior Tests**: Both positive and negative test scenarios
