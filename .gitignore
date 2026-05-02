@@ -271,3 +271,8 @@ sketch
 
 # Local-only superpowers plan documents
 /docs/superpowers/plans/2026-04-29-monitor-skill-phase1.md
+
+# Demo recording assets — raw screen captures and audio takes are too large for git
+/docs/demo/raw/
+/docs/demo/script.md
+/docs/demo/shot_list.md
