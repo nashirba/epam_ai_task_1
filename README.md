@@ -20,16 +20,29 @@ Local-only hybrid runtime: Weaviate runs in Docker; the Streamlit app runs as a 
 
 ## Quickstart
 
+Requires `uv` (install: <https://docs.astral.sh/uv/>) and Docker.
+
 ```bash
 git clone <repo> && cd task_1
-cp .env.example .env             # edit if you want to use a paid provider
+cp .env.example .env             # edit if you want to use a paid LLM provider
 uv sync --all-extras
-docker compose up -d weaviate
-uv run python -m scripts.ingest  # populates Weaviate from data/
-uv run streamlit run src/pia/ui/app.py
+docker compose up -d weaviate    # only container; the app runs locally via uv
+uv run python -m scripts.ingest --reset   # populates Weaviate from data/
+uv run streamlit run src/pia/ui/app.py    # chat UI on http://localhost:8501
 ```
 
+CLI alternative (multi-command after Phase 4):
+
+```bash
+uv run python -m pia.cli ask "Should I rebalance my KZT savings into USD?"
+uv run python -m pia.cli info
+```
+
+**First-run note:** the embedding model `BAAI/bge-m3` is downloaded to the local HuggingFace cache (~600MB) on first ingest or first chat turn. Subsequent runs reuse the cache.
+
 The default config runs at $0: free Gemini LLM + local `BAAI/bge-m3` embeddings + self-hosted Weaviate.
+
+**LLM key:** a working LLM key (Gemini, Anthropic, Groq, OpenAI, or Ollama) is required for live recommendations. Without one the chat returns a degraded "advisor unavailable" message and the not-financial-advice disclaimer still renders — Quickstart, ingest, and the UI itself still launch without a key so you can verify the setup.
 
 ## Tests
 
