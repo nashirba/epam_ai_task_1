@@ -1,0 +1,149 @@
+Aliaksandr Tsurko
+OK, thank you Vitali. So let's start. Let me share the page. I hope all of you have already checked this. This is a description of.
+Of the capstone project and probably and yeah, could you please raise hands who have already seen it and probably have some questions?
+Like like rising hand in teams.
+OK, I see no hands. So I continue assuming that no one, no one have checked. The first capstone project is a final work. It's the most valuable and of course it is mandatory.
+Designed in the way that it takes about 40% of the final score, so there is no opportunity to skip other tasks and make only capstone or to make only capstone and skip.
+Yeah, and vice versa.
+So you may see the topic Multi Agent RAG system with MCP and this is a common topic for for all. We have a set of scenarios that may be chosen by by any student.
+Exactly 10 of them. So we understand some duplication may happen, but that doesn't mean that you may have the same implementation of the of the task, and of course we have option.
+To propose your own topic that will correspond the same requirements. If we dive deeper into requirements, we may see that the mandatory points are multi-agent architecture.
+Implementing some RAG pipeline, some MCP interaction between agents or agents and tools and yeah, in general the idea it should be really.
+Valuable. It's it. It shouldn't be a toy. It should be a project that have some business value that most close to your choice, probably to your interests.
+And one of the reasons for that is that you should present it as part of the of the deliverables for this project. The presentation like video is mandatory and you may imagine it's not as our previous videos.
+Where you describe only engineering side or only well research results. Here you may take a role of start-up team and present your work to some, for example, investors.
+So your task within it will be to know your project fully, to understand its value and to present it in the manner when you can attract others to it. So I think it's very.
+Valuable practice from from all sides and rather important. It may be applicable not only to as a projects. Of course if you will work for example like engineers with higher positions, then presenting and protecting your ideas is also valuable.
+In in any case, so it's a must have skills to to rise upper in career. Well, so you may see it on the screen. I won't read every word. I think it rather obvious.
+So well, if you have any ideas, any proposals, it's better to make them as early as possible because scenario of your choice should pass through some validation.
+By the committees that will accept the task and we should be sure that all the complexities, the level of complexity and the value of idea are corresponding to the matter and goal of the.
+Of the capstone.
+So here is a topics choice they described almost in the same way. So each system as we have mentioned is multi agent. Of course it's about AI agents and we have details in this examples, so agents.
+A I parts I hope you have already done this theory with different roles so they are tuned to have different site view viewpoint on the same situation.
+So the main idea is to switch from fresh context to actions that each agent within the system should apply to some to some to some data to the tasks they perform. So it's really.
+Valuable and the only ways that nowadays allow to reach a stable results with a systems that can work autonomously and resolve complex tasks.
+They most commonly include agents. Oh well, I will discuss this later. I hope you have already passed this part of the course. If no, please ask questions after after the brief explanation of the project. So the first is picking up a scenario.
+Next, of course, more detailed requirements and well, I want.
+Tell that they must be satisfied, but that's true. I hope they are more or less clear and I encourage you to read them all and ask if any is not clear or you're not sure how to implement it.
+Of course, you may ask not only me, but AI assistance or something like that to to analyze them and to build a complete vision of this complex task. Yeah, we have various sets and groups of requirements starting from technical.
+And going through even to ethics and security. So a success criteria is a kind of work well guide plan.
+We will have next step by step plan. So it's assumable amount of time that is required to do the step, any step, any step. So it's not mandatory to fit in it. It may take more or less time from you, but.
+It may be helpful for you to plan your work and understand how much time to spend at each space before moving to the next or when it's time to move to the next and probably postponed current efforts.
+Well, uh, coming to the previous.
+Success criteria scheme is close to previously seen with some formal part that may be sticks to 70 points from from 100.
+Here we have a list of Arctic facts and requirements to them. For example, of course the applications that is working and well all the codes you that's lying behind this application.
+Of course implemented and pass tests and you should show that the tests are passing, not probably not all the time they are running. It may take a couple of minutes, but the results.
+Video demonstration with voiceover. We have already mentioned it.
+Some details are added. Last 30 points are bonus points that are provided can be obtained by extra skills demonstrated during the work of the project. So it includes of course your presentation.
+Skills and your design feeling. So UI of your application is also important. Data quality for example from model #4 with rug.
+Tasks, many of you have not so complex, not so large data sets and as they are not demonstrating the level of qualities that could grant extra points for data.
+And yes, the last one is related to code excellence, but this is related not only to code and comments, this is engineering side which involves at first probably architecture and following to best practices.
+So to follow them, we hope you know them all, study during the implementation, so it should be interesting if you're developing engineer inside of your skills.
+And yeah, once again, when you will make a demonstration, you also should show the code and briefly explain architecture decisions that have been taken.
+Because the architecture may be proposed by by AI to you, but actually we still don't have let it be named well skilled well skilled architecture agent. So they can do but the more.
+Complex system is the weaker AI powers. From this point of view, they just continue trends that will be that is based that is presented to AI at the beginning. So the starting architecture.
+Drives the engineering code from for AI from this side and the choice is the reasoning is is your responsibility, not an agent take responsibility. He won't be able to analyze it correctly, but you can and.
+It's a good chance to practice well deliverables. There are a couple of artifacts more than in previous tasks, and of course each of them are related to previous steps.
+For example, if we look here step by step implementation, so.
+Planning and set up and you may assume that you will get blueprints. Development will produce you with code. This is also code. This will produce tests which are also required.
+Separate step for video and video is an artifact. Executive summary also adds separate artifact and we have it in the list and we have a planned step for this. So here you can see almost each of them has a separate step to be done.
+Well.
+Let's move forward. So I want to comment this right now. I hope you will really have some questions and well, general tips, general tips.
+Well, let's discuss them as they're related to developing of AI projects in general. So, so few who have already tried to do something by their own or in in as participant of larger teams may notice that.
+AI projects have some specific. The first one is shortest iterations. That means that you may provide something close to the proof of concept in a short time, and it's rather valuable. It's effectively.
+But then you should, we should the team analyze what's difference between you already have and you would like to get and prioritize these points. What to improve, what to add next.
+Add small pieces, rerun all the system so to keep it testable, to keep it maintainable. It's frequently maintained by AI, so almost like type coding according to specifications and design documents that are presented. So you prepare.
+There are only documents, only designs, the same blueprints, the same code style guidelines and pass this all to coding agents, architecture agents, testing agents, reviewer agents, etcetera that will design.
+And implement everything for you. To make this working, short iterations is a good choice because this allow you to feel feedback and well fail fast and fix fast.
+And the group in the same way.
+Well, AA pair programming is something that you have already tried and I have also described just now. So as it means that you may use.
+And we recommend encourage you to use different AI tools to build your project and more effective is to use some pair programmer like Copilots, Cloud Code etcetera and.
+Well, you even may run your own swarm of agents that will help to build your system. Yeah, based on GitHub compiler, but this is not the same the system you will design so.
+You are not designing a set of agents based on Copilot, just as a joke. You are designing your own system with multiple agents under the hood, and you may use other agentic system to produce your own.
+Your capstone.
+Well, this is the central one is to keep always to keep in front of you what is the core value of your product. So keep it and also have understanding what is the base current state.
+Analyze difference between what you need and what you have and produce small steps, small improvements to make it to make them to move forward. This all joined together.
+Well, this is about putting down decisions and compromise. So you should understand and probably you also know this is that we won't have a silver bullet ideal solution.
+In any case, when you are diving deeper, when you're making more complex architecture, you will find out that you always should balance between requirements as it that are pulling your project in different directions, so they could not be satisfied all fully.
+At the same time, so to stop it at some point and satisfy them partially is to select a trade off. This is common duty of architect and well probably documenting this is a part of blueprints and design solutions that you are taking.
+Not all of them may be taken from the start, so adding them in progress, keeping some decision records, architecture decision records like ADR documents and feeding AI with these documents is rather.
+Valuable to keep your project development stable if you use AI. So that means if you will have all well and simple documented, including these trade-offs, these requirements and decisions.
+This will help your AI agents to stay on the same track, not reimplement in different ways to the same things, not to well to keep your project in balance. So it's a kind of.
+Is one of the sites of spec driving development or development projects based on documentation first that is under hood with successful AI development.
+So don't hesitate and well and take your practice demo is well.
+Probably that's obvious, but yeah, it's better to plan what you will tell about. Try sometimes, not not try to do the best from the first try.
+Probably this practice is also valuable. It should be done in multiple iterations, probably short also, but well, it will improve improve quality until you still have.
+Emotions stay to continue. So as it doesn't mean that you should, for example, repeat 10s or 1000 times the phrase as a text that you would like to say to your audience.
+But well, because then it will become to sound monotonic and make them sleep most probably. But well, this is still the practice of expression.
+And each time when you practice, try to keep on front core values, core ideas that you would like to pass to your audience and express them with each try. So this will help you to refine your style and present your product better.
+I'm sure this may be done in this way, but you of course may try and practice your own style. That's also OK and normal.
+Well, probably the last part here is about instructions. Almost the same, but a bit more of them. Once again, repository video with voiceover.
+Double check please and I'll explain why. Double check that you present all artifacts or all deliverables that are required within your submission within your repository.
+And otherwise we just won't be able to check your work and it may be noticed not from the beginning but somewhere in the end when you will not have enough time to redo at your work or add something if something missed. So please double check what you are uploading and.
+So that you include everything that is required.
+About file submission, once again a simple file with your name, with detail of the project and web links, e-mail and that's it. Actually you shouldn't try to put everything in one file or one archive and upload it.
+You upload only linking file that allow committee to reach your results.
+By the way, how this will be checked? This year we have a slightly simplified approach and we won't have a live difference of your project. So we we, I mean experts committee from 3:00 to 5:00.
+Persons plus AI. Of course, we'll check your work, all your submissions, all the files, deliverables, watch your video, discuss these results and set the final rate. This will be done offline.
+In a series of sessions, of course it's not not one my network, so we will review everything. I am a part one of the committee members, but well, not not the only. So most of us you have.
+Meet on this already meet on this course like your instructors, but probably not everyone. And yes, I have mentioned AI. That means that your submissions and rules according to which they are.
+Are also passed to AI agents and they analyze it, analyze success criterias, completeness of your work, submissions, etcetera, and provides their own ideas and conclusions. A simplified view on this you may find in.
+Results from module 4 RAG. I have set grades for it, but I haven't attached this AI notes because our platform doesn't allow it, so I may send it to you individually.
+If you would like to see an example how AI analyze your submissions, it's more strict in some way or more objective probably. So it it will be done together by human and by.
+Artificial intelligence.
+Well, probably that's it and I hope you have some some questions or ideas already studied this material in parallel.
+Multi-agent systems is the core of the Capstone project is interacting between multiple agents. So have you any theory and any practice related to it? Do you know what this multi-agent system and do the first one question and the second one do you know how to build?
+Build it.
+You may raise hand if you are OK with this and well this will simplify the the further activities.
+Oh, let let's reverse the question. Probably you don't know and would like to dive deep on this topic and this is missed for some for some reason.
+So, well.
+Mhm, mhm.
+Well, as far as here we see some UI among the requirements, I should assume that as the main.
+Background tech background is not some platform to implement in agents, but implementing them by your own. So like running applications and interaction between running applications, it's maybe.
+For example, asynchronous processes within asynchronous well coroutines within one process or multiple processes or multiple applications packed for example in Docker containers as they may interact within each other.
+And well.
+This one like MCP is a common way to connect agents. So well, probably there are two most common ways how to.
+Allow them communicate. One is obviously network. At first we should we couldn't share or should not share some memory like random access memory, computer memory between agents.
+We should send results between them. So the 1st way is to use MCP model context protocol to interact between it's a protocol by entropic to call AI tools or to allow agents to interact to just to pass.
+Messages between them. More simple than for example HTTP in some sense. Most simple well based on small JSON formatted payload.
+Another way for example is files. If your agents are running on top of the same system, they might have shared disk space and in that case they may synchronize their work through files like.
+Shared list of tasks or planned next steps and in that case some agent may check do they do it have tasks in the list for his own, pick them, execute.
+Put the result, the result back, probably not all the result, but some link to the result. And in that way each agent will check this file in his term or his parallel execution group and well use the results provided by a different agent.
+So I named these two, but it's not not all. So you may have. You may choose different ways to implement it. You may experiment with this how to establish communication between agents between AI.
+Aliaksandr Tsurko 36 minutes
+Applications well and this is a part of your task and when you will provide the first one architectural design blueprints, I hope you will choose it and describe the.
+Well, and once again, I hope each of you understanding well what is a single agent. Probably it's autonomous application in terms of well.
+Autonomous it has, for example, master prompt with some role and within bounds of this role it may.
+Perform actions related to the role, so it regularly interact with some data, take it, attach to its prompt, pass to LLM large language model and get back results.
+From the perspective of this agent, from the perspective of this role and pass the results of in well in common heap for further processing, it should be passed somewhere and it's a part of multi-agent communication.
+Part of the solutions that you should analyze and select so it may be directly passed to it. Well, we may have different architectures. We may have implementation with orchestrator agents that.
+Set tasks for others and ping them or call them. We may have swarm architecture and the idea with common log or backlog of tasks is something that is close to agent swarm.
+And one more, we have some frameworks that will be presented to you in should be presented in module 13. So the next lesson is that we postponed to the next week.
+Should cover some of the questions related to multi agent systems. Well, so don't miss it. It may be rather helpful and important I hope.
+Hmm. Well, uh.
+Maybe you have more ideas what to ask.
+We have 20 minutes.
+Mm.
+We almost.
+Well, auto code is connected to setting up final grade. In this specific case we need intermediate grade, some estimation of the submission, so submission if I always links with student's name.
+Will be analyzed. Content by the links will be gathered and also analyzed and then.
+The AI would say is it enough or not even to start checking the work by experts?
+So we may get in situation when some re upload or rework may be required. I just have prepared. Sorry, it's in Russian. I have prepared a brief summary from.
+Previous results that have been provided by students and analyzed in a similar manner. It's from Advanced Track RAG Module 4 and we have lots of.
+Probably difficulties with the correct uploads in such format. So well, and I think you may read it right now or in parallel. So we have really.
+Some well if we skip the conclusions. So top five issues is lack of video or video without sound.
+That is not acceptable well.
+The details that should be included in reports, but maybe not. For example, we are mentioning some executive summary like a deliverable. It's a single file, one or two page that can allow.
+That should allow to anyone briefly dive in without details and understand what is done, what is valuable and what for it is needed. So it it's normal to do it after the work, but.
+The content of this file may be well different when it is prepared by a different students and some may prepare the file that is not fully correspond to the idea of executive summary.
+So in this case resubmission may be required, but to understand is it enough or not, we should pass it through automatic checks and at the moment they are not connected to the platform exactly because.
+Scoring is a platform at the moment is not designed to set intermediate score.
+Well, uh.
+For example, this is. I'll try to keep it a bit simple, but yes.
+We may have such notes from AI that evaluate the materials according to the rules and estimate is it OK or not and should it be passed to export committee or should not?
+And well, as this check will be done in any case, but may lead us to some resubmission required. Well, OK, if someone is interested in your personal results, I may send it as they're not attached.
+To the platform because for for some reason platform doesn't allow it like a feedback and I may send you general conclusions according all group related to all all your group to see what what's the common pitfalls.
+Was in in this task. Maybe it provide you some ideas how to make your capstone work better and avoid these pitfalls while preparing artifacts for capstone.
+Well.
+Just write to us in in Teams and we'll share this materials.
+Hmm. Probably that's it.

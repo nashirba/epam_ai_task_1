@@ -1,0 +1,123 @@
+Aliaksandr Tsurko:
+Ten examples we have in course in our page web page of university, then you can just mention that this is the exact topic from this page, you mean it, and that's enough, we have descriptions. If you use your own topic or some variations, then please provide the description.
+for committed to validate it before starting the work. So description should include, well, the reasoning, what is the real problem that you're trying to solve using this system or proposing.
+Next one, what agents, which agents you would like to implement as minimal three of them? What is the purpose of rug usage? How it will be, to what it will be applied?
+to which elements of the system. And the last one is MCP protocol, where it will be used in the system. So these points are mandatory to be included in the description. And without this, we couldn't finalize start.
+So from a perspective of committee at the moment, most of students are even not starting work.
+So I think it's probably some miscommunication or a bit of problem in other case, because as I understand, time is coming and we still are not sure who is doing the right things and who...
+Is not.
+Yes, please. And probably let's start. We should be sure that this question from my side, from committee side, about topics of your capstones reach everyone and
+Vitaliia will update the form to include a description field also. And please submit your topics once again to validate it, to fix it and confirm that you are working on the proper topic.
+Well, probably that's it from my side, and we may move to your questions.
+
+Anuar Sultan:
+I have a question about the deployment.
+Of the like system, I haven't.
+Choose any project topics right now, but I would like to know how we should be deploying it. Is like expected to be on local machine or?
+in cloud or something like that.
+
+Aliaksandr Tsurko:
+You should be the owner of the code that you are using. So, no, I just tried to describe it from an unexpected, probably, point of view. So, all the codes that you are using...
+should be available and it is yours or it's third party published solutions. So if you would like to use any platform that is commercial or not commercial but you don't see and don't explain what is under the hood.
+It's not the proper way. If the simplest, obviously, is to run something on your local device, and when you can see for if this, for example, in Python or compiled from a different language, and you can see, can show, can explain, it also should be.
+A part of.
+explanation or video demonstrations that you not only see your code, but also understand what's going on, well, what's happening under the hood, how it works, etc. So the simplest way is to run it locally and have to own.
+everything on your site. If you, well, everything. Such services like databases, for example, or models, obviously, shouldn't be unpacked. Yes, you may use it as this.
+But all is related to agentic, to MCP, to orchestration, should be your own.
+So it may be run in some cloud, but well, you may take your code repository and deploy it in any place and it still should be available. You may pass through it, comment each interaction in the system and that's it. Probably. So it's not
+A problem if you would like to put it in, for example, Docker containers and even make each agent a sub-service with isolated Docker environment. Usually it's not required, but it is possible. And then you even may take a part of some small cluster in.
+cloud and push it there, run it there. It's not mandatory, it will be acceptable, but only in the case when you own the code of engines of this Docker images you use, except the third party services like...
+Databases, and well, and models which I used here.
+And, yes, I understand you may use, for example, Python packages that include some compiled data, and it's already compiled, maybe not built on your on your machine and not so obvious, but if well...
+In this case, it's related only to a license, so it's not a good idea to use some.
+project, well, not project, but package libraries that require license which you don't have. If you have it for your own, it may be used, but it's not mandatory. We may build all in three solutions.
+Did it answer your question?
+
+Anuar Sultan:
+Well, yes, thank you. In other words, so it's expected to have the project run locally, but it's not prohibited to use third-party softwares to orchestrate your
+Your project, us.
+
+Aliaksandr Tsurko:
+Yes, yes, right. So, special agent platform is not the purpose of the capstone. If you develop them, it's great, it may be accepted, but it's okay. Also, notebooks and things like Google Collab, et cetera, when you may...
+design and test each of all system and each agent based on not it's not the proper solution. The proper solution is something that you can hack and deliver as product. You won't be actually able to say
+to your investor that you propose to him or she to buy a code that is running somewhere in collab. It's not production ready, it's not an artifact that you can take and pass with the keys.
+If you have it in a different way that could be sold, that is more more clear position that you have the product, you can present it. It's part of this practice, not only to build engineering solutions that you own, but also
+propose it to audience, try to sell it. Talk with investors, talk with technical experts. Defend your solution in some case. We excluded mandatory step or optional bonus step about life.
+capstone defects, but the idea of that still somewhere near to video recordings that you may don't may should provide. So explanation and depending of your core positions, the idea of the project.
+to say value of it and etc. It's very useful and actually is mandatory to get the high score.
+So in simple words, own code, yes, cloud allowed, third party orchestrations not allowed, third party notebooks clouds not allowed.
+A bit true, but yes, in this way.
+Who's next, please?
+Let's see.
+Question regarding the data for my project, so planner.
+In the vector database, talk travel, but controls.
+Uh...
+How many bottles should I create and store?
+And.
+Well.
+I would say if.
+you need to propose some options, for example, 5 different tours, I mean tourism, tours like tracks. And if I got right the idea, then it will be enough because each tour includes a lot of
+items on the track and some more details that only description because it will be transport, I mean bus, cars, packing of probably, packing of tourists in the bus, some routing and optimization of traffic.
+the costs for tickets if you use not buses but airlines, etc. Costs for hotels and meals, etc. So it's a lot of questions that may be packed within one track of our tour.
+in such idea. So describing 5 tools will be great for that. It's not a small piece of data. But if you mean about something like only description and multiple, well, lines on a map, it's too simple. And I think valid data set in that case should be in
+Tense, I mean 20, 30, 50 of such pieces of data.
+So it actually depends on digitalization and ability to also idea how to sell it and what will be sell. You won't be able to sell five small images, like screenshots of Map with Track. Probably it's not something that.
+is valuable enough for your investors. So some data. I mean, I understand it is very hard to prepare the data for full weight projects because it's almost 80% of the weight of real projects.
+But for the test case, I encourage you to try to reach it. Not 80%, but well, some value, some weight when you will feel the quality of result, not demonstration, but demonstration of quality of real efforts.
+Ohh.
+In most of cases with small data, you also won't be able to demonstrate efficiency of your system, efficiency of your solutions. It will be hard to argument that you choose the right solutions to make.
+to overcome, to compete with problems, because you don't have real problems, because if your data is only a mock-up data or something too simple. So it's better to use as more real data as possible.
+Of course, within time limits, you have to prepare the data.
+Mm.
+Well, it was a question I have read from chat.
+So, if you would provide some feedback or clarification in a voice, I will wait for some time, or I may go to the next one.
+MVP sufficient or more than MVP? Well, yes, but what do you mean by MVP? For example, from my perspective, minimal viable product is a product that is useful for audience and it is proven by
+having this audience. For example, if 10 people challenge your prototype, it's a prototype, it's proof of concept, still proof of concept. If you have, for example, 100 users and they are interested in more or less, well, more or less
+continuous usage of your tool, it's a real audience and it provides some real feature and it's a live project. It's not on the valuability of the project is proved by this. So, well, if you mean...
+But, well, let let be brief: MVP should be enough, but what do you mean, and is it really have audience is an interesting question. It's tricky, and I understand it's not under after four is a capstone to attract real people, I mean.
+If you have, that's great. If we don't plan time to work with audience to attract it and to present your project with together with users with audience you have attracted.
+So yes, MVP is good. Proof of concept is not enough.
+Yes, because most proof of concepts are just checking hypothesis, not really integrating them. So it's a system with a lot of gaps in most cases. So well, let's avoid this and aim to MVP plus.
+And.
+Okay.
+Does this task necessary in English? No, my system provides in Russian. Well, interesting point. I think the language within your tool, your system, that is UI language, I mean user interface.
+is a feature of your system. So it may be in any and multilingual too. Of course, it may be in one and it's not English. English is a requirement of this university course for you as engineers, as developers, as AI specialists.
+but not mandatory for the product, for the UI of your product in the capstone.
+Well, it was the second question from chat.
+Maybe something else I missed.
+Main purpose of Capstone is to show knowledge, not knowledge. It's not so hard to get knowledge. In terms of education, we have a growth of
+person that is based on probably knowledge. Oh no, it's based on own interest, sometimes on passion to something. Next it goes with knowledge, proper knowledge, how to save your time and save time of society, probably.
+people with whom you interact. For example, if you know language professional terms, that mean you may communicate in a fast way and pass, explain your ideas or got ideas of your colleagues.
+rapidly. If you don't know proper language, you may spend a lot of time to explain the same and to read white bicycle as a code. So it's not the best way, and knowledge is the second step after your own interest. And the last one probably is some
+skills and actually demonstrating of skills and developing of skills and developing of skills are based not on knowledge, they are based on practice. For example, if you are writing code, your practice is in writing code. You increase your skill in this.
+That doesn't mean that you improve your architecture skills. If you are reading book, you practicing in reading books. It's probably that's obvious, but well. And if you will try to demonstrate it, when you, for example, make a recording from a site, what will be on the recording?
+how you are reading book. And that is why you can demonstrate. Of course, it's not enough. And even if you got some knowledge from this book, it's also not enough. When you are thinking how to join things together, you are training this skill.
+And this is also important. It's hard to demonstrate it directly, how you're thinking, how you're doing these things. And the idea of presentation of video comments, voiceover, and video, exactly in kitchen and...
+presenting this part to your skills, your product, and also your ability to present it. So not only actually knowledge, but the point, the core point of the capstone you can do.
+and you do it. So you can, is not enough to prove that you do it. You should show how you are doing it. And well, if you imagine you like an artist, and in some sense each artist has his or her own style.
+And to present this style, you should present the results with this style, not knowledge on which it is based, some drawing technique, et cetera, some knowledge in which paints you may use or which paper or canvas. Exactly.
+integral impression that is living within you and you are passing it with your activity, your work. Well, that's the aim.
+OK.
+Ohh, maybe I got more questions, chat.
+Okay, thank you, Tom.
+Well, any more questions?
+Mm.
+Italian, maybe you have some recommendations to us.
+And.
+One more interesting trick is in submitting a short document which include links. So it's not mandatory and it's desirable to make a simple submission file. And there you have only your linking points to your own and to your repository and to your video.
+Probably. And if you are making proof of concepts, that means that you have some hypothesis, ideas that should be proven. You are not sure in it. And after proving this, you demonstrate it to someone or to your own and taking decisions. The state of proof of concept.
+Means that you are not sure in the final solution.
+You train?
+Well, it's probably not obvious, but from the entire development cycle, that's it. And well, if you would like to get good results with Capstone, you should be sure. You already probably checked, experimented.
+You are making your proof of concepts on the roads to final project you will be presenting.
+I mean exactly that one, because that seems that.
+Well, yes.
+If you mean the complexity, then the minimal required complexity is described in the, well, capstone page in the rules. We already have them, and actually, as I have mentioned, the first one who will check in it will be AI.
+that will take this quality gains. We have this success criteria.
+No error, sorry.
+I have some connection issues, but well, one more trick is about checking your project. You may take the description of the capstone if you and pass it to AI agent and ask to validate. Do you fulfill all requirements?
+that I described in, well, task for the capstone. If I confirm that you have fulfilled everything, you have this blueprints, you have this, well, all from start through the code till the, well, executive summary and video.
+Then that's it. Formally that's it, and that's enough to be sure you have a past score, 70%, and depending on quality and other things, you may get more than 70.
+So we are not trying to evaluate in abstract form, like, is it a proof of concept or not? Is it MVP or not? We're trying to look a bit with a bit more granularity. And for this, we provide.
+Some requirements that can be...
+Easily catched more easily with a sense of what is what will be considered as proof of concept or not.
