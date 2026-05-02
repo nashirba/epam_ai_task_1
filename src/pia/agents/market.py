@@ -80,6 +80,19 @@ def make_market_agent() -> BaseAgent:
 
 def ask_market(query: MarketQuery) -> MarketAnswer:
     agent = make_market_agent()
-    text = agent.run(query.question)
-    sources = [MarketSource(tool="kz-data", url=None)]
-    return MarketAnswer(text=text, sources=sources)
+    result = agent.run(query.question)
+    sources: list[MarketSource] = []
+    seen: set[str] = set()
+    for name in result.tool_calls_made:
+        if name in seen:
+            continue
+        seen.add(name)
+        if name == "web_search":
+            sources.append(MarketSource(tool="tavily-web-search"))
+        else:
+            sources.append(MarketSource(tool=f"kz-data:{name}"))
+    return MarketAnswer(
+        text=result.text,
+        sources=sources,
+        degraded=bool(result.tool_errors) or result.budget_exhausted,
+    )

@@ -4,6 +4,7 @@ from pia.agents.base import BaseAgent, Tool
 from pia.agents.market import ask_market
 from pia.agents.portfolio import ask_portfolio
 from pia.messages import (
+    AgentMessage,
     MarketQuery,
     MarketSource,
     PortfolioQuery,
@@ -23,6 +24,57 @@ Rules:
 """
 
 
+_DEFINITIVE_CALL_TERMS = (
+    " buy ",
+    " sell ",
+    "recommend buying",
+    "recommend selling",
+    "must buy",
+    "must sell",
+    "купить",  # imperative or infinitive
+    "продать",
+    "покупайте",
+    "продавайте",
+    "обязательно купите",
+    "обязательно продайте",
+)
+
+
+def _looks_like_definitive_call(text: str) -> bool:
+    lowered = text.lower()
+    return any(term in lowered for term in _DEFINITIVE_CALL_TERMS)
+
+
+def _portfolio_handler(question: str) -> dict:
+    request = AgentMessage(
+        sender="planner",
+        receiver="portfolio",
+        payload=PortfolioQuery(question=question),
+    )
+    answer = ask_portfolio(request.payload)  # type: ignore[arg-type]
+    response = AgentMessage(
+        sender="portfolio",
+        receiver="planner",
+        payload=answer,
+    )
+    return response.payload.model_dump()
+
+
+def _market_handler(question: str) -> dict:
+    request = AgentMessage(
+        sender="planner",
+        receiver="market",
+        payload=MarketQuery(question=question),
+    )
+    answer = ask_market(request.payload)  # type: ignore[arg-type]
+    response = AgentMessage(
+        sender="market",
+        receiver="planner",
+        payload=answer,
+    )
+    return response.payload.model_dump()
+
+
 def make_planner() -> BaseAgent:
     return BaseAgent(
         name="planner",
@@ -36,9 +88,7 @@ def make_planner() -> BaseAgent:
                     "properties": {"question": {"type": "string"}},
                     "required": ["question"],
                 },
-                handler=lambda question: ask_portfolio(
-                    PortfolioQuery(question=question)
-                ).model_dump(),
+                handler=_portfolio_handler,
             ),
             Tool(
                 name="ask_market",
@@ -48,7 +98,7 @@ def make_planner() -> BaseAgent:
                     "properties": {"question": {"type": "string"}},
                     "required": ["question"],
                 },
-                handler=lambda question: ask_market(MarketQuery(question=question)).model_dump(),
+                handler=_market_handler,
             ),
         ],
     )
@@ -56,10 +106,15 @@ def make_planner() -> BaseAgent:
 
 def advise(user_text: str) -> Recommendation:
     planner = make_planner()
-    summary = planner.run(user_text)
-    # Light post-processing: hedge language enforcement (best-effort guardrail)
-    hedge_triggers = [" buy ", " sell ", "recommend buying", "recommend selling"]
-    if any(p in summary.lower() for p in hedge_triggers):
+    try:
+        result = planner.run(user_text)
+        summary = result.text
+    except Exception as exc:  # noqa: BLE001 — degraded answer path; disclaimer must always reach the user
+        summary = (
+            f"The advisor is temporarily unavailable ({type(exc).__name__}). "
+            "Please try again in a moment."
+        )
+    if _looks_like_definitive_call(summary):
         summary = "Hedged note: " + summary
     return Recommendation(
         summary=summary,

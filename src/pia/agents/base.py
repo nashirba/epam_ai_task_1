@@ -9,6 +9,14 @@ from pia.llm.client import LLMClient
 
 
 @dataclass
+class AgentRunResult:
+    text: str
+    tool_calls_made: list[str]  # ordered, possibly with repeats
+    tool_errors: list[str]  # tool names whose handler raised
+    budget_exhausted: bool
+
+
+@dataclass
 class Tool:
     name: str
     description: str
@@ -37,15 +45,22 @@ class BaseAgent:
             for t in self.tools
         ]
 
-    def run(self, user_message: str) -> str:
+    def run(self, user_message: str) -> AgentRunResult:
         messages: list[dict[str, Any]] = [
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": user_message},
         ]
+        tool_calls_made: list[str] = []
+        tool_errors: list[str] = []
         for _ in range(self.max_tool_calls):
             resp = self.llm.chat(messages, tools=self._tool_schemas() or None)
             if not resp["tool_calls"]:
-                return resp["content"]
+                return AgentRunResult(
+                    text=resp["content"],
+                    tool_calls_made=tool_calls_made,
+                    tool_errors=tool_errors,
+                    budget_exhausted=False,
+                )
             for call in resp["tool_calls"]:
                 fn = call["function"]
                 tool = next((t for t in self.tools if t.name == fn["name"]), None)
@@ -72,6 +87,7 @@ class BaseAgent:
                 try:
                     result = tool.handler(**args)
                 except Exception as e:  # noqa: BLE001 — degraded answer path
+                    tool_errors.append(tool.name)
                     messages.append(
                         {
                             "role": "tool",
@@ -80,6 +96,7 @@ class BaseAgent:
                         }
                     )
                     continue
+                tool_calls_made.append(tool.name)
                 messages.append(
                     {
                         "role": "tool",
@@ -87,4 +104,9 @@ class BaseAgent:
                         "content": json.dumps(result, ensure_ascii=False, default=str),
                     }
                 )
-        return resp["content"] or "(no response — tool-call budget exhausted)"
+        return AgentRunResult(
+            text=resp["content"] or "(no response — tool-call budget exhausted)",
+            tool_calls_made=tool_calls_made,
+            tool_errors=tool_errors,
+            budget_exhausted=True,
+        )

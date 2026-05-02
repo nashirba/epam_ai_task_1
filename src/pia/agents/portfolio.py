@@ -82,16 +82,24 @@ def make_portfolio_agent() -> BaseAgent:
 
 def ask_portfolio(query: PortfolioQuery) -> PortfolioAnswer:
     agent = make_portfolio_agent()
-    text = agent.run(query.question)
-    chunks = retrieve(query.question, k=5)
-    cites = [
-        Citation(
-            source=c.source,
-            source_url=c.source_url,
-            published_at=c.published_at,
-            snippet=c.text[:200],
-            score=c.score,
-        )
-        for c in chunks[:3]
-    ]
-    return PortfolioAnswer(text=text, citations=cites, used_holdings=True)
+    result = agent.run(query.question)
+    cites: list[Citation] = []
+    if "retrieve" in result.tool_calls_made:
+        # Re-pull citations for the UI; the loop already retrieved them but we
+        # don't surface those raw chunks back through the LLM tool channel.
+        chunks = retrieve(query.question, k=5)
+        cites = [
+            Citation(
+                source=c.source,
+                source_url=c.source_url,
+                published_at=c.published_at,
+                snippet=c.text[:200],
+                score=c.score,
+            )
+            for c in chunks[:3]
+        ]
+    return PortfolioAnswer(
+        text=result.text,
+        citations=cites,
+        used_holdings="get_holdings" in result.tool_calls_made,
+    )
