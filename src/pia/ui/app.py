@@ -26,6 +26,15 @@ st.set_page_config(page_title="Personal Investment Assistant", page_icon="💼",
 # ---------------------------------------------------------------------------
 _FX_FALLBACK: dict[str, float] = {"KZT": 1.0, "USD": 470.0, "EUR": 510.0}
 
+# Substrings (case-insensitive) that indicate a degraded / error response.
+# Shown as st.error with a "Try again" button instead of normal markdown.
+_DEGRADED_MARKERS = (
+    "temporarily unavailable",
+    "Rate limit exceeded",
+    "(no response",  # tool-call budget exhausted (BaseAgent.run sentinel)
+    "ToolError",  # LLM may echo this from tool-role context; not a guaranteed signal
+)
+
 
 def _parse_fx(raw: object) -> float | None:
     """Best-effort extraction of a float from a kz-data get_fx_rate response.
@@ -124,13 +133,6 @@ for msg in st.session_state.history:
         st.markdown(msg["text"])
         if msg.get("citations"):
             render_history_citations(msg["citations"])
-
-_DEGRADED_MARKERS = (
-    "temporarily unavailable",
-    "Rate limit exceeded",
-    "tool failed",
-    "ToolError",
-)
 
 if user_text := st.chat_input("Ask about your portfolio, the market, or what to do next…"):
     st.session_state.history.append({"role": "user", "text": user_text})
