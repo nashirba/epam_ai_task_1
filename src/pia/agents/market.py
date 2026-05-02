@@ -3,6 +3,7 @@ from __future__ import annotations
 from pia.agents.base import BaseAgent, Tool
 from pia.mcp.client import kz_data_call_sync, web_search_sync
 from pia.messages import MarketAnswer, MarketQuery, MarketSource
+from pia.observability import trace
 
 _SYSTEM = """You are the Market Agent. You answer questions about current market state for KZ:
 NBK rate, FX, KASE quotes, bank deposit rates, and breaking news.
@@ -82,6 +83,7 @@ def make_market_agent() -> BaseAgent:
     )
 
 
+@trace("agent.market")
 def ask_market(query: MarketQuery) -> MarketAnswer:
     agent = make_market_agent()
     result = agent.run(query.question)

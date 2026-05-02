@@ -9,6 +9,8 @@ from typing import Any
 from mcp import ClientSession
 from mcp.client.stdio import StdioServerParameters, stdio_client
 
+from pia.observability import trace
+
 
 @asynccontextmanager
 async def _stdio(params: StdioServerParameters) -> AsyncIterator[ClientSession]:
@@ -40,9 +42,11 @@ async def web_search(query: str, max_results: int = 5) -> list[dict]:
         return [{"text": result.content[0].text}] if result.content else []
 
 
+@trace("mcp.kz_data")
 def kz_data_call_sync(tool_name: str, **kwargs: Any) -> Any:
     return asyncio.run(kz_data_call(tool_name, **kwargs))
 
 
+@trace("mcp.web_search")
 def web_search_sync(query: str, max_results: int = 5) -> list[dict]:
     return asyncio.run(web_search(query, max_results=max_results))

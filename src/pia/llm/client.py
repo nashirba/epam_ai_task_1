@@ -6,6 +6,7 @@ from typing import Any
 import litellm
 
 from pia.config import get_settings
+from pia.observability import trace
 
 
 @dataclass
@@ -20,6 +21,7 @@ class LLMClient:
         self.temperature = self.temperature if self.temperature is not None else s.llm_temperature
         self.max_tokens = self.max_tokens or s.llm_max_tokens
 
+    @trace("llm.chat")
     def chat(self, messages: list[dict[str, Any]], tools: list[dict] | None = None) -> dict:
         kwargs: dict[str, Any] = dict(
             model=self.model,

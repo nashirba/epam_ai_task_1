@@ -6,6 +6,7 @@ from pathlib import Path
 from pia.agents.base import BaseAgent, Tool
 from pia.config import get_settings
 from pia.messages import Citation, PortfolioAnswer, PortfolioQuery
+from pia.observability import trace
 from pia.rag.retrieve import retrieve
 
 _SYSTEM = """You are the Portfolio Agent. You answer questions about the user's
@@ -81,6 +82,7 @@ def make_portfolio_agent() -> BaseAgent:
     )
 
 
+@trace("agent.portfolio")
 def ask_portfolio(query: PortfolioQuery) -> PortfolioAnswer:
     agent = make_portfolio_agent()
     result = agent.run(query.question)

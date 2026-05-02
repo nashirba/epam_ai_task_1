@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from pia.embeddings import get_embedding_provider
+from pia.observability import trace
 from pia.rag.store import RetrievedChunk, WeaviateStore
 
 
+@trace("rag.retrieve")
 def retrieve(
     query: str, *, k: int = 5, source: str | None = None, alpha: float = 0.5
 ) -> list[RetrievedChunk]:

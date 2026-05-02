@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from pia.llm.client import LLMClient
+from pia.observability import trace
 
 
 @dataclass
@@ -45,6 +46,7 @@ class BaseAgent:
             for t in self.tools
         ]
 
+    @trace("agent.run")
     def run(self, user_message: str) -> AgentRunResult:
         messages: list[dict[str, Any]] = [
             {"role": "system", "content": self.system_prompt},

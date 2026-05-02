@@ -11,6 +11,14 @@ from pia.messages import (
     PortfolioQuery,
     Recommendation,
 )
+from pia.observability import trace
+from pia.safety import (
+    RateLimitExceeded,
+    guardrail_output,
+    rate_limit_check,
+    redact_pii,
+    sanitize_input,
+)
 
 _SYSTEM = """You are the Planner / Advisor. You combine the user's portfolio context with current market state to produce evidence-backed recommendations.
 
@@ -21,27 +29,6 @@ Rules:
 - Cite the user's plan and current data in every actionable recommendation.
 - Output should be concise: 2-4 short sections at most.
 """
-
-
-_DEFINITIVE_CALL_TERMS = (
-    " buy ",
-    " sell ",
-    "recommend buying",
-    "recommend selling",
-    "must buy",
-    "must sell",
-    "купить",
-    "продать",
-    "покупайте",
-    "продавайте",
-    "обязательно купите",
-    "обязательно продайте",
-)
-
-
-def _looks_like_definitive_call(text: str) -> bool:
-    lowered = text.lower()
-    return any(term in lowered for term in _DEFINITIVE_CALL_TERMS)
 
 
 def _make_planner(citation_ledger: list[Citation], market_source_ledger: list[MarketSource]) -> BaseAgent:
@@ -91,7 +78,18 @@ def make_planner() -> BaseAgent:  # backward-compatible factory used by tests/UI
     return _make_planner([], [])
 
 
+@trace("agent.planner.advise")
 def advise(user_text: str) -> Recommendation:
+    try:
+        rate_limit_check()
+    except RateLimitExceeded:
+        return Recommendation(
+            summary="Rate limit exceeded. Please wait a minute and try again.",
+            actions=[],
+            citations=[],
+            market_sources=[],
+        )
+    user_text = redact_pii(sanitize_input(user_text))
     citations: list[Citation] = []
     market_sources: list[MarketSource] = []
     planner = _make_planner(citations, market_sources)
@@ -103,8 +101,7 @@ def advise(user_text: str) -> Recommendation:
             f"The advisor is temporarily unavailable ({type(exc).__name__}). "
             "Please try again in a moment."
         )
-    if _looks_like_definitive_call(summary):
-        summary = "Hedged note: " + summary
+    summary = guardrail_output(summary)
     return Recommendation(
         summary=summary,
         actions=[],
