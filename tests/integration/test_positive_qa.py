@@ -10,7 +10,7 @@ from pia.agents.planner import advise
 # `must_call_tools` in the YAML is informational for Phase 7 (we cannot yet
 # assert the planner's tool trace from Recommendation); Phase 9's Langfuse-
 # backed test will read it.
-_GOLDEN = yaml.safe_load(Path("tests/fixtures/golden_qa.yaml").read_text())
+_GOLDEN = yaml.safe_load((Path(__file__).parent.parent / "fixtures" / "golden_qa.yaml").read_text())
 _LIVE = bool(os.getenv("PIA_LIVE_LLM"))
 
 

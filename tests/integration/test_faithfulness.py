@@ -9,7 +9,7 @@ from pia.rag.retrieve import retrieve
 
 
 _LIVE = bool(os.getenv("PIA_LIVE_LLM"))
-_GOLDEN = yaml.safe_load(Path("tests/fixtures/golden_qa.yaml").read_text())
+_GOLDEN = yaml.safe_load((Path(__file__).parent.parent / "fixtures" / "golden_qa.yaml").read_text())
 
 
 @pytest.mark.skipif(not _LIVE, reason="set PIA_LIVE_LLM=1 to run faithfulness eval")

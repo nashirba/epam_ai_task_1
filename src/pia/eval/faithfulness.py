@@ -36,8 +36,17 @@ def judge(question: str, context: list[str], answer: str, *, llm: LLMClient | No
         {"role": "system", "content": _JUDGE_SYSTEM},
         {"role": "user", "content": user},
     ])
+    raw = out["content"].strip()
+    # Strip an optional leading ```json (or ```) fence and trailing ```.
+    if raw.startswith("```"):
+        first_nl = raw.find("\n")
+        if first_nl != -1:
+            raw = raw[first_nl + 1 :]
+        if raw.endswith("```"):
+            raw = raw[: -3]
+        raw = raw.strip()
     try:
-        parsed = json.loads(out["content"])
+        parsed = json.loads(raw)
         return JudgeResult(score=int(parsed["score"]), rationale=str(parsed["rationale"]))
     except (json.JSONDecodeError, KeyError, ValueError) as exc:
         return JudgeResult(score=0, rationale=f"judge output unparseable: {exc}; raw: {out['content'][:200]}")
