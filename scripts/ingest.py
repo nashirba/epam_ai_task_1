@@ -32,8 +32,10 @@ def main() -> None:
         for chunk in chunk_markdown(doc.text, max_tokens=120, overlap_tokens=24):
             items.append((doc, chunk))
     print(f"Ingesting {len(items)} chunks…")
-    store.upsert(items)
-    store.close()
+    try:
+        store.upsert(items)
+    finally:
+        store.close()
     print("[green]Done.")
 
 

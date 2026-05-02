@@ -4,6 +4,10 @@ from functools import cached_property
 
 from sentence_transformers import SentenceTransformer
 
+# Apple-Silicon MPS backend has a 2**32-byte NDArray cap; bge-m3 with
+# the 32-default batch overflows. Keep this small until upstream fixes it.
+_MPS_SAFE_BATCH = 4
+
 
 class LocalEmbeddings:
     def __init__(self, model_name: str = "BAAI/bge-m3") -> None:
@@ -26,7 +30,7 @@ class LocalEmbeddings:
             texts,
             normalize_embeddings=True,
             show_progress_bar=False,
-            batch_size=4,
+            batch_size=_MPS_SAFE_BATCH,
         )
         return [list(map(float, v)) for v in embs]
 
