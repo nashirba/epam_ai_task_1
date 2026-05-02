@@ -32,7 +32,7 @@ def evaluate_retrieval(cases: Iterable[dict], *, k: int = 5) -> list[RetrievalRe
     return out
 
 
-def precision_at_k(results: list[RetrievalResult]) -> float:
+def hit_rate_at_k(results: list[RetrievalResult]) -> float:
     if not results:
         return 0.0
     return sum(1 for r in results if r.hit_at_k) / len(results)
