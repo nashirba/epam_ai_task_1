@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from pia.mcp.client import kz_data_call_sync
@@ -7,3 +9,6 @@ from pia.mcp.client import kz_data_call_sync
 def test_kz_data_nbk_via_mcp():
     out = kz_data_call_sync("get_nbk_rate")
     assert out is not None
+    payload = json.loads(out)
+    assert "rate_apr" in payload
+    assert "effective_from" in payload

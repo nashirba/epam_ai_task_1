@@ -5,7 +5,10 @@ from pathlib import Path
 
 
 def get_deposit_rates(currency: str, term_months: int, *, data_dir: Path) -> list[dict]:
-    """Return matching deposit products across banks, sorted by APR (best first)."""
+    """Return matching deposit products across banks, sorted by APR (best first).
+
+    Returns an empty list if no products match (does NOT raise).
+    """
     target_currency = currency.upper()
     results: list[dict] = []
 

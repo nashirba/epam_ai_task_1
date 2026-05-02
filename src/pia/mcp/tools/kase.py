@@ -5,7 +5,10 @@ from pathlib import Path
 
 
 def get_kase_quote(ticker: str, *, data_dir: Path) -> dict:
-    """Return latest KASE snapshot for `ticker` across `data/public/kase/*.json`."""
+    """Return latest KASE snapshot for `ticker` across `data/public/kase/*.json`.
+
+    Raises ValueError if the ticker is not found in any snapshot.
+    """
     target = ticker.upper()
     snapshots = sorted((data_dir / "public/kase").glob("*.json"))
     if not snapshots:
@@ -21,8 +24,13 @@ def get_kase_quote(ticker: str, *, data_dir: Path) -> dict:
         except (json.JSONDecodeError, OSError):
             continue
         snapshot_date = doc.get("snapshot_date", "")
+        # Skip files with no snapshot_date so as_of is never empty and ties are deterministic.
+        if not snapshot_date:
+            continue
         for row in doc.get("tickers", []):
-            if row.get("ticker", "").upper() == target and snapshot_date >= best_date:
+            if row.get("ticker", "").upper() == target and (
+                not best_date or snapshot_date > best_date
+            ):
                 best = row
                 best_date = snapshot_date
 

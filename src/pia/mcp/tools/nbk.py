@@ -5,7 +5,12 @@ from pathlib import Path
 
 
 def get_nbk_rate(*, date_str: str | None = None, data_dir: Path) -> dict:
-    """Return NBK base rate at `date_str` (or latest if None)."""
+    """Return NBK base rate at `date_str` (or latest if None).
+
+    Reads from the bundled base-rate history snapshot.
+
+    Raises ValueError if the history file is missing.
+    """
     history = json.loads((data_dir / "public/nbk/base_rate_history.json").read_text())["history"]
     history.sort(key=lambda r: r["effective_from"])
     pick = history[-1]

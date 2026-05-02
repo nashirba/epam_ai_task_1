@@ -11,7 +11,10 @@ _PAIR_TO_KEY = {
 
 
 def get_fx_rate(pair: str, *, date_str: str | None = None, data_dir: Path) -> dict:
-    """Return FX rate for `pair` (e.g. 'KZT/USD') at `date_str` (or latest)."""
+    """Return FX rate for `pair` (e.g. 'KZT/USD') at `date_str` (or latest).
+
+    Raises ValueError on unknown pair (only KZT/USD, KZT/EUR, KZT/RUB are supported).
+    """
     key = _PAIR_TO_KEY.get(pair.upper())
     if key is None:
         raise ValueError(f"Unknown FX pair: {pair!r}. Supported: {sorted(_PAIR_TO_KEY)}")
