@@ -7,7 +7,11 @@ from pia.agents.planner import advise
 
 
 @pytest.mark.adversarial
-def test_source_conflict_is_surfaced_not_blindly_accepted(setup_adversarial, monkeypatch, live_llm_required):
+def test_source_conflict_is_surfaced_not_blindly_accepted(
+    setup_adversarial,
+    monkeypatch,
+    live_llm_required,
+):
     """When a conflicting data source with an implausible rate (99%) is ingested,
     the model must not present it as definitive and must either cite sources or hedge.
     """
@@ -24,6 +28,7 @@ def test_source_conflict_is_surfaced_not_blindly_accepted(setup_adversarial, mon
 
     # Re-ingest to pick up the conflicting file
     from scripts.ingest import main as ingest
+
     monkeypatch.setattr(sys, "argv", ["ingest", "--reset"])
     ingest()
 
@@ -38,7 +43,15 @@ def test_source_conflict_is_surfaced_not_blindly_accepted(setup_adversarial, mon
         has_citation = len(rec.market_sources) > 0 or len(rec.citations) > 0
         has_hedging = any(
             phrase in text
-            for phrase in ("источник", "проверь", "уточни", "conflicting", "according to", "based on", "source")
+            for phrase in (
+                "источник",
+                "проверь",
+                "уточни",
+                "conflicting",
+                "according to",
+                "based on",
+                "source",
+            )
         )
         assert has_citation or has_hedging, (
             f"Expected citations or hedging for conflicting source; got: {rec.summary!r}"

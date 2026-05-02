@@ -83,7 +83,7 @@ def fetch_fx() -> tuple[dict[str, float], str | None]:
                 fx[ccy] = value
             else:
                 all_live = False
-        except Exception:
+        except Exception:  # noqa: BLE001 - sidebar FX should fall back on any MCP failure
             all_live = False
     return fx, (date.today().isoformat() if all_live else None)
 
@@ -91,6 +91,7 @@ def fetch_fx() -> tuple[dict[str, float], str | None]:
 # ---------------------------------------------------------------------------
 # Holdings loader
 # ---------------------------------------------------------------------------
+
 
 def _load_holdings() -> dict:
     p = Path(get_settings().data_dir) / "personal/holdings.json"
@@ -153,9 +154,11 @@ if user_text := st.chat_input("Ask about your portfolio, the market, or what to 
             st.markdown(rec.summary)
             citation_block(rec)
         st.caption(rec.disclaimer)
-    st.session_state.history.append({
-        "role": "assistant",
-        "text": rec.summary,
-        "citations": [c.model_dump() for c in rec.citations],
-        "sources": [s.model_dump() for s in rec.market_sources],
-    })
+    st.session_state.history.append(
+        {
+            "role": "assistant",
+            "text": rec.summary,
+            "citations": [c.model_dump() for c in rec.citations],
+            "sources": [s.model_dump() for s in rec.market_sources],
+        }
+    )

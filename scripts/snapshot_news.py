@@ -2,6 +2,7 @@
 
 Usage: uv run python -m scripts.snapshot_news --limit 50
 """
+
 from __future__ import annotations
 
 import argparse
@@ -14,9 +15,9 @@ import httpx
 
 FEEDS = {
     "tengrinews_business": "https://tengrinews.kz/rss/section/3/",
-    "forbes_kz_finance":   "https://forbes.kz/rss/news/finansy/",
-    "kazpravda_economy":   "https://kazpravda.kz/rss/economy/",
-    "nbk_press":           "https://www.nationalbank.kz/?docid=309&switch=russian&format=rss",
+    "forbes_kz_finance": "https://forbes.kz/rss/news/finansy/",
+    "kazpravda_economy": "https://kazpravda.kz/rss/economy/",
+    "nbk_press": "https://www.nationalbank.kz/?docid=309&switch=russian&format=rss",
 }
 
 KEYWORDS = re.compile(
@@ -36,12 +37,14 @@ def fetch_feed(url: str) -> list[dict]:
     root = ET.fromstring(r.text)
     items = []
     for item in root.iter("item"):
-        items.append({
-            "title": (item.findtext("title") or "").strip(),
-            "link":  (item.findtext("link") or "").strip(),
-            "description": (item.findtext("description") or "").strip(),
-            "pub_date": (item.findtext("pubDate") or "").strip(),
-        })
+        items.append(
+            {
+                "title": (item.findtext("title") or "").strip(),
+                "link": (item.findtext("link") or "").strip(),
+                "description": (item.findtext("description") or "").strip(),
+                "pub_date": (item.findtext("pubDate") or "").strip(),
+            }
+        )
     return items
 
 

@@ -11,8 +11,10 @@ def test_mcp_timeout_degrades_gracefully(monkeypatch, live_llm_required):
 
     monkeypatch.setattr("pia.mcp.client.kz_data_call_sync", _boom)
     rec = advise("Какая сейчас базовая ставка НБК?")
-    # Either the model hedges with a "tool unavailable" note, or advise()'s outer try/except returns the degraded summary.
+    # Either the model hedges with a tool-unavailable note, or advise()
+    # returns the degraded summary from its outer try/except.
     text = rec.summary.lower()
-    assert ("temporarily unavailable" in rec.summary or "недоступ" in text
-            or "timeout" in text), rec.summary
+    assert "temporarily unavailable" in rec.summary or "недоступ" in text or "timeout" in text, (
+        rec.summary
+    )
     assert rec.disclaimer

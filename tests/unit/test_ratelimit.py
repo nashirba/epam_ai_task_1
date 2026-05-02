@@ -1,7 +1,5 @@
 # tests/unit/test_ratelimit.py
 """Unit tests for pia.safety.ratelimit — token bucket rate limiter."""
-import os
-import time
 
 import pytest
 
@@ -79,14 +77,14 @@ def test_bucket_refills_over_time(monkeypatch):
     # Sequence: 1 for _reset, 7 for first block, 4 for second block = 12 total
     times = iter(
         [
-            0.0,   # _reset() → _window_start = 0
-            0.0,   # call 1 — elapsed=0, tokens: 6→5
-            0.0,   # call 2 — tokens: 5→4
-            0.0,   # call 3 — tokens: 4→3
-            0.0,   # call 4 — tokens: 3→2
-            0.0,   # call 5 — tokens: 2→1
-            0.0,   # call 6 — tokens: 1→0
-            0.0,   # call 7 — elapsed=0, tokens=0 < 1 → RateLimitExceeded
+            0.0,  # _reset() → _window_start = 0
+            0.0,  # call 1 — elapsed=0, tokens: 6→5
+            0.0,  # call 2 — tokens: 5→4
+            0.0,  # call 3 — tokens: 4→3
+            0.0,  # call 4 — tokens: 3→2
+            0.0,  # call 5 — tokens: 2→1
+            0.0,  # call 6 — tokens: 1→0
+            0.0,  # call 7 — elapsed=0, tokens=0 < 1 → RateLimitExceeded
             30.0,  # call 8 — elapsed=30, refill=3.0, tokens: 0+3=3→2
             30.0,  # call 9 — elapsed=0, tokens: 2→1
             30.0,  # call 10 — tokens: 1→0

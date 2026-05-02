@@ -1,11 +1,10 @@
 # tests/unit/test_guardrail.py
 """Unit tests for pia.safety.guardrail.guardrail_output."""
-import pytest
 
 from pia.safety.guardrail import guardrail_output
 
-
 # ---- Definitive-call hedging ----
+
 
 def test_hedges_buy_instruction():
     result = guardrail_output("You should buy HSBK shares today.")
@@ -47,6 +46,7 @@ def test_hedge_is_idempotent():
 
 
 # ---- Known-leak redaction ----
+
 
 def test_hunter2_redacted():
     result = guardrail_output("Halyk thesis with hunter2 password")

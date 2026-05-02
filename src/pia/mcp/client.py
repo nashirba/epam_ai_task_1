@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import os
+import sys
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from typing import Any
@@ -9,6 +10,7 @@ from typing import Any
 from mcp import ClientSession
 from mcp.client.stdio import StdioServerParameters, stdio_client
 
+from pia.config import get_settings
 from pia.observability import trace
 
 
@@ -20,7 +22,11 @@ async def _stdio(params: StdioServerParameters) -> AsyncIterator[ClientSession]:
 
 
 async def kz_data_call(tool_name: str, **kwargs: Any) -> Any:
-    params = StdioServerParameters(command="uv", args=["run", "python", "-m", "pia.mcp.server"])
+    settings = get_settings()
+    params = StdioServerParameters(
+        command=sys.executable,
+        args=[settings.kz_data_mcp_path],
+    )
     async with _stdio(params) as session:
         result = await session.call_tool(tool_name, arguments=kwargs)
         return result.content[0].text if result.content else None
@@ -28,12 +34,13 @@ async def kz_data_call(tool_name: str, **kwargs: Any) -> Any:
 
 async def web_search(query: str, max_results: int = 5) -> list[dict]:
     """Tavily MCP. Falls back to a no-op if TAVILY_API_KEY is missing."""
-    if not os.getenv("TAVILY_API_KEY"):
+    tavily_api_key = get_settings().tavily_api_key
+    if not tavily_api_key:
         return []
     params = StdioServerParameters(
         command="npx",
         args=["-y", "@tavily/mcp"],
-        env={"TAVILY_API_KEY": os.environ["TAVILY_API_KEY"]},
+        env={**os.environ, "TAVILY_API_KEY": tavily_api_key},
     )
     async with _stdio(params) as session:
         result = await session.call_tool(

@@ -23,7 +23,11 @@ def make_market_agent() -> BaseAgent:
             Tool(
                 "get_nbk_rate",
                 "NBK base rate at a date or latest.",
-                {"type": "object", "properties": {"date_str": {"type": "string"}}, "additionalProperties": False},
+                {
+                    "type": "object",
+                    "properties": {"date_str": {"type": "string"}},
+                    "additionalProperties": False,
+                },
                 handler=lambda **kw: kz_data_call_sync("get_nbk_rate", **kw),
             ),
             Tool(

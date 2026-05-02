@@ -1,6 +1,5 @@
 # tests/unit/test_sanitize.py
 """Unit tests for pia.safety.sanitize.sanitize_input."""
-import pytest
 
 from pia.safety.sanitize import sanitize_input
 
@@ -29,7 +28,7 @@ def test_trims_whitespace():
 
 def test_unicode_normalization_nfkc():
     # NFKC: fullwidth digit should become ASCII digit
-    assert sanitize_input("０") == "0"
+    assert sanitize_input("\uff10") == "0"
 
 
 def test_caps_at_8000_chars():

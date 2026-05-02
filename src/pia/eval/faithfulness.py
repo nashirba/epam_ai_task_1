@@ -1,13 +1,13 @@
 """LLM-as-judge: given an answer and the chunks the system retrieved, decide whether the
 answer is grounded in those chunks. Returns a (score, rationale) per case.
 """
+
 from __future__ import annotations
 
 import json
 from dataclasses import dataclass
 
 from pia.llm.client import LLMClient
-
 
 _JUDGE_SYSTEM = """You are a strict evaluator. Given:
 
@@ -29,13 +29,25 @@ class JudgeResult:
     rationale: str
 
 
-def judge(question: str, context: list[str], answer: str, *, llm: LLMClient | None = None) -> JudgeResult:
+def judge(
+    question: str,
+    context: list[str],
+    answer: str,
+    *,
+    llm: LLMClient | None = None,
+) -> JudgeResult:
     llm = llm or LLMClient()
-    user = f"Question:\n{question}\n\nContext:\n" + "\n---\n".join(context) + f"\n\nAnswer:\n{answer}\n"
-    out = llm.chat([
-        {"role": "system", "content": _JUDGE_SYSTEM},
-        {"role": "user", "content": user},
-    ])
+    user = (
+        f"Question:\n{question}\n\nContext:\n"
+        + "\n---\n".join(context)
+        + f"\n\nAnswer:\n{answer}\n"
+    )
+    out = llm.chat(
+        [
+            {"role": "system", "content": _JUDGE_SYSTEM},
+            {"role": "user", "content": user},
+        ]
+    )
     raw = out["content"].strip()
     # Strip an optional leading ```json (or ```) fence and trailing ```.
     if raw.startswith("```"):
@@ -43,10 +55,13 @@ def judge(question: str, context: list[str], answer: str, *, llm: LLMClient | No
         if first_nl != -1:
             raw = raw[first_nl + 1 :]
         if raw.endswith("```"):
-            raw = raw[: -3]
+            raw = raw[:-3]
         raw = raw.strip()
     try:
         parsed = json.loads(raw)
         return JudgeResult(score=int(parsed["score"]), rationale=str(parsed["rationale"]))
     except (json.JSONDecodeError, KeyError, ValueError) as exc:
-        return JudgeResult(score=0, rationale=f"judge output unparseable: {exc}; raw: {out['content'][:200]}")
+        return JudgeResult(
+            score=0,
+            rationale=f"judge output unparseable: {exc}; raw: {out['content'][:200]}",
+        )

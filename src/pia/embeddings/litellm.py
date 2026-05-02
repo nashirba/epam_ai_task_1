@@ -19,7 +19,12 @@ class LiteLLMEmbeddings:
 
     @property
     def dim(self) -> int:
-        return _MODEL_DIMS.get(self._model, 1536)
+        if self._model not in _MODEL_DIMS:
+            known = ", ".join(sorted(_MODEL_DIMS))
+            raise ValueError(
+                f"Unknown embedding model dimension for {self._model!r}. Known models: {known}."
+            )
+        return _MODEL_DIMS[self._model]
 
     def embed_batch(self, texts: list[str]) -> list[list[float]]:
         resp = litellm.embedding(model=self._model, input=texts)

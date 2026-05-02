@@ -30,5 +30,6 @@ def _reset_rate_limiter():
     ensures they always start from a predictable baseline.
     """
     from pia.safety.ratelimit import _reset
+
     _reset()
     yield

@@ -1,12 +1,12 @@
 import os
+from pathlib import Path
+
 import pytest
 import yaml
-from pathlib import Path
 
 from pia.agents.planner import advise
 from pia.eval.faithfulness import judge
 from pia.rag.retrieve import retrieve
-
 
 _LIVE = bool(os.getenv("PIA_LIVE_LLM"))
 _GOLDEN = yaml.safe_load((Path(__file__).parent.parent / "fixtures" / "golden_qa.yaml").read_text())

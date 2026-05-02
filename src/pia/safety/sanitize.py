@@ -6,6 +6,7 @@
   3. Trim leading/trailing whitespace.
   4. Cap to 8 000 characters (silent truncation).
 """
+
 from __future__ import annotations
 
 import re

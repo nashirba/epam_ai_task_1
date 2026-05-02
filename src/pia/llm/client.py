@@ -9,6 +9,26 @@ from pia.config import get_settings
 from pia.observability import trace
 
 
+def _field(obj: Any, name: str, default: Any = None) -> Any:
+    if isinstance(obj, dict):
+        return obj.get(name, default)
+    return getattr(obj, name, default)
+
+
+def _normalize_tool_call(call: Any) -> dict[str, Any]:
+    function = _field(call, "function", {})
+    arguments = _field(function, "arguments", "{}")
+    if not isinstance(arguments, str):
+        arguments = str(arguments)
+    return {
+        "id": _field(call, "id", ""),
+        "function": {
+            "name": _field(function, "name", ""),
+            "arguments": arguments,
+        },
+    }
+
+
 @dataclass
 class LLMClient:
     model: str | None = None
@@ -34,7 +54,8 @@ class LLMClient:
             kwargs["tool_choice"] = "auto"
         resp = litellm.completion(**kwargs)
         msg = resp["choices"][0]["message"]
+        tool_calls = [_normalize_tool_call(call) for call in (_field(msg, "tool_calls", []) or [])]
         return {
-            "content": msg.get("content") or "",
-            "tool_calls": msg.get("tool_calls") or [],
+            "content": _field(msg, "content", "") or "",
+            "tool_calls": tool_calls,
         }

@@ -1,11 +1,11 @@
 # tests/integration/test_positive_qa.py
 import os
-import pytest
-import yaml
 from pathlib import Path
 
-from pia.agents.planner import advise
+import pytest
+import yaml
 
+from pia.agents.planner import advise
 
 # `must_call_tools` in the YAML is informational for Phase 7 (we cannot yet
 # assert the planner's tool trace from Recommendation); Phase 9's Langfuse-

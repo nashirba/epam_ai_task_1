@@ -20,29 +20,50 @@ from pia.safety import (
     sanitize_input,
 )
 
-_SYSTEM = """You are the Planner / Advisor. You combine the user's portfolio context with current market state to produce evidence-backed recommendations.
+_SYSTEM = """You are the Planner / Advisor. You combine the user's portfolio context
+with current market state to produce evidence-backed recommendations.
 
 Rules:
 - ALWAYS call `ask_portfolio` first to ground in what the user owns and their plan.
 - Call `ask_market` when current numbers (rates/FX/quotes/news) are needed.
-- Do NOT issue definitive buy/sell instructions. Use hedged language: "consider", "based on the evidence", and reference your sources.
+- Do NOT issue definitive buy/sell instructions. Use hedged language: "consider",
+  "based on the evidence", and reference your sources.
 - Cite the user's plan and current data in every actionable recommendation.
 - Output should be concise: 2-4 short sections at most.
 """
 
 
-def _make_planner(citation_ledger: list[Citation], market_source_ledger: list[MarketSource]) -> BaseAgent:
+def _make_planner(
+    citation_ledger: list[Citation],
+    market_source_ledger: list[MarketSource],
+) -> BaseAgent:
     def _portfolio_handler(question: str) -> dict:
-        request = AgentMessage(sender="planner", receiver="portfolio", payload=PortfolioQuery(question=question))
+        request = AgentMessage(
+            sender="planner",
+            receiver="portfolio",
+            payload=PortfolioQuery(question=question),
+        )
         answer = ask_portfolio(request.payload)
         citation_ledger.extend(answer.citations)
-        return AgentMessage(sender="portfolio", receiver="planner", payload=answer).payload.model_dump()
+        return AgentMessage(
+            sender="portfolio",
+            receiver="planner",
+            payload=answer,
+        ).payload.model_dump()
 
     def _market_handler(question: str) -> dict:
-        request = AgentMessage(sender="planner", receiver="market", payload=MarketQuery(question=question))
+        request = AgentMessage(
+            sender="planner",
+            receiver="market",
+            payload=MarketQuery(question=question),
+        )
         answer = ask_market(request.payload)
         market_source_ledger.extend(answer.sources)
-        return AgentMessage(sender="market", receiver="planner", payload=answer).payload.model_dump()
+        return AgentMessage(
+            sender="market",
+            receiver="planner",
+            payload=answer,
+        ).payload.model_dump()
 
     return BaseAgent(
         name="planner",
@@ -105,6 +126,6 @@ def advise(user_text: str) -> Recommendation:
     return Recommendation(
         summary=summary,
         actions=[],
-        citations=citations[:8],   # cap to keep UI tidy
+        citations=citations[:8],  # cap to keep UI tidy
         market_sources=market_sources[:6],
     )

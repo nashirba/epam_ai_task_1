@@ -1,11 +1,10 @@
 # tests/unit/test_pii.py
 """Unit tests for pia.safety.pii.redact_pii."""
-import pytest
 
 from pia.safety.pii import redact_pii
 
-
 # ---- IIN tests ----
+
 
 def test_iin_redacted():
     assert redact_pii("My IIN is 123456789012") == "My IIN is [IIN]"
@@ -35,6 +34,7 @@ def test_standalone_12_digit_number_redacted():
 
 # ---- Phone tests ----
 
+
 def test_phone_plus7_redacted():
     assert redact_pii("My phone is +77011234567") == "My phone is [PHONE]"
 
@@ -59,6 +59,7 @@ def test_phone_does_not_eat_iin():
 
 # ---- IBAN tests ----
 
+
 def test_iban_redacted():
     assert redact_pii("IBAN: KZ751900007999999999") == "IBAN: [IBAN]"
 
@@ -70,6 +71,7 @@ def test_iban_only_kz_prefix():
 
 
 # ---- Email tests ----
+
 
 def test_email_redacted():
     result = redact_pii("Email me at user@example.com")
@@ -90,6 +92,7 @@ def test_email_not_false_positive_on_plain_text():
 
 # ---- Multiple PII in one string ----
 
+
 def test_multiple_pii_types():
     text = "IIN 123456789012, email user@test.com, phone +77011234567"
     result = redact_pii(text)
@@ -102,6 +105,7 @@ def test_multiple_pii_types():
 
 
 # ---- No PII — text unchanged ----
+
 
 def test_no_pii_unchanged():
     text = "What is the NBK base rate today?"

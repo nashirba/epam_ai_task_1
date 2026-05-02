@@ -12,28 +12,27 @@ Design notes
   used by ``tests/unit/test_ratelimit.py`` and by the conftest autouse fixture
   that prevents bucket exhaustion across test functions.
 """
+
 from __future__ import annotations
 
 import os
 import time
 
-try:
-    from pia.config import get_settings as _get_settings
-
-    def _read_limit() -> int:
-        env_override = os.getenv("PIA_RATE_LIMIT_PER_MINUTE")
-        if env_override is not None:
-            return int(env_override)
-        return _get_settings().rate_limit_per_minute
-
-except Exception:  # pragma: no cover — should never happen in practice
-    def _read_limit() -> int:  # type: ignore[misc]
-        env_override = os.getenv("PIA_RATE_LIMIT_PER_MINUTE")
-        return int(env_override) if env_override is not None else 10
+from pia.config import get_settings as _get_settings
 
 
-class RateLimitExceeded(Exception):
+def _read_limit() -> int:
+    env_override = os.getenv("PIA_RATE_LIMIT_PER_MINUTE")
+    if env_override is not None:
+        return int(env_override)
+    return _get_settings().rate_limit_per_minute
+
+
+class RateLimitExceededError(Exception):
     """Raised when the token bucket is exhausted."""
+
+
+RateLimitExceeded = RateLimitExceededError
 
 
 # ---------- module-level bucket state ----------
@@ -58,7 +57,7 @@ def _reset() -> None:
 
 
 def rate_limit_check() -> None:
-    """Consume one token from the bucket or raise ``RateLimitExceeded``.
+    """Consume one token from the bucket or raise ``RateLimitExceededError``.
 
     Refills the bucket proportionally when the elapsed time since the last
     refill exceeds the window.  The standard leaky-bucket approach: tokens
@@ -76,8 +75,7 @@ def rate_limit_check() -> None:
         _window_start = now
 
     if _tokens < 1.0:
-        raise RateLimitExceeded(
-            f"Rate limit of {_CAPACITY} requests/minute exceeded. "
-            "Please wait and try again."
+        raise RateLimitExceededError(
+            f"Rate limit of {_CAPACITY} requests/minute exceeded. Please wait and try again."
         )
     _tokens -= 1.0

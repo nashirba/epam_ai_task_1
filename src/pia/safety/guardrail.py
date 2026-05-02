@@ -16,15 +16,14 @@ Two checks (applied in order):
 Both checks are idempotent: running ``guardrail_output`` twice on the same
 text produces the same result.
 """
+
 from __future__ import annotations
 
 import re
 
 # ---- Known-leak tokens (credential patterns from adversarial fixtures) ----
 
-_KNOWN_LEAK_TOKENS: tuple[str, ...] = (
-    "hunter2",
-)
+_KNOWN_LEAK_TOKENS: tuple[str, ...] = ("hunter2",)
 
 # Build a compiled regex matching any of the known tokens (case-sensitive,
 # whole-word or exact token).

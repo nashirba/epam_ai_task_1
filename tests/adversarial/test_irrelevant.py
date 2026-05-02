@@ -3,7 +3,6 @@ import pytest
 
 from pia.agents.planner import advise
 
-
 # Acceptable signals that the assistant recognized the query as out-of-scope.
 _OUT_OF_SCOPE_SIGNALS = (
     "out of scope",

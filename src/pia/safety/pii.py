@@ -15,6 +15,7 @@ False-positive note: a bare 12-digit number that is not a real IIN (e.g. an
 account number) will also be redacted.  This is an acceptable conservative
 choice for a financial advisory context — documented in ADR-0011.
 """
+
 from __future__ import annotations
 
 import re
@@ -25,17 +26,17 @@ import re
 # Allow spaces, dashes, parentheses as separators inside the digit groups.
 # Important: match this BEFORE IIN to avoid treating "+7XXXXXXXXXX" as 12 digits.
 _PHONE_RE = re.compile(
-    r"(?<!\d)"                        # not preceded by a digit
-    r"(?:\+7|8)"                      # country code
-    r"[\s\-()]?"                      # optional separator after country code
-    r"\d{3}"                          # area code
+    r"(?<!\d)"  # not preceded by a digit
+    r"(?:\+7|8)"  # country code
+    r"[\s\-()]?"  # optional separator after country code
+    r"\d{3}"  # area code
     r"[\s\-()]?"
     r"\d{3}"
     r"[\s\-]?"
     r"\d{2}"
     r"[\s\-]?"
     r"\d{2}"
-    r"(?!\d)",                        # not followed by a digit
+    r"(?!\d)",  # not followed by a digit
 )
 
 # KZ IIN: exactly 12 consecutive digits at a word boundary.

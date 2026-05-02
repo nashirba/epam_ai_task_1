@@ -10,8 +10,16 @@ def test_advise_propagates_portfolio_citations(monkeypatch):
     fake_portfolio = PortfolioAnswer(
         text="You hold 2500 HSBK at avg 195 KZT.",
         citations=[
-            Citation(source="user_holdings", source_url="data/personal/holdings.json", snippet="HSBK 2500 @195"),
-            Citation(source="user_note", source_url="data/personal/notes/halyk_thesis.md", snippet="Halyk thesis…"),
+            Citation(
+                source="user_holdings",
+                source_url="data/personal/holdings.json",
+                snippet="HSBK 2500 @195",
+            ),
+            Citation(
+                source="user_note",
+                source_url="data/personal/notes/halyk_thesis.md",
+                snippet="Halyk thesis…",
+            ),
         ],
         used_holdings=True,
     )
@@ -26,13 +34,34 @@ def test_advise_propagates_portfolio_citations(monkeypatch):
     # Script the LLM: tool-call ask_portfolio, tool-call ask_market, then final answer.
     fake_llm = MagicMock()
     fake_llm.chat.side_effect = [
-        {"content": "", "tool_calls": [
-            {"id": "1", "function": {"name": "ask_portfolio", "arguments": '{"question": "HSBK position?"}'}},
-        ]},
-        {"content": "", "tool_calls": [
-            {"id": "2", "function": {"name": "ask_market", "arguments": '{"question": "HSBK quote?"}'}},
-        ]},
-        {"content": "Based on your holdings and the current price, your HSBK position is up.", "tool_calls": []},
+        {
+            "content": "",
+            "tool_calls": [
+                {
+                    "id": "1",
+                    "function": {
+                        "name": "ask_portfolio",
+                        "arguments": '{"question": "HSBK position?"}',
+                    },
+                },
+            ],
+        },
+        {
+            "content": "",
+            "tool_calls": [
+                {
+                    "id": "2",
+                    "function": {
+                        "name": "ask_market",
+                        "arguments": '{"question": "HSBK quote?"}',
+                    },
+                },
+            ],
+        },
+        {
+            "content": "Based on your holdings and the current price, your HSBK position is up.",
+            "tool_calls": [],
+        },
     ]
 
     # Inject the fake LLM into every BaseAgent constructed by the planner module.

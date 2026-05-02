@@ -121,10 +121,7 @@ def freshness_pill(timestamps: dict[str, str | None]) -> None:
     if latest_date == oldest_date:
         st.caption(f"📅 Data as of {latest_date}")
     else:
-        st.caption(
-            f"📅 Data as of {latest_date} "
-            f"(oldest snapshot: {oldest_key} {oldest_date})"
-        )
+        st.caption(f"📅 Data as of {latest_date} (oldest snapshot: {oldest_key} {oldest_date})")
 
 
 def collect_snapshot_dates(data_dir: Path) -> dict[str, str | None]:
@@ -141,7 +138,7 @@ def collect_snapshot_dates(data_dir: Path) -> dict[str, str | None]:
             history = json.loads(fx_path.read_text()).get("history", [])
             if history:
                 dates["nbk"] = max(e["date"] for e in history if "date" in e)
-        except Exception:
+        except (json.JSONDecodeError, OSError, KeyError, ValueError):
             pass
 
     # KASE: filename pattern quotes-YYYY-MM-DD.json
@@ -159,6 +156,7 @@ def collect_snapshot_dates(data_dir: Path) -> dict[str, str | None]:
         if md_files:
             latest_mtime = max(f.stat().st_mtime for f in md_files)
             from datetime import datetime
+
             dates["news"] = datetime.fromtimestamp(latest_mtime).strftime("%Y-%m-%d")
 
     return dates

@@ -1,5 +1,4 @@
 # tests/unit/test_base_agent.py
-import json
 from typing import Any
 from unittest.mock import MagicMock
 
@@ -15,7 +14,12 @@ def _llm_responses(*responses):
 
 
 def test_no_tool_calls_returns_content_immediately():
-    agent = BaseAgent(name="t", system_prompt="sys", tools=[], llm=_llm_responses({"content": "hi", "tool_calls": []}))
+    agent = BaseAgent(
+        name="t",
+        system_prompt="sys",
+        tools=[],
+        llm=_llm_responses({"content": "hi", "tool_calls": []}),
+    )
     out = agent.run("hello")
     assert out.text == "hi"
     assert out.tool_calls_made == []
@@ -23,25 +27,40 @@ def test_no_tool_calls_returns_content_immediately():
 
 
 def test_unknown_tool_continues_with_error_message():
-    """An unknown-name tool call appends a tool error and the loop continues to next iteration."""
+    """An unknown tool appends a tool error and the loop continues."""
     fake = _llm_responses(
-        {"content": "", "tool_calls": [{"id": "1", "function": {"name": "ghost", "arguments": "{}"}}]},
+        {
+            "content": "",
+            "tool_calls": [
+                {"id": "1", "function": {"name": "ghost", "arguments": "{}"}},
+            ],
+        },
         {"content": "done after error", "tool_calls": []},
     )
     agent = BaseAgent(name="t", system_prompt="sys", tools=[], llm=fake)
     out = agent.run("hello")
     assert out.text == "done after error"
-    assert out.tool_calls_made == []      # ghost did not execute
-    assert "ghost" not in out.tool_errors  # we did not call its handler — ghost is "unknown", not a handler exception
+    assert out.tool_calls_made == []  # ghost did not execute
+    assert "ghost" not in out.tool_errors
     assert out.budget_exhausted is False
 
 
 def test_invalid_json_arguments_appends_error_and_continues():
     fake = _llm_responses(
-        {"content": "", "tool_calls": [{"id": "1", "function": {"name": "ok", "arguments": "{not-json"}}]},
+        {
+            "content": "",
+            "tool_calls": [
+                {"id": "1", "function": {"name": "ok", "arguments": "{not-json"}},
+            ],
+        },
         {"content": "recovered", "tool_calls": []},
     )
-    tool = Tool(name="ok", description="", parameters={"type": "object"}, handler=lambda **kw: {"ok": True})
+    tool = Tool(
+        name="ok",
+        description="",
+        parameters={"type": "object"},
+        handler=lambda **kw: {"ok": True},
+    )
     agent = BaseAgent(name="t", system_prompt="sys", tools=[tool], llm=fake)
     out = agent.run("hello")
     assert out.text == "recovered"
@@ -53,7 +72,12 @@ def test_handler_exception_marks_tool_error_and_continues():
         raise RuntimeError("upstream down")
 
     fake = _llm_responses(
-        {"content": "", "tool_calls": [{"id": "1", "function": {"name": "boom", "arguments": "{}"}}]},
+        {
+            "content": "",
+            "tool_calls": [
+                {"id": "1", "function": {"name": "boom", "arguments": "{}"}},
+            ],
+        },
         {"content": "graceful", "tool_calls": []},
     )
     tool = Tool(name="boom", description="", parameters={"type": "object"}, handler=boom)
@@ -64,11 +88,21 @@ def test_handler_exception_marks_tool_error_and_continues():
 
 
 def test_budget_exhausted_returns_sentinel():
-    """If LLM keeps tool-calling forever, the loop returns budget_exhausted=True with a non-None text."""
-    tool = Tool(name="loop", description="", parameters={"type": "object"}, handler=lambda **kw: {"k": 1})
+    """Looping tool calls return budget_exhausted=True with text."""
+    tool = Tool(
+        name="loop",
+        description="",
+        parameters={"type": "object"},
+        handler=lambda **kw: {"k": 1},
+    )
     # produce identical "tool_call only" responses every time
     fake = MagicMock()
-    fake.chat.return_value = {"content": "still thinking", "tool_calls": [{"id": "1", "function": {"name": "loop", "arguments": "{}"}}]}
+    fake.chat.return_value = {
+        "content": "still thinking",
+        "tool_calls": [
+            {"id": "1", "function": {"name": "loop", "arguments": "{}"}},
+        ],
+    }
     agent = BaseAgent(name="t", system_prompt="sys", tools=[tool], llm=fake, max_tool_calls=3)
     out = agent.run("hello")
     assert out.budget_exhausted is True

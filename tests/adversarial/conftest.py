@@ -8,7 +8,7 @@ import pytest
 
 @pytest.fixture
 def setup_adversarial(tmp_path: Path, monkeypatch, live_llm_required):
-    """Stage adversarial fixtures from a scenario into a temp data dir; ingest into a separate Weaviate collection.
+    """Stage adversarial fixtures into a temp data dir.
 
     Depends on live_llm_required so that the skip fires before the copytree runs.
     """
