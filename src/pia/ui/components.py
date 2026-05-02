@@ -66,7 +66,6 @@ def portfolio_sidebar(holdings: dict, fx: dict[str, float]) -> None:
     ccy = pd.DataFrame({"currency": list(by_ccy), "kzt": list(by_ccy.values())})
 
     st.header("Portfolio")
-    freshness_pill({"holdings": holdings.get("as_of")})
     st.dataframe(alloc, hide_index=True, use_container_width=True)
     st.subheader("By asset class")
     allocation_pie(alloc, "asset_class", "kzt", "By asset class")
@@ -128,7 +127,7 @@ def freshness_pill(timestamps: dict[str, str | None]) -> None:
         )
 
 
-def _collect_snapshot_dates(data_dir: Path) -> dict[str, str | None]:
+def collect_snapshot_dates(data_dir: Path) -> dict[str, str | None]:
     """Scan public snapshot files and extract the most recent date per source.
 
     Returns a dict like {"nbk": "2026-05-02", "kase": "2026-05-02", "news": None}.

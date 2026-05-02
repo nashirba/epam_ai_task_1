@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from datetime import date
 from pathlib import Path
 
 import streamlit as st
@@ -11,11 +12,11 @@ from pia.agents.planner import advise
 from pia.config import get_settings
 from pia.ui.components import (
     citation_block,
+    collect_snapshot_dates,
     disclaimer_banner,
     freshness_pill,
     portfolio_sidebar,
     render_history_citations,
-    _collect_snapshot_dates,
 )
 
 st.set_page_config(page_title="Personal Investment Assistant", page_icon="💼", layout="wide")
@@ -55,20 +56,27 @@ def _parse_fx(raw: object) -> float | None:
 
 
 @st.cache_data(ttl=60)
-def fetch_fx() -> dict[str, float]:
-    """Live FX from kz-data MCP. Falls back to last-known constants on any error."""
+def fetch_fx() -> tuple[dict[str, float], str | None]:
+    """Live FX from kz-data MCP. Returns (fx_dict, fx_as_of_iso_date_or_None).
+
+    fx_as_of is today's date if all requested rates came from MCP; None if any
+    currency fell back to the constants in _FX_FALLBACK.
+    """
     from pia.mcp.client import kz_data_call_sync  # imported here to avoid import-time side effects
 
     fx: dict[str, float] = dict(_FX_FALLBACK)
+    all_live = True
     for pair, ccy in (("KZT/USD", "USD"), ("KZT/EUR", "EUR")):
         try:
             raw = kz_data_call_sync("get_fx_rate", pair=pair)
             value = _parse_fx(raw)
-            if value:
+            if value is not None:
                 fx[ccy] = value
+            else:
+                all_live = False
         except Exception:
-            pass  # keep fallback for this currency
-    return fx
+            all_live = False
+    return fx, (date.today().isoformat() if all_live else None)
 
 
 # ---------------------------------------------------------------------------
@@ -89,12 +97,16 @@ st.title("💼 Personal Investment-Planning Assistant")
 
 with st.sidebar:
     holdings = _load_holdings()
-    fx = fetch_fx()
+    fx, fx_as_of = fetch_fx()
 
-    # Freshness pill: holdings date + public snapshot dates
+    # Freshness pill: holdings date + FX timestamp + public snapshot dates
     data_dir = Path(get_settings().data_dir)
-    snapshot_dates = _collect_snapshot_dates(data_dir)
-    all_timestamps = {"holdings": holdings.get("as_of"), **snapshot_dates}
+    snapshot_dates = collect_snapshot_dates(data_dir)
+    all_timestamps = {
+        "holdings": holdings.get("as_of"),
+        "fx": fx_as_of,  # None when fallback, ISO date when live
+        **snapshot_dates,
+    }
     freshness_pill(all_timestamps)
 
     portfolio_sidebar(holdings, fx)
@@ -116,12 +128,12 @@ if user_text := st.chat_input("Ask about your portfolio, the market, or what to 
     with st.chat_message("user"):
         st.markdown(user_text)
     with st.chat_message("assistant"):
-        with st.status("Thinking…", expanded=False) as status:
+        with st.status("Thinking…", expanded=True) as status:
             st.write("Sanitizing and routing input…")
             st.write("Calling Portfolio and Market agents…")
             rec = advise(user_text)
             st.write("Formatting answer…")
-            status.update(label="Done", state="complete")
+            status.update(label="Done", state="complete", expanded=False)
         st.markdown(rec.summary)
         citation_block(rec)
         st.caption(rec.disclaimer)
