@@ -108,6 +108,8 @@ with st.sidebar:
         **snapshot_dates,
     }
     freshness_pill(all_timestamps)
+    if fx_as_of is None:
+        st.caption("⚠️ FX rates: using fallback values (live MCP unavailable)")
 
     portfolio_sidebar(holdings, fx)
 
