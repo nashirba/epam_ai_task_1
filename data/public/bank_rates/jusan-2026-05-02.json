@@ -1,0 +1,14 @@
+{
+  "bank": "Jusan Bank",
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://jusan.kz/deposits",
+  "products": [
+    {"name": "Jusan-Premium", "currency": "KZT", "term_months": 6, "min_amount": 200000, "rate_apr": 0.155, "interest_payout": "monthly"},
+    {"name": "Jusan-Premium", "currency": "KZT", "term_months": 12, "min_amount": 200000, "rate_apr": 0.172, "interest_payout": "monthly"},
+    {"name": "Jusan-Premium", "currency": "KZT", "term_months": 24, "min_amount": 200000, "rate_apr": 0.165, "interest_payout": "monthly"},
+    {"name": "Jusan-Standard", "currency": "KZT", "term_months": 12, "min_amount": 50000, "rate_apr": 0.160, "interest_payout": "at_maturity"},
+    {"name": "Jusan-FX", "currency": "USD", "term_months": 6, "min_amount": 1000, "rate_apr": 0.040, "interest_payout": "monthly"},
+    {"name": "Jusan-FX", "currency": "USD", "term_months": 12, "min_amount": 1000, "rate_apr": 0.050, "interest_payout": "monthly"},
+    {"name": "Jusan-FX", "currency": "EUR", "term_months": 12, "min_amount": 1000, "rate_apr": 0.025, "interest_payout": "monthly"}
+  ]
+}

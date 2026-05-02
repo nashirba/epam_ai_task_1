@@ -1,0 +1,18 @@
+{
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://www.nationalbank.kz/en/news/altyngold",
+  "history": [
+    {"month": "2025-06", "kzt_per_gram": 38400},
+    {"month": "2025-07", "kzt_per_gram": 39250},
+    {"month": "2025-08", "kzt_per_gram": 40100},
+    {"month": "2025-09", "kzt_per_gram": 41320},
+    {"month": "2025-10", "kzt_per_gram": 42180},
+    {"month": "2025-11", "kzt_per_gram": 42960},
+    {"month": "2025-12", "kzt_per_gram": 43850},
+    {"month": "2026-01", "kzt_per_gram": 44720},
+    {"month": "2026-02", "kzt_per_gram": 45560},
+    {"month": "2026-03", "kzt_per_gram": 46410},
+    {"month": "2026-04", "kzt_per_gram": 47180},
+    {"month": "2026-05", "kzt_per_gram": 47620}
+  ]
+}

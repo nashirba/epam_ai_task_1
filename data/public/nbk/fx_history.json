@@ -1,0 +1,33 @@
+{
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://www.nationalbank.kz/en/exchangerates/officialrates",
+  "history": [
+    {"date": "2025-11-02", "kzt_per_usd": 482.10, "kzt_per_eur": 525.40, "kzt_per_rub": 5.18},
+    {"date": "2025-11-09", "kzt_per_usd": 481.05, "kzt_per_eur": 524.20, "kzt_per_rub": 5.20},
+    {"date": "2025-11-16", "kzt_per_usd": 479.80, "kzt_per_eur": 521.90, "kzt_per_rub": 5.22},
+    {"date": "2025-11-23", "kzt_per_usd": 478.40, "kzt_per_eur": 520.10, "kzt_per_rub": 5.21},
+    {"date": "2025-11-30", "kzt_per_usd": 477.65, "kzt_per_eur": 518.80, "kzt_per_rub": 5.19},
+    {"date": "2025-12-07", "kzt_per_usd": 476.20, "kzt_per_eur": 517.30, "kzt_per_rub": 5.17},
+    {"date": "2025-12-14", "kzt_per_usd": 475.50, "kzt_per_eur": 516.20, "kzt_per_rub": 5.15},
+    {"date": "2025-12-21", "kzt_per_usd": 474.80, "kzt_per_eur": 514.90, "kzt_per_rub": 5.14},
+    {"date": "2025-12-28", "kzt_per_usd": 474.10, "kzt_per_eur": 513.50, "kzt_per_rub": 5.12},
+    {"date": "2026-01-04", "kzt_per_usd": 475.30, "kzt_per_eur": 515.20, "kzt_per_rub": 5.11},
+    {"date": "2026-01-11", "kzt_per_usd": 477.20, "kzt_per_eur": 517.40, "kzt_per_rub": 5.13},
+    {"date": "2026-01-18", "kzt_per_usd": 478.80, "kzt_per_eur": 519.10, "kzt_per_rub": 5.16},
+    {"date": "2026-01-25", "kzt_per_usd": 480.40, "kzt_per_eur": 521.30, "kzt_per_rub": 5.18},
+    {"date": "2026-02-01", "kzt_per_usd": 482.60, "kzt_per_eur": 523.80, "kzt_per_rub": 5.21},
+    {"date": "2026-02-08", "kzt_per_usd": 484.10, "kzt_per_eur": 525.50, "kzt_per_rub": 5.24},
+    {"date": "2026-02-15", "kzt_per_usd": 485.30, "kzt_per_eur": 527.10, "kzt_per_rub": 5.27},
+    {"date": "2026-02-22", "kzt_per_usd": 486.50, "kzt_per_eur": 528.40, "kzt_per_rub": 5.30},
+    {"date": "2026-03-01", "kzt_per_usd": 487.20, "kzt_per_eur": 529.60, "kzt_per_rub": 5.32},
+    {"date": "2026-03-08", "kzt_per_usd": 487.90, "kzt_per_eur": 530.80, "kzt_per_rub": 5.35},
+    {"date": "2026-03-15", "kzt_per_usd": 488.40, "kzt_per_eur": 531.90, "kzt_per_rub": 5.38},
+    {"date": "2026-03-22", "kzt_per_usd": 488.10, "kzt_per_eur": 532.40, "kzt_per_rub": 5.40},
+    {"date": "2026-03-29", "kzt_per_usd": 487.50, "kzt_per_eur": 532.10, "kzt_per_rub": 5.41},
+    {"date": "2026-04-05", "kzt_per_usd": 486.80, "kzt_per_eur": 531.50, "kzt_per_rub": 5.40},
+    {"date": "2026-04-12", "kzt_per_usd": 485.90, "kzt_per_eur": 530.70, "kzt_per_rub": 5.39},
+    {"date": "2026-04-19", "kzt_per_usd": 484.70, "kzt_per_eur": 529.40, "kzt_per_rub": 5.36},
+    {"date": "2026-04-26", "kzt_per_usd": 483.60, "kzt_per_eur": 528.10, "kzt_per_rub": 5.34},
+    {"date": "2026-05-02", "kzt_per_usd": 482.85, "kzt_per_eur": 527.30, "kzt_per_rub": 5.32}
+  ]
+}

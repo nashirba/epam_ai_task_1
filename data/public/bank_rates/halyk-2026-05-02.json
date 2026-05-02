@@ -1,0 +1,11 @@
+{
+  "bank": "Halyk Bank",
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://halykbank.kz/private/deposits",
+  "products": [
+    {"name": "Halyk-Klassika", "currency": "KZT", "term_months": 12, "min_amount": 100000, "rate_apr": 0.165, "interest_payout": "monthly"},
+    {"name": "Halyk-Klassika", "currency": "KZT", "term_months": 24, "min_amount": 100000, "rate_apr": 0.155, "interest_payout": "monthly"},
+    {"name": "Halyk-Online", "currency": "USD", "term_months": 12, "min_amount": 1000, "rate_apr": 0.045, "interest_payout": "monthly"},
+    {"name": "Halyk-Online", "currency": "EUR", "term_months": 12, "min_amount": 1000, "rate_apr": 0.020, "interest_payout": "monthly"}
+  ]
+}

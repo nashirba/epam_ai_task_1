@@ -1,0 +1,19 @@
+{
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://kase.kz/en/shares/",
+  "index": {"name": "KASE Index", "value": 5420.18, "change_pct_d": -0.45},
+  "tickers": [
+    {"ticker": "HSBK", "name": "Halyk Bank", "last": 215.40, "change_pct_d": 0.12, "volume": 1240000, "currency": "KZT"},
+    {"ticker": "KCEL", "name": "Kcell", "last": 1955.00, "change_pct_d": -1.12, "volume": 84000, "currency": "KZT"},
+    {"ticker": "KZTK", "name": "Kazakhtelecom", "last": 36800.00, "change_pct_d": 0.30, "volume": 5400, "currency": "KZT"},
+    {"ticker": "KAZ", "name": "KAZ Minerals", "last": 23150.00, "change_pct_d": -0.85, "volume": 12300, "currency": "KZT"},
+    {"ticker": "KEGC", "name": "KEGOC", "last": 1860.00, "change_pct_d": 0.45, "volume": 32500, "currency": "KZT"},
+    {"ticker": "CCBN", "name": "Bank CenterCredit", "last": 1485.00, "change_pct_d": 1.23, "volume": 56000, "currency": "KZT"},
+    {"ticker": "AIRA", "name": "Air Astana", "last": 1112.50, "change_pct_d": -0.62, "volume": 45800, "currency": "KZT"},
+    {"ticker": "KMG", "name": "KazMunayGas", "last": 14250.00, "change_pct_d": 0.18, "volume": 28400, "currency": "KZT"},
+    {"ticker": "BAST", "name": "Bast", "last": 56400.00, "change_pct_d": -0.30, "volume": 410, "currency": "KZT"},
+    {"ticker": "ASBN", "name": "ForteBank", "last": 6.85, "change_pct_d": 0.74, "volume": 1850000, "currency": "KZT"},
+    {"ticker": "KAP", "name": "Kazatomprom", "last": 19840.00, "change_pct_d": -1.45, "volume": 18600, "currency": "KZT"},
+    {"ticker": "ULBA", "name": "Ulba Metallurgical Plant", "last": 24320.00, "change_pct_d": 0.10, "volume": 720, "currency": "KZT"}
+  ]
+}

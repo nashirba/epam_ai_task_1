@@ -1,0 +1,13 @@
+{
+  "bank": "Kaspi Bank",
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://kaspi.kz/dep",
+  "products": [
+    {"name": "Kaspi-Gold", "currency": "KZT", "term_months": 6, "min_amount": 50000, "rate_apr": 0.150, "interest_payout": "monthly"},
+    {"name": "Kaspi-Gold", "currency": "KZT", "term_months": 12, "min_amount": 50000, "rate_apr": 0.170, "interest_payout": "monthly"},
+    {"name": "Kaspi-Gold", "currency": "KZT", "term_months": 24, "min_amount": 50000, "rate_apr": 0.160, "interest_payout": "monthly"},
+    {"name": "Kaspi-Savings", "currency": "USD", "term_months": 6, "min_amount": 500, "rate_apr": 0.035, "interest_payout": "at_maturity"},
+    {"name": "Kaspi-Savings", "currency": "USD", "term_months": 12, "min_amount": 500, "rate_apr": 0.045, "interest_payout": "monthly"},
+    {"name": "Kaspi-Savings", "currency": "EUR", "term_months": 12, "min_amount": 500, "rate_apr": 0.018, "interest_payout": "monthly"}
+  ]
+}

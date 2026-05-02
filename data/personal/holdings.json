@@ -1,0 +1,22 @@
+{
+  "as_of": "2026-05-02",
+  "currency_base": "KZT",
+  "positions": [
+    {"asset_class": "deposit", "instrument": "Halyk KZT term deposit 12m", "amount": 8000000, "currency": "KZT", "rate_apr": 0.165, "opened": "2025-11-15", "matures": "2026-11-15"},
+    {"asset_class": "deposit", "instrument": "Kaspi USD savings", "amount": 12000, "currency": "USD", "rate_apr": 0.045, "opened": "2025-08-01", "matures": null},
+    {"asset_class": "deposit", "instrument": "BCC KZT savings", "amount": 3500000, "currency": "KZT", "rate_apr": 0.155, "opened": "2026-02-10", "matures": null},
+    {"asset_class": "real_estate", "instrument": "1BR apartment, Bostandyk district, 45 m²", "amount": 38000000, "currency": "KZT", "purchased": "2023-06-20", "ownership": "primary residence"},
+    {"asset_class": "kase_equity", "instrument": "KCEL", "shares": 800, "avg_cost": 1820, "currency": "KZT", "opened": "2024-09-12"},
+    {"asset_class": "kase_equity", "instrument": "HSBK", "shares": 2500, "avg_cost": 195, "currency": "KZT", "opened": "2025-01-30"},
+    {"asset_class": "us_etf", "instrument": "VOO", "shares": 18, "avg_cost": 478, "currency": "USD", "opened": "2024-03-04"},
+    {"asset_class": "us_etf", "instrument": "QQQ", "shares": 9, "avg_cost": 470, "currency": "USD", "opened": "2025-02-21"},
+    {"asset_class": "cash", "instrument": "Current account KZT", "amount": 1200000, "currency": "KZT"}
+  ],
+  "goals": [
+    {"id": "emergency", "label": "Emergency fund (6 months)", "target_kzt": 6000000, "target_date": "2026-09-30"},
+    {"id": "mortgage_payoff", "label": "Pay off mortgage", "target_kzt": 0, "target_date": "2030-12-31"},
+    {"id": "retirement", "label": "Retirement nest egg", "target_kzt": 200000000, "target_date": "2045-12-31"}
+  ],
+  "risk_tolerance": "moderate",
+  "constraints": ["KZT-resident tax", "no leverage", "no crypto in v1"]
+}

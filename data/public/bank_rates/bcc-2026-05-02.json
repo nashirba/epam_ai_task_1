@@ -1,0 +1,14 @@
+{
+  "bank": "Bank CenterCredit",
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://bcc.kz/private/deposits",
+  "products": [
+    {"name": "BCC-Standart", "currency": "KZT", "term_months": 6, "min_amount": 100000, "rate_apr": 0.145, "interest_payout": "monthly"},
+    {"name": "BCC-Standart", "currency": "KZT", "term_months": 12, "min_amount": 100000, "rate_apr": 0.160, "interest_payout": "monthly"},
+    {"name": "BCC-Standart", "currency": "KZT", "term_months": 24, "min_amount": 100000, "rate_apr": 0.150, "interest_payout": "monthly"},
+    {"name": "BCC-Maximum", "currency": "KZT", "term_months": 12, "min_amount": 1000000, "rate_apr": 0.165, "interest_payout": "at_maturity"},
+    {"name": "BCC-Valyutniy", "currency": "USD", "term_months": 6, "min_amount": 1000, "rate_apr": 0.030, "interest_payout": "monthly"},
+    {"name": "BCC-Valyutniy", "currency": "USD", "term_months": 12, "min_amount": 1000, "rate_apr": 0.040, "interest_payout": "monthly"},
+    {"name": "BCC-Valyutniy", "currency": "EUR", "term_months": 12, "min_amount": 1000, "rate_apr": 0.020, "interest_payout": "monthly"}
+  ]
+}

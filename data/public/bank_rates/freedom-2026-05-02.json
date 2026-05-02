@@ -1,0 +1,14 @@
+{
+  "bank": "Freedom Bank Kazakhstan",
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://bankffin.kz/deposits",
+  "products": [
+    {"name": "Freedom-Smart", "currency": "KZT", "term_months": 6, "min_amount": 100000, "rate_apr": 0.158, "interest_payout": "monthly"},
+    {"name": "Freedom-Smart", "currency": "KZT", "term_months": 12, "min_amount": 100000, "rate_apr": 0.175, "interest_payout": "monthly"},
+    {"name": "Freedom-Smart", "currency": "KZT", "term_months": 24, "min_amount": 100000, "rate_apr": 0.168, "interest_payout": "monthly"},
+    {"name": "Freedom-Online", "currency": "KZT", "term_months": 12, "min_amount": 50000, "rate_apr": 0.165, "interest_payout": "at_maturity"},
+    {"name": "Freedom-Currency", "currency": "USD", "term_months": 6, "min_amount": 500, "rate_apr": 0.045, "interest_payout": "monthly"},
+    {"name": "Freedom-Currency", "currency": "USD", "term_months": 12, "min_amount": 500, "rate_apr": 0.055, "interest_payout": "monthly"},
+    {"name": "Freedom-Currency", "currency": "EUR", "term_months": 12, "min_amount": 500, "rate_apr": 0.030, "interest_payout": "monthly"}
+  ]
+}

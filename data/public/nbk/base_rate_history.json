@@ -1,0 +1,14 @@
+{
+  "snapshot_date": "2026-05-02",
+  "source_url": "https://www.nationalbank.kz/en/baserate",
+  "history": [
+    {"effective_from": "2024-05-13", "rate_apr": 0.140},
+    {"effective_from": "2024-08-26", "rate_apr": 0.145},
+    {"effective_from": "2024-11-29", "rate_apr": 0.150},
+    {"effective_from": "2025-02-28", "rate_apr": 0.155},
+    {"effective_from": "2025-06-06", "rate_apr": 0.160},
+    {"effective_from": "2025-10-10", "rate_apr": 0.165},
+    {"effective_from": "2026-02-13", "rate_apr": 0.165},
+    {"effective_from": "2026-04-18", "rate_apr": 0.155}
+  ]
+}
