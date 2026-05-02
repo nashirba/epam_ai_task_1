@@ -125,6 +125,13 @@ for msg in st.session_state.history:
         if msg.get("citations"):
             render_history_citations(msg["citations"])
 
+_DEGRADED_MARKERS = (
+    "temporarily unavailable",
+    "Rate limit exceeded",
+    "tool failed",
+    "ToolError",
+)
+
 if user_text := st.chat_input("Ask about your portfolio, the market, or what to do next…"):
     st.session_state.history.append({"role": "user", "text": user_text})
     with st.chat_message("user"):
@@ -136,8 +143,13 @@ if user_text := st.chat_input("Ask about your portfolio, the market, or what to 
             rec = advise(user_text)
             st.write("Formatting answer…")
             status.update(label="Done", state="complete", expanded=False)
-        st.markdown(rec.summary)
-        citation_block(rec)
+        if any(m.lower() in rec.summary.lower() for m in _DEGRADED_MARKERS):
+            st.error(rec.summary, icon="⚠️")
+            if st.button("Try again", key=f"retry_{len(st.session_state.history)}"):
+                st.rerun()
+        else:
+            st.markdown(rec.summary)
+            citation_block(rec)
         st.caption(rec.disclaimer)
     st.session_state.history.append({
         "role": "assistant",

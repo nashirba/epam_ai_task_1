@@ -3,10 +3,16 @@ from pia.rag.chunker import Chunk, chunk_markdown
 
 def test_chunk_keeps_headings_with_body():
     text = "# Title\n\nIntro.\n\n## Section A\n\nBody A.\n\n## Section B\n\nBody B." * 1
-    chunks = chunk_markdown(text, max_tokens=20, overlap_tokens=4)
+    # max_tokens=4 forces a split between Body A and Body B so each section's
+    # heading appears on its own chunk.  Section A must NOT appear in any
+    # chunk's text (headings are breadcrumb-only after the fix).
+    chunks = chunk_markdown(text, max_tokens=4, overlap_tokens=2)
     assert all(isinstance(c, Chunk) for c in chunks)
-    assert any("Section A" in c.text for c in chunks)
-    assert any("Section B" in c.text for c in chunks)
+    assert any("Section A" in c.headings for c in chunks)
+    assert any("Section B" in c.headings for c in chunks)
+    # Heading lines must not bleed into body text.
+    assert not any("## Section A" in c.text for c in chunks)
+    assert not any("## Section B" in c.text for c in chunks)
 
 
 def test_chunk_overlap_preserved():

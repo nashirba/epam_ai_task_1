@@ -29,7 +29,7 @@ def main() -> None:
 
     items = []
     for doc in load_documents(Path(s.data_dir)):
-        for chunk in chunk_markdown(doc.text, max_tokens=120, overlap_tokens=24):
+        for chunk in chunk_markdown(doc.text, max_tokens=300, overlap_tokens=50):
             items.append((doc, chunk))
     print(f"Ingesting {len(items)} chunks…")
     try:

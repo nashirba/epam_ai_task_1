@@ -30,7 +30,6 @@ def chunk_markdown(text: str, *, max_tokens: int = 600, overlap_tokens: int = 80
             heading = m.group(2).strip()
             stack = [(lvl, t) for lvl, t in stack if lvl < level]
             stack.append((level, heading))
-            paragraphs.append((para.strip(), tuple(t for _, t in stack)))
             continue
         paragraphs.append((para.strip(), tuple(t for _, t in stack)))
 
