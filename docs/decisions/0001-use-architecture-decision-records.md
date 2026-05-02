@@ -1,4 +1,4 @@
-# ADR 0001: Use Architecture Decision Records
+``# ADR 0001: Use Architecture Decision Records
 
 - **Status:** Accepted
 - **Date:** 2026-05-02

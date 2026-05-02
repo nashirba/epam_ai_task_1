@@ -68,7 +68,7 @@ _The reader should go through this section only and walk away with a full unders
 - The file content should be:
   - Your @epam.com email.
   - The link to the git repository (should be public or **shared**).
-  - The link to the video (should be public or **shared**).
+  - The link to the video ``(should be public or **shared**).
   - No extra comments are required but they may be added if you would like (anyway, keep the submission file simple).
 - Upload this .txt file to the university platform and click "Submit" to confirm.
   - Use the "Upload Your Assignment" button first.

@@ -6,7 +6,7 @@
 
 ## Context
 
-A 16-day timeline with vibecoding-paced AI-assisted development. The system must run locally and as a deployable product (not a notebook), satisfy "own code" for core agentic logic, and be friendly to a grading reviewer who clones the repo and runs `docker compose up`.
+A 16-day timeline with vibecoding-paced AI-assisted development. The system must run locally as a real application (not a notebook), satisfy "own code" for core agentic logic, and be friendly to a grading reviewer who clones the repo and follows a short local quickstart.
 
 ## Decision
 
@@ -26,14 +26,14 @@ Single Python service. Stack:
 | UI | Streamlit | fastest path to "investor-ready" demo |
 | Observability | Langfuse free tier | one decorator per agent/LLM call |
 | Validation | Pydantic v2 | message bus types, structured outputs |
-| Container | Docker Compose | reproducible deploy: app + Weaviate |
+| Local runtime | `uv` + Docker Compose | app runs as a local Streamlit process; Weaviate runs in Docker |
 
 ## Consequences
 
 **Positive**
 - Every component has strong AI-coding-assistant familiarity → vibecoding stays smooth.
 - Single language reduces context-switching cost.
-- Docker Compose makes the "deployable product" requirement trivially satisfied.
+- The hybrid local runtime satisfies the "real application, not notebook" requirement while keeping reviewer setup simple.
 
 **Negative**
 - Python tool-use code is more verbose than equivalent TypeScript SDKs in some places.

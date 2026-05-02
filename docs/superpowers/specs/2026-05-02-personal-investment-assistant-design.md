@@ -24,7 +24,7 @@ The user is the sole user. There is no multi-tenant component.
 - **Capabilities:** holdings tracking, allocation analysis (by class and by currency), news monitoring with relevance scoring against holdings, recommendation generation with citations and a compliance disclaimer.
 - **Data corpus:** real, scraped/snapshotted from public sources (NBK, KASE, Krisha.kz, bank rate pages, KZ news outlets, SEC for any US holdings).
 - **MCP integration:** consume one off-the-shelf web-search MCP (Tavily or Brave) and build a small custom MCP server exposing four KZ-specific data tools.
-- **Deployment:** Docker Compose stack the user can run locally; reproducible via `docker compose up`.
+- **Local runtime:** hybrid local setup the user can run on one machine: Weaviate in Docker via `docker compose up -d weaviate`, and the Streamlit Python app via `uv run streamlit run src/pia/ui/app.py`.
 - **UI:** single-user Streamlit chat with a portfolio sidebar and allocation/currency-exposure charts.
 
 ### Non-goals (v1)
@@ -227,14 +227,16 @@ Streamlit single-page app:
 
 Stateless across reloads; conversation history kept in `st.session_state`.
 
-## 14. Deployment
+## 14. Local Runtime
 
-`docker-compose.yml`:
-- `weaviate` — official image, single-node, persistent volume.
-- `app` — our image; mounts `data/` read-only; depends on `weaviate`.
-- (optional) `langfuse` — only if self-hosting; default config uses hosted free tier.
+The project is not intended for cloud deployment. It runs locally as a real application, not as a notebook:
 
-Local dev path: `uv run streamlit run app/main.py` against a Weaviate started by `docker compose up weaviate`.
+- `weaviate` — official Docker image, single-node, persistent volume, started with `docker compose up -d weaviate`.
+- `app` — local Python process managed by `uv`, started with `uv run streamlit run src/pia/ui/app.py`.
+- `data/` — local snapshot corpus read from disk.
+- Langfuse — hosted free tier by default when keys are configured; local runs still work without Langfuse keys.
+
+Access control is scoped to the local-only product shape: the Streamlit app is for a single user on localhost, credentials live only in a local `.env` ignored by git, and no public server is required for the capstone submission.
 
 ## 15. Success-criteria mapping
 

@@ -14,7 +14,7 @@
 - +10 Points: Data Quality: Well-prepared datasets, proper data handling, quality validation
 - +10 Points: Code Excellence: Clean architecture, software engineering best practices, thoughtful design patterns (AI-generated code is fine, but show you understand it)
 
-### Deliverables
+### Deliverables``
 - Architecture Blueprint: Complete system design with technology stack and rationale
 - Video Demo: 2-5 minutes with voiceover explaining functionality and code choices
 - Code Repository: Well-structured project with README and setup instructions

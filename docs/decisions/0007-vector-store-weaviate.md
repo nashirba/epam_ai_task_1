@@ -6,7 +6,7 @@
 
 ## Context
 
-The RAG pipeline retrieves over a multilingual corpus (RU + EN + some KZ) of news, filings, bank rate sheets, listings, and personal notes. Hybrid search (BM25 + vector) materially improves retrieval quality on multilingual + entity-heavy content (e.g., ticker symbols, bank names) compared with pure dense retrieval. The "deployable product" requirement favors a self-hostable store with a clean Docker story.
+The RAG pipeline retrieves over a multilingual corpus (RU + EN + some KZ) of news, filings, bank rate sheets, listings, and personal notes. Hybrid search (BM25 + vector) materially improves retrieval quality on multilingual + entity-heavy content (e.g., ticker symbols, bank names) compared with pure dense retrieval. The local-only product shape still needs a reproducible, persistent vector store that a reviewer can start with one Docker command.
 
 ## Decision
 
@@ -22,7 +22,7 @@ Use **Weaviate** self-hosted via `docker-compose.yml`. One single-node instance 
 **Positive**
 - Out-of-the-box hybrid search (BM25 + dense) without a second store.
 - Multilingual-friendly with appropriate embeddings (e.g., bge-m3).
-- Clear `docker compose up` story → satisfies "deployable product."
+- Clear `docker compose up -d weaviate` story for the vector store while the app runs locally via `uv`.
 - Supports cross-references and metadata filters out of the box, enabling clean source attribution and language/asset-class filtering.
 - Mature Python v4 client.
 
@@ -31,7 +31,7 @@ Use **Weaviate** self-hosted via `docker-compose.yml`. One single-node instance 
 - One more container in the compose file; docs must explain `docker compose down` between sessions.
 
 **Neutral**
-- Weaviate Cloud sandbox was available but expires; self-hosted via Docker is more honest to the "deployable product" framing.
+- Weaviate Cloud sandbox was available but expires; self-hosted via Docker is more honest to the local capstone framing.
 
 ## Alternatives considered
 

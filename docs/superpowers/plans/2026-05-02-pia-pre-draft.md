@@ -1,8 +1,10 @@
-# Personal Investment-Planning Assistant — Pre-Draft Implementation Plan (Days 1-7)
+# Personal Investment-Planning Assistant — Pre-Draft Implementation Plan (Days 1-7, Working Draft Only)
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Ship a working, end-to-end Personal Investment-Planning Assistant draft by Fri 2026-05-08: scaffold → real data corpus → Weaviate-backed hybrid RAG → custom + consumed MCP → 3 agents on a typed message bus → Streamlit UI → minimal smoke tests. Deployable via `docker compose up`.
+> **Scope note:** This is the first of two implementation plans. It intentionally targets a working local draft by Fri 2026-05-08. Final capstone compliance items are tracked for the Days 8-16 post-draft plan. **Do not submit the repo after Days 1-7; this is a draft milestone only.**
+
+**Goal:** Ship a working, end-to-end Personal Investment-Planning Assistant draft by Fri 2026-05-08: scaffold → real data corpus → Weaviate-backed hybrid RAG → custom + consumed MCP → 3 agents on a typed message bus → Streamlit UI → minimal smoke tests. Runs locally as a real application: Weaviate in Docker via `docker compose up -d weaviate`, Python app via `uv run streamlit run src/pia/ui/app.py`. No cloud deployment is required.
 
 **Architecture:** Single Python service. 3 agents (Portfolio/Market/Planner) communicate over an in-process Pydantic message bus. Planner orchestrates; Portfolio does RAG over Weaviate; Market calls MCP tools. LLM and embedding providers are env-swappable. Custom `kz-data` MCP server exposes 4 tools backed by snapshot files. Data corpus is real and snapshotted.
 
@@ -18,7 +20,6 @@
 .
 ├── pyproject.toml
 ├── docker-compose.yml
-├── Dockerfile                              # added in post-draft
 ├── .env.example
 ├── .gitignore
 ├── README.md
@@ -445,6 +446,10 @@ A multi-agent RAG + MCP system that helps a Kazakhstan-resident investor track h
 - Streamlit chat UI with a portfolio sidebar.
 
 See `docs/superpowers/specs/2026-05-02-personal-investment-assistant-design.md` for the full design and `docs/decisions/` for ADRs.
+
+## Runtime model
+
+Local-only hybrid runtime: Weaviate runs in Docker; the Streamlit app runs as a local `uv` Python process. No cloud deployment or app container is required for the capstone.
 
 ## Quickstart
 
@@ -2609,7 +2614,20 @@ git push origin v0.1.0-draft
 
 Send the repository link + a short note: "End-to-end working draft. Days 8-16 cover tests (positive + adversarial), observability, safety, polish, deliverables (Architecture Blueprint, Self-Review, Executive Summary), and the demo video."
 
-**Phase 6 done when:** the draft is pushed, tagged, and shared. Open issues are recorded in `docs/draft-issues.md` (becomes the punch-list for the post-draft plan).
+**Phase 6 done when:** the draft is pushed, tagged, and shared. Open issues are recorded in `docs/draft-issues.md` (becomes the punch-list for the post-draft plan). This is still not submission-ready until the post-draft compliance plan is complete.
+
+---
+
+## Post-Draft Required Coverage
+
+The Days 8-16 post-draft plan must close the remaining binding requirements from `docs/requirements_addendum.md`, `docs/non_functional_requirements.md`, and `docs/success_criteria.md`:
+
+- Positive and adversarial automated tests: prompt injection, jailbreaks, irrelevant queries, retrieval misses, MCP timeouts/errors, PII leakage, and hallucination probes.
+- Observability: Langfuse tracing for agent/LLM/tool calls, basic metrics, structured error logging, and either a dashboard or diagnostics view.
+- Safety: input sanitization, content filtering, PII detection/redaction, rate limiting, and graceful degraded-answer behavior.
+- RAG QA: retrieval precision/recall or retrieval@k checks, source attribution tests, and hallucination/faithfulness checks.
+- Local runtime polish: README quickstart for the local hybrid setup, local-only access-control note, and reproducible smoke-test commands.
+- Required deliverables: Architecture Blueprint, Executive Summary, Self-Review, Video Demo link, and `Capstone_project_<First>_<Last>.txt`.
 
 ---
 
@@ -2632,8 +2650,8 @@ Send the repository link + a short note: "End-to-end working draft. Days 8-16 co
 | §11 Observability | Deferred to post-draft plan (out of pre-draft scope by design) |
 | §12 Testing | Unit tests in each phase; smoke in Task 5.2; **adversarial suite is post-draft.** |
 | §13 UI | Phase 5 |
-| §14 Deployment | Docker compose Weaviate from Phase 0; full app Dockerfile is post-draft |
-| §15 Success-criteria mapping | Phase 6 send + post-draft deliverables |
+| §14 Deployment / local runtime | Dockerized Weaviate from Phase 0; Streamlit app runs locally via `uv` |
+| §15 Success-criteria mapping | Phase 6 draft handoff + post-draft required coverage |
 
 ### Placeholder scan
 No "TBD"/"TODO"/"add appropriate handling" present. Every code block is complete. The post-draft items are explicitly out of scope for this plan and named in §15 of the spec.
@@ -2651,6 +2669,5 @@ No "TBD"/"TODO"/"add appropriate handling" present. Every code block is complete
 - Full PII detector (Presidio or richer regex), input sanitization layer, rate limiter wiring on the agent entrypoint.
 - Cross-encoder reranker.
 - Allocation pie chart (the current Phase 5 uses bar charts — pie charts get added in post-draft polish).
-- Final Dockerfile + multi-stage build for app.
 - Architecture Blueprint, Self-Review, Executive Summary deliverable docs.
 - Demo video script and recording.
