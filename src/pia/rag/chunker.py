@@ -17,10 +17,25 @@ def _approx_tokens(s: str) -> int:
     return len(_TOKEN_RE.findall(s))
 
 
-def chunk_markdown(text: str, *, max_tokens: int = 600, overlap_tokens: int = 80) -> list[Chunk]:
+def _emit(buf: list[str], headings: tuple[str, ...]) -> Chunk:
+    """Build a Chunk, prepending the leaf heading text into the body so BM25
+    can match entities mentioned only in the heading.
+
+    The leaf heading is added as plain text (no ``#`` prefix) — the structural
+    breadcrumb is still carried on ``Chunk.headings`` for retrieval-side use.
+    """
+    body = "\n\n".join(buf)
+    leaf = headings[-1] if headings else ""
+    if leaf and not body.startswith(leaf):
+        body = f"{leaf}\n\n{body}" if body else leaf
+    return Chunk(body, headings)
+
+
+def chunk_markdown(text: str, *, max_tokens: int = 300, overlap_tokens: int = 80) -> list[Chunk]:
     """Heading-aware chunker. Splits on blank-line paragraphs, accumulates up to
     `max_tokens`, then carries `overlap_tokens` tail into the next chunk.
-    Tracks the heading stack so each chunk knows its breadcrumb."""
+    Tracks the heading stack so each chunk knows its breadcrumb; the leaf
+    heading text is also prepended into the chunk body to help BM25 recall."""
     paragraphs: list[tuple[str, tuple[str, ...]]] = []
     stack: list[tuple[int, str]] = []  # (level, text)
     for para in re.split(r"\n\s*\n", text.strip()):
@@ -40,7 +55,7 @@ def chunk_markdown(text: str, *, max_tokens: int = 600, overlap_tokens: int = 80
     for para, headings in paragraphs:
         n = _approx_tokens(para)
         if buf and buf_tokens + n > max_tokens:
-            chunks.append(Chunk("\n\n".join(buf), last_headings))
+            chunks.append(_emit(buf, last_headings))
             tail = " ".join(" ".join(buf).split()[-overlap_tokens:])
             buf = [tail] if tail else []
             buf_tokens = _approx_tokens(tail) if tail else 0
@@ -48,5 +63,5 @@ def chunk_markdown(text: str, *, max_tokens: int = 600, overlap_tokens: int = 80
         buf_tokens += n
         last_headings = headings
     if buf:
-        chunks.append(Chunk("\n\n".join(buf), last_headings))
+        chunks.append(_emit(buf, last_headings))
     return chunks

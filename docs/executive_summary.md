@@ -19,13 +19,14 @@ A multi-agent assistant that combines a private knowledge base of the user's hol
 - **Custom `kz-data` MCP server** (FastMCP, 4 tools: NBK rate, FX, KASE quote, deposit rates) plus a consumed Tavily web-search MCP. Demonstrates protocol mastery — building, not just consuming. ADR 0005.
 - **Provider abstraction via LiteLLM and a pluggable `EmbeddingProvider`** lets `LLM_MODEL` and `EMBEDDING_PROVIDER` be set by env var. Free Gemini Flash + local `BAAI/bge-m3` embeddings + self-hosted Weaviate gives a reproducible **`$0` grader path**; paid Sonnet 4.6 is the demo path. ADRs 0006, 0008.
 - **Compliance disclaimer is a Pydantic field** on every `Recommendation`, not a model-discretion string. `advise()` always returns a valid `Recommendation` even when the inner planner raises — proven by `tests/unit/test_planner_disclaimer.py`. The output guardrail (`guardrail_output`) hedges definitive buy/sell calls in EN and RU and redacts known credential tokens. ADRs 0010, 0011.
-- **Eleven ADRs (0001-0011)** capture the meaningful technical decisions. They are written at the time of the decision, not retroactively, and the Architecture Blueprint and demo voiceover both reference them by number.
+- **Twelve ADRs (0001-0012)** capture the meaningful technical decisions, including ADR 0012 which formalises the evaluation harness — thresholds (hit-rate@5 ≥ 0.6, faithfulness mean ≥ 1.4, definitive-call refusal = 100%), the `PIA_LIVE_LLM=1` gate, and the persisted-run schema under `docs/eval-runs/`. ADRs are written at the time of the decision, not retroactively, and the Architecture Blueprint and demo voiceover both reference them by number.
 
 ## Results
 
-- **86 automated tests pass**: 66 unit (agents, RAG, MCP tools, safety facade, disclaimer), 13 integration (golden Q&A end-to-end, hit-rate@5 retrieval metric, faithfulness LLM-judge, MCP subprocess round-trip, Weaviate hybrid search), and 7 adversarial (prompt injection in a planted note, jailbreak / definitive-call refusal, irrelevant query, source conflict, MCP timeout, PII probe, hallucination probe).
+- **95 automated tests pass**: 76 unit (agents, RAG, MCP tools, safety facade, disclaimer, MCP session pool, in-process metrics registry), 13 integration (golden Q&A end-to-end, hit-rate@5 retrieval metric, faithfulness LLM-judge, MCP subprocess round-trip, Weaviate hybrid search), and 7 adversarial (prompt injection in a planted note, jailbreak / definitive-call refusal, irrelevant query, source conflict, MCP timeout, PII probe, hallucination probe).
 - **Hit-rate@5 ≥ 0.6** on the labeled retrieval set (`tests/fixtures/retrieval_labels.yaml`); **faithfulness LLM-judge ≥ 1** on every golden Q&A case (`tests/fixtures/golden_qa.yaml`, scoring 0/1/2).
-- **Streamlit UI** ships citations as a Sources expander, allocation and currency-exposure donut charts, a freshness pill summarizing the oldest snapshot date, and an `st.error` "advisor unavailable" graceful state with a Try-again button when an upstream tool fails.
+- **Streamlit UI** ships citations as a Sources expander, allocation and currency-exposure donut charts, a freshness pill summarizing the oldest snapshot date, an in-app **Diagnostics** expander (counters, p50/p95 latency, last Langfuse trace id), and an `st.error` "advisor unavailable" graceful state with a Try-again button when an upstream tool fails.
+- **Per-request MCP pool.** A single FastMCP subprocess + `ClientSession` lives for the duration of one `advise()` call (`src/pia/mcp/session.py`), eliminating the prior 3-5× subprocess-startup latency without changing the Market agent's tool-call shape.
 - **Reproducible local-only quickstart**:
   ```bash
   uv sync --all-extras
@@ -48,9 +49,9 @@ Honest about what v1 does *not* do:
 - **Snapshot data, not live refresh.** The corpus under `data/public/` is committed snapshots; a live refresh job is the most impactful next step (~1 day of work, drawn from `docs/draft-issues.md` post-draft binding requirements).
 - **Asset coverage is v1-bounded.** Crypto, gold, UAPF, AIX bonds, and mutual funds are out of scope per ADR 0002; obvious "next steps" for a v2.
 - **Single-user; no authentication.** The Streamlit app binds to localhost. A multi-tenant deployment would need session storage, per-user data isolation, and an auth layer.
-- **Resource and metrics surface is partial.** Today only Langfuse spans are emitted (when keys are set); request count, p50/p95 latency, tool-error rate, and refusal-rate counters are not exposed. An in-app diagnostics tab is a clean ~1-day add.
-- **MCP subprocess pooling not implemented.** Each `kz_data_call_sync` spawns a fresh subprocess; pooling per-`advise()`-call is an obvious latency win without architectural change.
-- **Persisted eval reports under `docs/eval-runs/` not wired up.** The directory exists; a small harness that writes per-run JSON (model, fixture, scores) would let stakeholders track quality over time without re-running pytest.
+- **OS-level resource gauges still missing.** Latency, request count, tool-error rate, refusal rate, and last trace id are now exposed via `src/pia/observability/metrics.py` and the Streamlit Diagnostics expander (added 2026-05-05). Memory / CPU / hosted-LLM-quota counters are not — `psutil`-backed gauges would close the last gap from `docs/non_functional_requirements.md`.
+- **Persisted eval reports under `docs/eval-runs/` not yet populated.** ADR 0012 (2026-05-05) locks the schema and thresholds; `scripts/eval_report.py` is the next code session in `docs/improvements.md` Session 2.
+- **Live data refresh.** Snapshots under `data/public/` are still manually refreshed via `scripts/snapshot_news.py`. A small scheduler is `docs/improvements.md` Session 8.
 
 ---
 

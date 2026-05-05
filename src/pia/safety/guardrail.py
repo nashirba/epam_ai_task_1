@@ -65,12 +65,20 @@ def guardrail_output(text: str) -> str:
     1. Redact known credential/leak tokens → ``[REDACTED]``.
     2. Hedge definitive financial calls by prepending ``"Hedged note: "``.
     """
+    from pia.observability.metrics import get_registry
+
+    registry = get_registry()
+
     # 1. Redact known-leak tokens.
-    text = _LEAK_RE.sub("[REDACTED]", text)
+    redacted = _LEAK_RE.sub("[REDACTED]", text)
+    if redacted != text:
+        registry.counter("guardrail.redaction_fired").inc()
+    text = redacted
 
     # 2. Hedge if definitive call detected (idempotent: prefix is already
     #    present after first application).
     if not text.startswith(_HEDGED_PREFIX) and _looks_like_definitive_call(text):
+        registry.counter("guardrail.hedge_fired").inc()
         text = _HEDGED_PREFIX + text
 
     return text

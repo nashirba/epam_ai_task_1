@@ -23,3 +23,19 @@ def test_chunk_overlap_preserved():
     # Adjacent chunks share at least one token
     for a, b in pairwise(chunks):
         assert set(a.text.split()) & set(b.text.split())
+
+
+def test_chunk_prepends_leaf_heading_into_body():
+    """BM25 recall depends on entity names appearing in the chunk text. When
+    the only mention of an entity is in the heading, the leaf heading must be
+    prepended into the body text — without the markdown ``##`` prefix, since
+    the breadcrumb already carries the structural info."""
+    text = "## Halyk Bank deposit rates\n\nKZT 12-month rate is competitive."
+    chunks = chunk_markdown(text, max_tokens=200, overlap_tokens=20)
+    assert len(chunks) == 1
+    chunk = chunks[0]
+    assert "Halyk Bank deposit rates" in chunk.text
+    # Markdown heading prefix must NOT appear in the body.
+    assert "## Halyk Bank deposit rates" not in chunk.text
+    # Breadcrumb is preserved.
+    assert chunk.headings == ("Halyk Bank deposit rates",)

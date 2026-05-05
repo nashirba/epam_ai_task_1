@@ -1,8 +1,17 @@
 from __future__ import annotations
 
+import contextlib
+from uuid import uuid4
+
 from pia.agents.base import BaseAgent, Tool
 from pia.agents.market import ask_market
 from pia.agents.portfolio import ask_portfolio
+from pia.mcp.session import (
+    MCPSessionSync,
+    bind_kz_data_session,
+    kz_data_params,
+    reset_kz_data_session,
+)
 from pia.messages import (
     AgentMessage,
     Citation,
@@ -11,7 +20,8 @@ from pia.messages import (
     PortfolioQuery,
     Recommendation,
 )
-from pia.observability import trace
+from pia.observability import reset_request_id, set_request_id, trace
+from pia.observability.metrics import get_registry, record_call
 from pia.safety import (
     RateLimitExceeded,
     guardrail_output,
@@ -99,8 +109,42 @@ def make_planner() -> BaseAgent:  # backward-compatible factory used by tests/UI
     return _make_planner([], [])
 
 
-@trace("agent.planner.advise")
 def advise(user_text: str) -> Recommendation:
+    """Public entrypoint. Binds a per-call request id so every nested Langfuse
+    observation rolls up under one trace, opens one pooled kz-data MCP
+    session for the duration of the call, then runs the safety facade.
+
+    The kz-data subprocess pool is best-effort — if the subprocess fails to
+    spawn (Weaviate down, FastMCP missing, OS hand-off), we fall through to
+    the per-call subprocess path inside ``kz_data_call_sync`` instead of
+    failing the whole request.
+    """
+    request_id = uuid4().hex
+    rid_token = set_request_id(request_id)
+    get_registry().set_last_request_id(request_id)
+    session: MCPSessionSync | None = None
+    session_token = None
+    try:
+        try:
+            session = MCPSessionSync(kz_data_params())
+            session.__enter__()
+        except Exception:  # noqa: BLE001 — pool open is best-effort; fall back to per-call subprocess
+            session = None
+        if session is not None:
+            session_token = bind_kz_data_session(session)
+        with record_call("advise"):
+            return _advise_inner(user_text)
+    finally:
+        if session_token is not None:
+            reset_kz_data_session(session_token)
+        if session is not None:
+            with contextlib.suppress(Exception):  # best-effort cleanup
+                session.__exit__(None, None, None)
+        reset_request_id(rid_token)
+
+
+@trace("agent.planner.advise")
+def _advise_inner(user_text: str) -> Recommendation:
     try:
         rate_limit_check()
     except RateLimitExceeded:

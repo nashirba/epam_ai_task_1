@@ -8,9 +8,10 @@ A multi-agent RAG + MCP system that helps a Kazakhstan-resident investor track h
 
 - 3 agents (Portfolio / Market / Planner) on an in-process Pydantic message bus.
 - Hybrid RAG (BM25 + dense) over a real KZ-domain corpus, indexed in Weaviate.
-- MCP: consumes a web-search server **and** ships a custom `kz-data` MCP with 4 tools (NBK rate, FX, KASE quote, deposit rates).
+- MCP: consumes a web-search server **and** ships a custom `kz-data` MCP with 4 tools (NBK rate, FX, KASE quote, deposit rates). One pooled subprocess per `advise()` call (`src/pia/mcp/session.py`).
 - LLM and embedding providers are swappable via env vars (Anthropic / Gemini / Groq / Ollama / OpenAI / local).
-- Streamlit chat UI with a portfolio sidebar.
+- Streamlit chat UI with a portfolio sidebar and a **Diagnostics** expander (counters, p50/p95 latency, last Langfuse trace id).
+- Layered safety facade (rate-limit → sanitize → PII redact → planner → output guardrail) with a structural Pydantic disclaimer on every `Recommendation`.
 
 See `docs/superpowers/specs/2026-05-02-personal-investment-assistant-design.md` for the full design and `docs/decisions/` for ADRs.
 

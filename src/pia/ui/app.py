@@ -13,6 +13,7 @@ from pia.config import get_settings
 from pia.ui.components import (
     citation_block,
     collect_snapshot_dates,
+    diagnostics_view,
     disclaimer_banner,
     freshness_pill,
     portfolio_sidebar,
@@ -122,6 +123,7 @@ with st.sidebar:
         st.caption("⚠️ FX rates: using fallback values (live MCP unavailable)")
 
     portfolio_sidebar(holdings, fx)
+    diagnostics_view()
 
 # ---------------------------------------------------------------------------
 # Chat

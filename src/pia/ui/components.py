@@ -11,6 +11,56 @@ import pandas as pd
 import streamlit as st
 
 from pia.messages import Recommendation
+from pia.observability.metrics import get_registry
+
+
+def diagnostics_view() -> None:
+    """Show the in-process metrics registry in a sidebar expander.
+
+    Counters: ``*.calls``, ``*.errors``, ``guardrail.*_fired``.
+    Histograms: ``*.latency_s`` with p50 / p95 in milliseconds.
+    Plus the last request id (Langfuse trace id) for cross-referencing the
+    cloud dashboard. Empty until the first ``advise()`` call this process.
+    """
+    registry = get_registry()
+    with st.expander("📊 Diagnostics", expanded=False):
+        if registry.last_request_id:
+            st.caption(f"Last trace id: `{registry.last_request_id}`")
+        else:
+            st.caption("No requests yet this session.")
+
+        if registry.counters:
+            counter_rows = sorted(
+                ((c.name, c.value) for c in registry.counters.values()),
+                key=lambda r: r[0],
+            )
+            st.write("**Counters**")
+            st.dataframe(
+                pd.DataFrame(counter_rows, columns=["metric", "value"]),
+                hide_index=True,
+                use_container_width=True,
+            )
+
+        if registry.histograms:
+            latency_rows: list[tuple[str, int, float, float]] = []
+            for hist in sorted(registry.histograms.values(), key=lambda h: h.name):
+                p50 = hist.percentile(0.5)
+                p95 = hist.percentile(0.95)
+                if p50 is None or p95 is None:
+                    continue
+                latency_rows.append(
+                    (hist.name, hist.count, round(p50 * 1000, 1), round(p95 * 1000, 1))
+                )
+            if latency_rows:
+                st.write("**Latency (ms)**")
+                st.dataframe(
+                    pd.DataFrame(
+                        latency_rows,
+                        columns=["metric", "n", "p50", "p95"],
+                    ),
+                    hide_index=True,
+                    use_container_width=True,
+                )
 
 
 def disclaimer_banner() -> None:
