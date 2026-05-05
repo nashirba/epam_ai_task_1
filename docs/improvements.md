@@ -38,8 +38,9 @@ What is missing or weak (drives the session list below):
 | 12 | UI labels English-only | Cosmetic | `architecture_blueprint.md` §8 |
 | 13 | `published_at` stored as TEXT (ADR 0009 — accepted as-is) | Cosmetic | ADR 0009 |
 | 14 | Cross-encoder reranker not wired | Cosmetic (hit-rate already ≥ 0.6) | ADR 0008; `draft-issues.md` |
+| 15 | Thin coverage in three source slugs (1 KASE ticker, 1 Almaty district, 5 banks vs spec's 6) | Low (rubric already met) | This-pass review of `data/public/` |
 
-Keep the priority order. Sessions 1-5 are submission-critical; 6-10 are excellence-bonus material; 11-14 are polish that can ship post-capstone.
+Keep the priority order. Sessions 1-3 + 12-13 are submission-critical; 4-7 are excellence-bonus material; 8-11 + 14 are polish that can ship post-capstone.
 
 ---
 
@@ -353,6 +354,42 @@ Keep the priority order. Sessions 1-5 are submission-critical; 6-10 are excellen
 
 **Prompt for fresh session:**
 > Read `docs/improvements.md` Session 13. Create `Capstone_project_Nurlan_<surname>.txt` at the repo root with three lines (EPAM email, repo link, video link). Plain text only.
+
+---
+
+## Session 14 — Corpus expansion (KASE quotes + Almaty districts + 6th bank)
+
+**Why this rank.** Optional polish — current 54 docs already clears `requirements_addendum.md` §C ("≈20-50+ realistic items") and hit-rate@5 ≥ 0.6. But three thin source slugs visibly weaken the demo argument: only **1** KASE snapshot, only **1** Almaty district listings file, only **5** bank-rate sheets where the spec mentioned 6 banks. Ten more files + one PROVENANCE update = the assistant feels like it covers a real market, not a toy slice. Highest demo-visibility-per-minute among optional sessions. Skip if Sessions 1-5 + 12-13 are not all green.
+
+**Goal.** Expand three source slugs without changing loaders, chunker, or retrieval thresholds:
+
+| Slug | Today | After this session |
+|---|---|---|
+| `data/public/kase/` | 1 file (single ticker snapshot) | 6-7 files: HSBK, KCEL, KZTK, KEGC, NCSP, KAP each as own snapshot JSON |
+| `data/public/real_estate/almaty/` | 1 listings file (one district pull) | 4 files: original + Bostandyk + Almaly + Auezov listings |
+| `data/public/bank_rates/` | 5 banks (Halyk, Kaspi, BCC, Jusan, Freedom) | 6 banks: add ForteBank or ATFBank |
+
+**Prereqs.** None. `loaders.py` already globs `*.json` in those directories; new files are picked up automatically. No code change required if file shape matches existing snapshots.
+
+**Steps.**
+1. **KASE.** For each new ticker, copy the existing `kase/<ticker>.json` shape and fill with a real snapshot from kase.kz/en/issuers (price, volume, last-trade timestamp, source URL). Required fields per existing file: `ticker`, `last`, `currency`, `as_of`, `source_url`, optional `change_pct`, `volume`. **Do not invent numbers** — if a real value is unavailable, skip that ticker rather than fake it.
+2. **Almaty real estate.** Pull Krisha.kz listings for Bostandyk, Almaly, Auezov districts. Match the existing `listings-2026-MM-DD.json` shape (snapshot_date, district, listings array with price/area/rooms/url). One file per district per snapshot date. Update `data/public/real_estate/PROVENANCE.md` with the new district URLs.
+3. **6th bank.** Add `bank_rates/forte.json` (or `atfbank.json`) with the same shape as the existing five: `bank`, `currency` matrix of term/rate pairs, `snapshot_date`, `source_url`. Real rates only; if rate sheet is paywalled or in PDF, skip the bank.
+4. **Re-ingest:** `uv run python -m scripts.ingest --reset` so the new chunks land in Weaviate. Confirm chunk count increased by ~10.
+5. **Re-run retrieval metric:** `uv run pytest tests/integration/test_retrieval_metric.py -q`. Hit-rate@5 must still pass; if any new ticker is named in `tests/fixtures/retrieval_labels.yaml`, expand the labels at the same time.
+6. **Add a labelled query for one new ticker** in `tests/fixtures/retrieval_labels.yaml` so the new data is exercised, not just present (e.g. `query: "What was the last KCEL trade?"` with `expected_sources: [kase]`).
+7. Write a fresh eval-run JSON via `scripts/eval_report.py` (after Session 2) so the executive summary can quote the new corpus size.
+
+**Verification.**
+- `find data/public/{kase,real_estate/almaty,bank_rates} -name '*.json' | wc -l` shows the expected count (kase ≥ 6, real_estate/almaty ≥ 4, bank_rates ≥ 6).
+- `uv run python -m scripts.ingest --reset` exits 0; chunk count increased.
+- `uv run pytest tests/integration/test_retrieval_metric.py` green.
+- Each new file has a real `source_url` pointing to the upstream page; PROVENANCE.md reflects all sources.
+
+**Commit.** `data: expand KASE / Almaty / bank-rates corpus to 6+ tickers, 4 districts, 6 banks`
+
+**Prompt for fresh session:**
+> Read `docs/improvements.md` Session 14. Add real (not fabricated) snapshot files for HSBK, KCEL, KZTK, KEGC, NCSP, KAP under `data/public/kase/`; for Bostandyk, Almaly, Auezov under `data/public/real_estate/almaty/`; for one additional bank (Forte or ATF) under `data/public/bank_rates/`. Match existing file shapes. Update `data/public/real_estate/PROVENANCE.md`. Re-ingest. Confirm hit-rate@5 still ≥ 0.6. Add one labelled retrieval query exercising a new ticker. Skip any source that is paywalled or unverifiable rather than fake the numbers.
 
 ---
 
