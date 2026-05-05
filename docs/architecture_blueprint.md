@@ -3,7 +3,7 @@
 - **Project:** Personal Investment-Planning Assistant (PIA)
 - **Author:** Nurlan
 - **Status:** v0.9 (post-Phase 11; submission-ready)
-- **Source of truth:** `docs/superpowers/specs/2026-05-02-personal-investment-assistant-design.md`, ADRs `docs/decisions/0001`-`0011`, implementation under `src/pia/`.
+- **Source of truth:** `docs/superpowers/specs/2026-05-02-personal-investment-assistant-design.md`, ADRs `docs/decisions/0001`-`0012`, implementation under `src/pia/`.
 
 This document is the navigable, grader-facing summary of the system. It synthesizes the design spec, the implemented code, and accepted ADRs into one place. It deliberately does not repeat the full spec — the spec, ADRs, and code remain authoritative for any conflict.
 
@@ -104,7 +104,7 @@ flowchart TD
 | **Docs** | `docs/brief.md`, `docs/non_functional_requirements.md`, `docs/success_criteria.md`, `docs/requirements_addendum.md` | Original requirements + Q&A meeting addenda. |
 | | `docs/superpowers/specs/2026-05-02-personal-investment-assistant-design.md` | Full design spec. |
 | | `docs/superpowers/plans/` | Pre-draft and post-draft phased implementation plans. |
-| | `docs/decisions/0001`-`0011` | ADRs (see §5 below). |
+| | `docs/decisions/0001`-`0012` | ADRs (see §5 below). |
 | | `docs/draft-issues.md` | Punch list of pre-draft deferrals; Phases 7-11 close most of them. |
 
 ---
@@ -195,8 +195,7 @@ ADRs live under `docs/decisions/` and are written at the time of decision (ADR 0
 | [0009](decisions/0009-published-at-storage.md) | `published_at` stored as `DataType.TEXT`, not `DATE` | Avoids schema migration; ISO date strings sort lexicographically; date-range filters happen as post-retrieval Python (acceptable at v1 corpus size). |
 | [0010](decisions/0010-observability-langfuse.md) | Langfuse cloud free tier; `start_as_current_observation`; no-op when keys unset | Zero-friction local dev (no errors without keys); `request_id = AgentMessage.request_id` joins spans into one trace. |
 | [0011](decisions/0011-safety-layered-facade.md) | Layered facade: `rate_limit → sanitize → redact → planner.run → guardrail` | Each concern a pure function in its own module; PII never reaches LLM trace in plaintext; guardrail subsumes the inline definitive-call hedge. |
-
-**ADR 0012 placeholder.** The plan reserved an ADR-0012 slot for "evaluation harness." That ADR was not written in v1 — instead, evaluation is captured by concrete code (`src/pia/eval/retrieval.py`, `src/pia/eval/faithfulness.py`) and the test fixtures (`tests/fixtures/golden_qa.yaml`, `tests/fixtures/retrieval_labels.yaml`, `tests/fixtures/adversarial_inputs.yaml`). A future ADR-0012 would formalize: thresholds (hit-rate@5 ≥ 0.6; faithfulness ≥ 1), the live-LLM gating convention (`PIA_LIVE_LLM=1`), and the persisted-eval-runs convention under `docs/eval-runs/`. Treating evaluation as code-plus-fixtures rather than a separate ADR is a deliberate choice for v1 — the artifacts are honest about what is and is not measured.
+| [0012](decisions/0012-evaluation-harness.md) | Evaluation harness — three suites (retrieval / faithfulness / adversarial), three metrics, three thresholds; `PIA_LIVE_LLM=1` gate; persisted JSON runs under `docs/eval-runs/` | Threshold rationale is auditable in one place; executive summary cites specific run files; regressions surface in `git log docs/eval-runs/`. |
 
 ---
 
@@ -234,10 +233,10 @@ ADRs live under `docs/decisions/` and are written at the time of decision (ADR 0
 
 **Current limitations:**
 
-- `request_id` is not threaded through to Langfuse as an explicit trace ID — relies on SDK context.
-- No metrics surface (request count, p50/p95 latency, tool-error rate). These were planned but deferred — see §8 future work.
+- ~~`request_id` is not threaded through to Langfuse as an explicit trace ID — relies on SDK context.~~ Closed 2026-05-05 (ADR 0010 addendum): a `contextvars.ContextVar` carries the per-`advise()` UUID hex through to `start_as_current_observation(trace_context=...)`, so all nested spans roll up under one named trace.
+- ~~No metrics surface (request count, p50/p95 latency, tool-error rate).~~ Closed 2026-05-05: `src/pia/observability/metrics.py` exposes a thread-safe in-process `Registry` (counters + histograms + last trace id), wired around `advise`, `mcp.kz_data`, `mcp.web_search`, and the guardrail. The Streamlit sidebar surfaces it via `diagnostics_view()`. Prometheus would still be overkill at single-user scale.
 - No structured JSON log adapter; standard logging is used. Errors at the `advise()` boundary are caught and surfaced to the UI as a friendly degraded message.
-- No in-app diagnostics tab or Grafana dashboard. The Langfuse dashboard is the operator-facing surface when keys are set.
+- ~~No in-app diagnostics tab or Grafana dashboard.~~ Closed 2026-05-05: a Diagnostics expander in the Streamlit sidebar shows counters, p50/p95 latency, and the last Langfuse trace id. The Langfuse cloud dashboard remains the deeper operator-facing surface when keys are set.
 
 ### 7.2 Safety
 
@@ -295,12 +294,12 @@ Drawn from `docs/draft-issues.md` (post-draft binding requirements that did not 
 - Crypto, gold, UAPF, AIX bonds, mutual funds. Explicitly out-of-scope per ADR 0002, but they are obvious next-step expansions that the demo voiceover should mention.
 
 **Observability depth**
-- Metrics dashboard (request count, p50/p95 latency, tool-error rate, refusal rate). Today only Langfuse spans are emitted; counters and histograms are not exposed.
-- In-app diagnostics tab (last trace ID, last latency, tool-call counts) — designed in the spec, not implemented in v1.
-- Resource-usage tracking (memory, CPU, hosted-LLM quota) — listed in `non_functional_requirements.md` but only partially covered (Langfuse shows token usage when keys are set).
+- ~~Metrics dashboard (request count, p50/p95 latency, tool-error rate, refusal rate).~~ Closed 2026-05-05 via the in-process `Registry` and the Streamlit Diagnostics expander. A real time-series dashboard (Grafana / Prometheus) is still future work but disproportionate at single-user scale.
+- ~~In-app diagnostics tab (last trace ID, last latency, tool-call counts).~~ Closed 2026-05-05.
+- Resource-usage tracking (memory, CPU, hosted-LLM quota) — listed in `non_functional_requirements.md` but only partially covered (Langfuse shows token usage when keys are set; the in-process Registry covers latency and call counts but not memory / CPU).
 
 **MCP performance**
-- Subprocess pooling for repeated MCP calls. Each `kz_data_call_sync` currently spawns a fresh subprocess; in a single Planner run with 3-5 tool calls, subprocess startup is the dominant latency.
+- ~~Subprocess pooling for repeated MCP calls.~~ Closed for kz-data on 2026-05-05: `pia.mcp.session.MCPSessionSync` pools the FastMCP subprocess for the duration of one `advise()` call (ADR 0005 addendum). Tavily web search remains spawn-per-call — a different binary, called at most once per request, pooling not worth the complexity.
 
 **Eval reports**
 - Persisted JSON eval reports under `docs/eval-runs/` (one per run, with model name, fixture set, scores). The directory exists; the reporting harness is not wired up.

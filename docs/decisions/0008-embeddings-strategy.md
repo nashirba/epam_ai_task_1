@@ -41,3 +41,7 @@ Optional cross-encoder re-ranking pass (`BAAI/bge-reranker-base`) for top-20 →
 - **Voyage / Cohere embeddings.** Considered; both are good but free tier limits make them awkward for a graded project where the reviewer may exhaust the quota.
 - **Local-only (no hosted option).** Rejected. Some users (and the demo) prefer hosted speed; abstraction is cheap and useful.
 - **Weaviate's built-in vectorizer module.** Rejected. Couples embeddings to the vector store and obscures the model used per chunk.
+
+## Addendum (2026-05-05)
+
+`LiteLLMEmbeddings.dim` raises `ValueError` for unknown model names rather than falling back to a default dimension. A silent dim fallback would corrupt the Weaviate index without surfacing the misconfiguration. Verified by `tests/unit/test_embeddings.py::test_litellm_embeddings_unknown_dimension_raises`.

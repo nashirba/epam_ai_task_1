@@ -82,3 +82,16 @@ and CI pipelines have no Langfuse keys.
   proper trace with nested spans; insufficient for the "observability" rubric.
 - **No observability** — rejected: explicitly requested by the post-draft plan
   and penalised in the grading rubric.
+
+## Addendum (2026-05-05)
+
+Trace correlation is now explicit. `advise()` generates a `uuid4().hex`
+request id at entry and binds it via `pia.observability.set_request_id`
+(a `contextvars.ContextVar`). The `trace(name)` decorator reads the var
+and forwards it to `start_as_current_observation` via
+`trace_context={"trace_id": request_id}`. Every nested span (planner →
+portfolio / market → llm.chat → rag.retrieve → mcp.kz_data /
+mcp.web_search) consequently rolls up under one named trace in the
+Langfuse dashboard — replacing the prior reliance on the SDK's automatic
+parent-child context, which scattered each `advise()` call across
+unrelated trace ids in the dashboard view.

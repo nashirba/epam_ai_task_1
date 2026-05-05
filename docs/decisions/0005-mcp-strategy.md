@@ -46,3 +46,13 @@ The custom MCP runs as a subprocess over the standard MCP transport. The Market 
 - **Build only (no third-party consumption).** Rejected. Reinventing web search is wasteful and the breadth of MCP integration is worth showing.
 - **Build a much larger custom MCP (10+ tools).** Rejected. Each extra tool adds scraping work; four covers the demo and tests, more is YAGNI for v1.
 - **Use HTTP APIs directly without MCP.** Rejected. Violates the explicit MCP requirement; also loses the protocol-level uniformity that makes the agents simpler.
+
+## Addendum (2026-05-05) — Per-request kz-data subprocess pooling
+
+In v1, every `kz_data_call_sync` spawned a fresh `python -m pia.mcp.server` subprocess. A typical `advise()` run with 3-5 tool calls paid 3-5× the FastMCP startup cost, which dominated end-to-end latency.
+
+`pia.mcp.session.MCPSessionSync` now owns one stdio subprocess + one `ClientSession` for the lifetime of one `advise()` call, backed by a daemon thread running its own asyncio loop. Tool calls dispatch onto that loop via `asyncio.run_coroutine_threadsafe`. Activation is opt-in via a `ContextVar` (`bind_kz_data_session`) so unit tests and ad-hoc CLI calls keep working without a pool.
+
+`advise()` opens the pool on entry and closes on exit. If the pool fails to open (e.g., FastMCP missing, OS hand-off error), the call falls back to the per-call subprocess path inside `kz_data_call_sync` rather than failing the whole request. Tavily web search is **not** pooled in v1 — different binary (`npx`), called at most once per request, pooling cost outweighs the win.
+
+The "MCP performance" entry under `architecture_blueprint.md` §8 should now be considered partially closed.
