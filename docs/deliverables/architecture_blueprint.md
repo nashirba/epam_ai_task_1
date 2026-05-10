@@ -97,7 +97,7 @@ flowchart TD
 | **Config** | `src/pia/config.py` | Pydantic-settings: `LLM_MODEL`, `EMBEDDING_PROVIDER`, Weaviate host/ports, Tavily key, rate limit, etc. Single `get_settings()` accessor. |
 | **Scripts** | `scripts/ingest.py` | One-shot ingest: load → chunk → embed → upsert into Weaviate `KB` collection. `--reset` recreates the collection. |
 | | `scripts/snapshot_news.py` | Helper for refreshing the public news corpus snapshot. |
-| **Tests** | `tests/unit/` (14 files) | `BaseAgent` loop edge cases, planner citations, planner disclaimer / always-returns-Recommendation, chunker, loaders, embeddings, LLM client, MCP tools, PII / sanitize / rate-limit / guardrail, smoke. |
+| **Tests** | `tests/unit/` (17 files) | `BaseAgent` loop edge cases, planner citations, planner disclaimer / always-returns-Recommendation, chunker, loaders, embeddings, LLM client, MCP tools / session pool, in-process metrics, PII / sanitize / rate-limit / guardrail, persisted-eval-report helpers, smoke. |
 | | `tests/integration/` (5 files) | `test_positive_qa` (golden Q&A; live-LLM-gated), `test_retrieval_metric` (hit-rate@5 against the labeled set), `test_faithfulness` (LLM-as-judge on the golden set), `test_mcp` (real subprocess round-trip), `test_store` (Weaviate hybrid search). |
 | | `tests/adversarial/` (7 files) | Prompt injection (planted note), jailbreak (definitive-call refusal), irrelevant query, source conflict, MCP timeout, PII probe, hallucination probe. Marker: `@pytest.mark.adversarial`. |
 | | `tests/fixtures/` | `golden_qa.yaml` (5 cases EN+RU), `retrieval_labels.yaml` (5 queries), `adversarial_inputs.yaml` (7 scenarios). |
@@ -302,7 +302,7 @@ Drawn from `docs/draft-issues.md` (post-draft binding requirements that did not 
 - ~~Subprocess pooling for repeated MCP calls.~~ Closed for kz-data on 2026-05-05: `pia.mcp.session.MCPSessionSync` pools the FastMCP subprocess for the duration of one `advise()` call (ADR 0005 addendum). Tavily web search remains spawn-per-call — a different binary, called at most once per request, pooling not worth the complexity.
 
 **Eval reports**
-- Persisted JSON eval reports under `docs/eval-runs/` (one per run, with model name, fixture set, scores). The directory exists; the reporting harness is not wired up.
+- ~~Persisted JSON eval reports under `docs/eval-runs/` (one per run, with model name, fixture set, scores). The directory exists; the reporting harness is not wired up.~~ Closed 2026-05-10: `scripts/eval_report.py` writes the ADR-0012 schema to `docs/eval-runs/<YYYY-MM-DD>-<model_slug>-<suite>.json`, and the first run lives at [`docs/eval-runs/2026-05-10-gemini-gemini-2.0-flash-all.json`](../eval-runs/2026-05-10-gemini-gemini-2.0-flash-all.json). Retrieval `hit_rate@5 = 1.0` is real; faithfulness and adversarial blocks recorded the free-tier daily-quota exhaustion honestly (per-case `RateLimitError` and degraded-path responses) — see `docs/eval-runs/README.md` §Free-tier caveat.
 
 **Multi-user / auth**
 - Authentication, multi-tenancy, server-side state. Out-of-scope by design; would require a deployment shape change (server, session storage, isolation per user).
