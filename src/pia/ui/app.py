@@ -31,6 +31,7 @@ _FX_FALLBACK: dict[str, float] = {"KZT": 1.0, "USD": 470.0, "EUR": 510.0}
 # Shown as st.error with a "Try again" button instead of normal markdown.
 _DEGRADED_MARKERS = (
     "temporarily unavailable",
+    "temporarily rate-limiting",
     "Rate limit exceeded",
     "(no response",  # tool-call budget exhausted (BaseAgent.run sentinel)
     "ToolError",  # LLM may echo this from tool-role context; not a guaranteed signal

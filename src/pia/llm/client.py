@@ -34,12 +34,15 @@ class LLMClient:
     model: str | None = None
     temperature: float | None = None
     max_tokens: int | None = None
+    num_retries: int | None = None
 
     def __post_init__(self) -> None:
         s = get_settings()
         self.model = self.model or s.llm_model
         self.temperature = self.temperature if self.temperature is not None else s.llm_temperature
         self.max_tokens = self.max_tokens or s.llm_max_tokens
+        if self.num_retries is None:
+            self.num_retries = s.llm_num_retries
 
     @trace("llm.chat")
     def chat(self, messages: list[dict[str, Any]], tools: list[dict] | None = None) -> dict:
@@ -48,6 +51,7 @@ class LLMClient:
             messages=messages,
             temperature=self.temperature,
             max_tokens=self.max_tokens,
+            num_retries=self.num_retries,
         )
         if tools:
             kwargs["tools"] = tools

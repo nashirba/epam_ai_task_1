@@ -7,7 +7,7 @@
 
 ## Problem
 
-A Kazakhstan-resident individual investor with capital but limited time faces a fragmented information landscape: NBK base-rate moves, bank deposit-rate sheets that differ by currency and term, KASE-listed equities with thin English coverage, Almaty residential listings on Krisha.kz, KZT/USD/EUR swings, and Russian-language news. Monitoring these by hand is expensive: idle KZT cash earns less than a current Halyk 12-month deposit, missed reallocation moments leave hard-currency exposure off-target, and licensed advisors are too expensive for a single retail investor. The result is a real, recurring loss of money and confidence — and a market that is small enough that off-the-shelf international robo-advisors do not serve it.
+A Kazakhstan-resident individual investor with capital but limited time faces a fragmented information landscape: NBK base-rate moves, bank deposit-rate sheets that differ by currency and term, KASE-listed equities with thin English coverage, Almaty residential listings on Krisha.kz, KZT/USD/EUR swings, and Russian-language news. Monitoring these by hand is expensive: idle KZT cash earns less than a current Halyk 3-month deposit, missed reallocation moments leave hard-currency exposure off-target, and licensed advisors are too expensive for a single retail investor. The result is a real, recurring loss of money and confidence — and a market that is small enough that off-the-shelf international robo-advisors do not serve it.
 
 ## Solution
 

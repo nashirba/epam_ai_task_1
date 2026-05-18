@@ -24,7 +24,7 @@ Local-only hybrid runtime: Weaviate runs in Docker; the Streamlit app runs as a 
 Requires `uv` (install: <https://docs.astral.sh/uv/>) and Docker.
 
 ```bash
-git clone <repo> && cd task_1
+git clone https://github.com/nashirba/epam_ai_task_1 && cd task_1 && git switch feature/capstone_project
 cp .env.example .env             # edit if you want to use a paid LLM provider
 uv sync --all-extras
 docker compose up -d weaviate    # only container; the app runs locally via uv

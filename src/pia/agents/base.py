@@ -31,7 +31,7 @@ class BaseAgent:
     system_prompt: str
     tools: list[Tool] = field(default_factory=list)
     llm: LLMClient = field(default_factory=LLMClient)
-    max_tool_calls: int = 8
+    max_tool_calls: int = 5
 
     def _tool_schemas(self) -> list[dict]:
         return [

@@ -19,7 +19,8 @@ class Settings(BaseSettings):
     # LLM
     llm_model: str = "gemini/gemini-2.0-flash"
     llm_temperature: float = 0.2
-    llm_max_tokens: int = 2048
+    llm_max_tokens: int = 768
+    llm_num_retries: int = 3
 
     # Embeddings
     embedding_provider: Literal["openai", "gemini", "local"] = "local"

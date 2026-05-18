@@ -36,6 +36,14 @@ def test_llm_client_normalizes_dict_tool_calls():
     ]
 
 
+def test_llm_client_passes_num_retries_to_litellm():
+    fake = {"choices": [{"message": {"content": "hi"}}]}
+    with patch("pia.llm.client.litellm.completion", return_value=fake) as mock_completion:
+        client = LLMClient(model="gemini/gemini-2.0-flash", num_retries=5)
+        client.chat([{"role": "user", "content": "hello"}])
+    assert mock_completion.call_args.kwargs["num_retries"] == 5
+
+
 def test_llm_client_normalizes_object_tool_calls():
     call = SimpleNamespace(
         id="call_2",

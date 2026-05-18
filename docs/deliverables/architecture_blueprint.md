@@ -25,7 +25,7 @@ The information is in Russian, English, and occasionally Kazakh. The cost of mon
 
 ### 1.2 Target user
 
-The single sole user — a KZ-resident software developer with a six-figure-KZT-equivalent portfolio split across KZT/USD deposits, KASE equities, US ETFs, and Almaty real estate. Notes (in `data/personal/notes/`) capture the user's investment theses; `plan.md` carries the stated allocation and risk tolerance; `holdings.json` is the structured ground truth of positions.
+The single sole user — a KZ-resident with a six-figure-KZT-equivalent portfolio split across KZT/USD deposits, KASE equities, US ETFs, and Almaty real estate. Notes (in `data/personal/notes/`) capture the user's investment theses; `plan.md` carries the stated allocation and risk tolerance; `holdings.json` is the structured ground truth of positions.
 
 The user is the system's only operator. There is no multi-tenant component, no auth, and no public-facing surface. This is the deliberate v1 framing per ADR 0002 (`docs/decisions/0002-domain-and-scope.md`).
 

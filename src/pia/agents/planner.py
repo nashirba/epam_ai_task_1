@@ -3,6 +3,8 @@ from __future__ import annotations
 import contextlib
 from uuid import uuid4
 
+import litellm
+
 from pia.agents.base import BaseAgent, Tool
 from pia.agents.market import ask_market
 from pia.agents.portfolio import ask_portfolio
@@ -161,6 +163,11 @@ def _advise_inner(user_text: str) -> Recommendation:
     try:
         result = planner.run(user_text)
         summary = result.text
+    except litellm.RateLimitError:
+        summary = (
+            "The LLM provider is temporarily rate-limiting requests. "
+            "Please wait ~30 seconds and try again."
+        )
     except Exception as exc:  # noqa: BLE001 — degraded answer path; disclaimer must always reach the user
         summary = (
             f"The advisor is temporarily unavailable ({type(exc).__name__}). "
