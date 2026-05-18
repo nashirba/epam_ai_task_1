@@ -43,7 +43,17 @@ uv run python -m pia.cli info
 
 The default config runs at $0: free Gemini LLM + local `BAAI/bge-m3` embeddings + self-hosted Weaviate.
 
-**LLM key:** a working LLM key (Gemini, Anthropic, Groq, OpenAI, or Ollama) is required for live recommendations. Without one the chat returns a degraded "advisor unavailable" message and the not-financial-advice disclaimer still renders — Quickstart, ingest, and the UI itself still launch without a key so you can verify the setup.
+**LLM key:** a working LLM key (Gemini, Anthropic, Groq, OpenAI) is required for live recommendations. Without one the chat returns a degraded "advisor unavailable" message and the not-financial-advice disclaimer still renders — Quickstart, ingest, and the UI itself still launch without a key so you can verify the setup.
+
+**Fully offline path (Ollama).** No API keys at all:
+
+```bash
+brew install ollama && ollama serve &        # daemon on :11434
+ollama pull qwen2.5:7b-instruct              # ~4.7GB, best local model for tool-calls
+# in .env: LLM_MODEL=ollama_chat/qwen2.5:7b-instruct
+```
+
+Per-turn latency ~10-30s on Apple Silicon vs ~5s for hosted Gemini; tool-calling on a 7B model is shakier on conversational queries but reliable for explicit ones. Stop with `pkill ollama` or `brew services stop ollama`. See ADR 0013 for the rate-limit-resilience tunings that make free hosted tiers usable.
 
 ## Tests
 

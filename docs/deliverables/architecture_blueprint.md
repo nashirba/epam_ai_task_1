@@ -3,7 +3,7 @@
 - **Project:** Personal Investment-Planning Assistant (PIA)
 - **Author:** Nurlan
 - **Status:** v0.9 (post-Phase 11; submission-ready)
-- **Source of truth:** `docs/superpowers/specs/2026-05-02-personal-investment-assistant-design.md`, ADRs `docs/decisions/0001`-`0012`, implementation under `src/pia/`.
+- **Source of truth:** `docs/superpowers/specs/2026-05-02-personal-investment-assistant-design.md`, ADRs `docs/decisions/0001`-`0013`, implementation under `src/pia/`.
 
 This document is the navigable, grader-facing summary of the system. It synthesizes the design spec, the implemented code, and accepted ADRs into one place. It deliberately does not repeat the full spec — the spec, ADRs, and code remain authoritative for any conflict.
 
@@ -196,6 +196,7 @@ ADRs live under `docs/decisions/` and are written at the time of decision (ADR 0
 | [0010](../decisions/0010-observability-langfuse.md) | Langfuse cloud free tier; `start_as_current_observation`; no-op when keys unset | Zero-friction local dev (no errors without keys); `request_id = AgentMessage.request_id` joins spans into one trace. |
 | [0011](../decisions/0011-safety-layered-facade.md) | Layered facade: `rate_limit → sanitize → redact → planner.run → guardrail` | Each concern a pure function in its own module; PII never reaches LLM trace in plaintext; guardrail subsumes the inline definitive-call hedge. |
 | [0012](../decisions/0012-evaluation-harness.md) | Evaluation harness — three suites (retrieval / faithfulness / adversarial), three metrics, three thresholds; `PIA_LIVE_LLM=1` gate; persisted JSON runs under `docs/eval-runs/` | Threshold rationale is auditable in one place; executive summary cites specific run files; regressions surface in `git log docs/eval-runs/`. |
+| [0013](../decisions/0013-llm-rate-limit-resilience.md) | LLM rate-limit resilience — `LLMClient` forwards `num_retries=6`; `max_tokens=512`; `BaseAgent.max_tool_calls=5`; explicit `litellm.RateLimitError` branch in the planner facade | Free-tier Gemini/Groq quotas trip easily under the planner's stacked tool-calls. These constants keep the `$0` grader path viable; the planner surfaces a distinct "provider rate-limiting" message instead of a generic outage. |
 
 ---
 
@@ -267,7 +268,8 @@ The safety facade (ADR 0011) is a layered series of pure functions wrapping `pla
 ### 7.4 Cost / resource
 
 - **Local-first by default.** Weaviate self-hosted (one Docker container with a persistent volume). Streamlit and the agent code run as a local `uv` Python process.
-- **Free-tier hosted LLM path.** `LLM_MODEL=gemini/gemini-2.0-flash` plus `EMBEDDING_PROVIDER=local` runs the entire stack at `$0`.
+- **Free-tier hosted LLM path.** `LLM_MODEL=gemini/gemini-2.0-flash` plus `EMBEDDING_PROVIDER=local` runs the entire stack at `$0`. Daily free quotas are tight against the planner's stacked tool-calls; ADR 0013 documents the `num_retries`/`max_tokens`/`max_tool_calls` tunings that keep this viable.
+- **Fully offline path.** `LLM_MODEL=ollama_chat/qwen2.5:7b-instruct` after `ollama pull` removes the hosted dependency entirely. Per-turn latency is 10-30s on Apple Silicon and tool-calling reliability on a local 7B is lower than hosted models — accepted trade-off for a true zero-network demo.
 - **Local embeddings.** `BAAI/bge-m3` is downloaded once (~600MB) and reused.
 - **No cloud deployment required.** The capstone runs from a fresh clone in <10 minutes (Docker pull + `uv sync` + first ingest dominate).
 - **Resource metrics not currently exposed.** Memory/CPU/API-quota counters are noted as a gap in the post-draft plan and left to future work.
